@@ -162,7 +162,7 @@ const Footer = () => {
           </div>
           <hr className="border-gray-500" />
           <div className="pt-4 mx-auto">
-            <p className="text-white text-sm font-roboto  racking-wider">
+            <p className="text-white text-sm font-roboto text-center racking-wider">
               &copy; 2023 Your Company, Inc. All rights reserved.
             </p>
           </div>
