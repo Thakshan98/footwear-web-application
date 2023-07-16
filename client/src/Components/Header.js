@@ -52,7 +52,7 @@ const Header = () => {
               className='text-center text-gray-700 hover:text-primary transition relative'
             >
               <div className='text-2xl'>
-              <svg
+                <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
                   viewBox='0 0 24 24'

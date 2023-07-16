@@ -1,9 +1,13 @@
 import React from 'react'
+import MetaData from '../Components/MetaData'
 
-const Home = () => {
+const Home = ({title}) => {
   return (
-    <div>Home Page</div>
-  )
+      <>
+        <MetaData title={'Our Home page'}/>
+        <h4>Home Page</h4>
+      </>
+    )
 }
 
 export default Home
