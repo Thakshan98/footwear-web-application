@@ -1,9 +1,14 @@
 import React from 'react'
+import MetaData from '../Components/MetaData'
+import Carousels from '../Components/Carousels'
 
-const Home = () => {
+const Home = ({title}) => {
   return (
-    <div>Home Page</div>
-  )
+      <>
+        <MetaData title={'Our Home page'}/>
+        <Carousels/>
+      </>
+    )
 }
 
 export default Home
