@@ -1,15 +1,18 @@
 {
   "name": "server",
   "version": "1.0.0",
+<<<<<<< HEAD
+  "description": "",
+  "main": "Sever.js",
+=======
   "main": "server.js",
+>>>>>>> ff3d6a46fd75e1e2cce498bf166aeea65796490e
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.3.1",
