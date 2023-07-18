@@ -1,5 +1,4 @@
 import React from 'react'
-import ChatBot from '../Components/ChatBot'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
@@ -89,7 +88,6 @@ const ContactUs = () => {
           </Row>
         </div>
       </div>
-      <ChatBot />
     </Container>
   )
 }
