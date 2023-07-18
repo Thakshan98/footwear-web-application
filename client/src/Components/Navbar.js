@@ -96,6 +96,7 @@ const Navbar = (props) => {
               aria-expanded='false'
             />
           </button>
+          
         </div>
         {/* Mobile menu */}
         {open && (

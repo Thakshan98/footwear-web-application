@@ -23,7 +23,7 @@ const Product = () => {
       <h2 className=' font-popins font-semibold text-2xl text-center'>
         Products
       </h2>
-      <div class='grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4 text-center py-8'>
+      <div class='grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4 text-center py-8 place-items-center'>
         <div>
           <Card style={{ width: '18rem' }}>
             <Card.Img

@@ -11,7 +11,7 @@ function CategoryList() {
         className='d-flex justify-content-between align-items-start'
       >
         <div className='ms-2 me-auto'>
-          <div className='fw-bold'>New Arrivals</div>
+          <div className='fw-bold'>Sandals</div>
           Collection
         </div>
         <h5>
@@ -27,7 +27,7 @@ function CategoryList() {
         className='d-flex justify-content-between align-items-start'
       >
         <div className='ms-2 me-auto'>
-          <div className='fw-bold'>Men</div>
+          <div className='fw-bold'>Heels</div>
           Collection
         </div>
         <h5>
@@ -43,7 +43,7 @@ function CategoryList() {
         className='d-flex justify-content-between align-items-start'
       >
         <div className='ms-2 me-auto'>
-          <div className='fw-bold'>Women</div>
+          <div className='fw-bold'>Loafers</div>
           Collection
         </div>
         <h5>
@@ -59,7 +59,7 @@ function CategoryList() {
         className='d-flex justify-content-between align-items-start'
       >
         <div className='ms-2 me-auto'>
-          <div className='fw-bold'>Child</div>
+          <div className='fw-bold'>Slippers</div>
           Collection
         </div>
         <h5>
@@ -75,7 +75,7 @@ function CategoryList() {
         className='d-flex justify-content-between align-items-start'
       >
         <div className='ms-2 me-auto'>
-          <div className='fw-bold'>Sold Out</div>
+          <div className='fw-bold'>Formal Shoes</div>
           Collection
         </div>
         <h5>
@@ -91,7 +91,7 @@ function CategoryList() {
         className='d-flex justify-content-between align-items-start'
       >
         <div className='ms-2 me-auto'>
-          <div className='fw-bold'>Sold Out</div>
+          <div className='fw-bold'>Flip-flops</div>
           Collection
         </div>
         <h5>
@@ -107,7 +107,7 @@ function CategoryList() {
         className='d-flex justify-content-between align-items-start'
       >
         <div className='ms-2 me-auto'>
-          <div className='fw-bold'>Sold Out</div>
+          <div className='fw-bold'>Boots</div>
           Collection
         </div>
         <h5>
@@ -123,7 +123,7 @@ function CategoryList() {
         className='d-flex justify-content-between align-items-start'
       >
         <div className='ms-2 me-auto'>
-          <div className='fw-bold'>Sold Out</div>
+          <div className='fw-bold'>Clogs</div>
           Collection
         </div>
         <h5>
@@ -139,7 +139,7 @@ function CategoryList() {
         className='d-flex justify-content-between align-items-start'
       >
         <div className='ms-2 me-auto'>
-          <div className='fw-bold'>Sold Out</div>
+          <div className='fw-bold'>Casual Shoes</div>
           Collection
         </div>
         <h5>
