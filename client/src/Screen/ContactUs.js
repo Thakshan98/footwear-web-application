@@ -9,7 +9,7 @@ import Card from 'react-bootstrap/Card'
 const ContactUs = () => {
   return (
     <Container>
-      <div class='grid lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 gap-4'>
+      <div class='grid lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 gap-4 py-8'>
         <div>
           <h3 className=' font-popins text-2xl font-bold'>Get in touch</h3>
           <p

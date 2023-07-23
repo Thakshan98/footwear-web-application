@@ -6,7 +6,7 @@ const Home = ({title}) => {
   return (
       <>
         <MetaData title={'Our Home page'}/>
-        <Carousels/>
+        <Carousels ClassName='py-2'/>
       </>
     )
 }

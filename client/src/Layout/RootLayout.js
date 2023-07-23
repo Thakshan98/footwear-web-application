@@ -10,7 +10,7 @@ const Rootlayout = () => {
     <HelmetProvider>
       <Header/>
       <Navbar />
-      <div className='py-12 px-10'>
+      <div>
         <Outlet />
       </div>
       <Footer />

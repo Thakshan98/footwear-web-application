@@ -23,7 +23,7 @@ const Navbar = (props) => {
           {/* Category */}
           <div className='px-2 py-3 bg-blue-600 items-center flex cursor-pointer relative group'>
             <span className=' text-white'>
-              <BiCategoryAlt onClick={handleShow}/>
+              <BiCategoryAlt onClick={handleShow} />
             </span>
             <span
               className=' text-white capitalize ml-2 font-popins xs:px-3'
@@ -43,7 +43,7 @@ const Navbar = (props) => {
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
-                <CategoryList/>
+                <CategoryList />
               </Offcanvas.Body>
             </Offcanvas>
           </div>
@@ -56,10 +56,10 @@ const Navbar = (props) => {
                 Home
               </NavLink>
               <NavLink
-                to='/product'
+                to='/products'
                 className=' text-gray-200 hover:text-white transition no-underline'
               >
-                Product
+                Products
               </NavLink>
               <NavLink
                 to='/contact-us'
@@ -96,7 +96,6 @@ const Navbar = (props) => {
               aria-expanded='false'
             />
           </button>
-          
         </div>
         {/* Mobile menu */}
         {open && (
@@ -115,10 +114,10 @@ const Navbar = (props) => {
                 About
               </NavLink>
               <NavLink
-                to='/product'
+                to='/products'
                 className='text-gray-300 hover:text-white block px-3 py-2 rounded-md no-underline text-base md:text-center font-medium font-popins'
               >
-                Product
+                Products
               </NavLink>
               <NavLink
                 to='/contact-us'

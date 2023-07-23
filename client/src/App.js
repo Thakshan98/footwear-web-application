@@ -9,7 +9,7 @@ import Rootlayout from './Layout/RootLayout'
 import Home from './Screen/Home'
 import AboutUs from './Screen/AboutUs'
 import ContactUs from './Screen/ContactUs'
-import Product from './Screen/Product'
+import Products from './Screen/Products'
 import SignIn from './Screen/SignIn'
 import Register from './Screen/Register'
 import WishList from './Screen/WishList'
@@ -31,7 +31,7 @@ const router = createBrowserRouter(
       <Route path='/not-found' element={<NotFound />} />
       <Route path='/about-us' element={<AboutUs />} />
       <Route path='/contact-us' element={<ContactUs />} />
-      <Route path='/product' element={<Product />} />
+      <Route path='/products' element={<Products />} />
       <Route path='/sign-in' element={<SignIn />} />
       <Route path='/register' element={<Register />} />
       <Route path='/profile' element={<Profile />} />

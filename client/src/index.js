@@ -3,20 +3,16 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import App from './App'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Provider } from 'react-redux'
-import store from './store'
-import Kommunicate from "@kommunicate/kommunicate-chatbot-plugin";
+import Kommunicate from '@kommunicate/kommunicate-chatbot-plugin'
 
-Kommunicate.init("12c1660e4328d6f352d4424bd488f0d67", {
+Kommunicate.init('12c1660e4328d6f352d4424bd488f0d67', {
   automaticChatOpenOnNavigation: true,
-  popupWidget: true
-});
+  popupWidget: true,
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <App />
   </React.StrictMode>
 )
