@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
+import { Link,useNavigate, useParams } from 'react-router-dom'
 import { Table, Button, Row, Col, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
@@ -14,9 +15,9 @@ import {
 } from '../actions/productActions'
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
 
-const ProductListScreen = ({ history, match }) => {
-  const pageNumber = match.params.pageNumber || 1
-
+const ProductListScreen = () => {
+  const pageNumber = useParams();
+  
   const dispatch = useDispatch()
 
   const productList = useSelector((state) => state.productList)
@@ -40,21 +41,22 @@ const ProductListScreen = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET })
 
     if (!userInfo || !userInfo.isAdmin && !userInfo.isSystemAdmin) {
-      history.push('/login')
+      navigate('/login')
     }
 
     if (successCreate) {
-      history.push(`/admin/product/${createdProduct._id}/edit`)
+      navigate(`/admin/product/${createdProduct._id}/edit`)
     } else {
       dispatch(listProducts('', pageNumber))
     }
   }, [
     dispatch,
-    history,
+    navigate,
     userInfo,
     successDelete,
     successCreate,
@@ -78,7 +80,7 @@ const ProductListScreen = ({ history, match }) => {
     console.log("You click No!");
   };
    
-  
+ 
 
   const createProductHandler = () => {
     dispatch(createProduct())
@@ -89,11 +91,11 @@ const ProductListScreen = ({ history, match }) => {
     <>
       <Row className='align-items-center'>
         <Col>
-          <h1 className='tag my-5' style={{fontSize:'45px',fontFamily:'Lucida Console',fontWeight:'bold'}}>Books</h1>
+          <h1 className='tag my-5' style={{fontSize:'45px',fontFamily:'Lucida Console',fontWeight:'bold'}}>Products</h1>
         </Col>
         <Col className='text-right'>
           <Button className='my-3'  style={{ backgroundImage: 'linear-gradient(to bottom right,#0a0366,#475cd1,#8ec7f5)',color:'white',fontWeight:'600'}} onClick={createProductHandler}>
-            <i className='fas fa-plus'></i> Add Book
+            <i className='fas fa-plus'></i> Add Products
           </Button>
         </Col>
       </Row>
@@ -108,8 +110,9 @@ const ProductListScreen = ({ history, match }) => {
           <Table striped bordered hover responsive className='table-sm'>
             <thead>
               <tr style={{background:"#20B2AA"}}>
-                <th className='text-light'>ID</th>
-                <th className='text-light'>Title</th>
+                
+                <th className='text-light'>Category</th>
+                <th className='text-light'>Product</th>
                 <th className='text-light'>PRICE</th>
                 <th className='text-light'>COUNT IN STOCK</th>
                 <th className='text-light'>Actions</th>
@@ -118,7 +121,7 @@ const ProductListScreen = ({ history, match }) => {
             <tbody>
               {products.map((product) => (
                 <tr key={product._id}>
-                  <td>{product._id}</td>
+                  <td>{product.category}</td>
                   <td>{product.name}</td>
                   <td>LKR.{product.price}</td>
                   <td>{product.countInStock}</td>
