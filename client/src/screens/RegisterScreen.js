@@ -9,7 +9,7 @@ import {
   Spinner,
 } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
-import { Link,useLocation } from 'react-router-dom'
+import { Link,useLocation,useNavigate} from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { register } from '../actions/userActions'
@@ -42,7 +42,7 @@ Message.defaultProps = {
 }
 
 
-const RegisterScreen = ({ history }) => {
+const RegisterScreen = () => {
   const dispatch = useDispatch()
 
   const formik = useFormik({
@@ -81,11 +81,14 @@ const RegisterScreen = ({ history }) => {
   const location = useLocation()
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
-    useEffect(() => {
-      if (userInfo) {
-        history.push(redirect)
-      }
-    }, [history, userInfo, redirect])
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect)
+     
+    }
+  }, [navigate, userInfo, redirect])
+   
  
   return (
     <FormContainer>   
