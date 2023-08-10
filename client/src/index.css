@@ -42,10 +42,8 @@ main {
   background-image: url('images/nav.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-
   padding-top: 0%;
   padding-bottom: 0%;
- 
 }
 .baner{
   height: 500px;
@@ -67,10 +65,10 @@ main {
   align-items: flex-end;
 }
 
-body{
+/* body{
   background-image: linear-gradient( rgb(160, 195, 216),#f3ebeb,#e6dada); 
   
-}
+} */
 .btn{
   border-radius: 25px;
  
@@ -108,7 +106,7 @@ img{
   margin-top: 0%;
   margin-bottom: 0%;
 }
-h3 {
+/* h3 {
   padding: 1rem 0;
 }
 
@@ -116,19 +114,16 @@ h1,H6 {
   font-size: 1.8rem;
  
   margin-top: 35px;
-  text-align: center;
- 
-
-  
-}
+  text-align: center; 
+} */
 
  
 
   
-h2 {
+/* h2 {
   font-size: 1.4rem;
   padding: 0.5rem 0;
-}
+} */
 
 .rating span {
   margin: 0.1rem;
@@ -146,7 +141,7 @@ h2 {
   height: 40px;
 }
 
-.footer {
+/* .footer {
   background-image: url('images/nav.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -155,7 +150,7 @@ h2 {
   padding-bottom: 0%;
 
   font-size: 16px;
-}
+} */
 .copyright {
   text-align: center;
   padding-top: 10px;

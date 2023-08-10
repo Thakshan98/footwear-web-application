@@ -5,13 +5,12 @@ const Meta = ({ title, description, keywords }) => {
   return (
     <Helmet>
       <title>{title}</title>
-      
     </Helmet>
   )
 }
 
 Meta.defaultProps = {
-  title: 'Welcome To Book Corner'
+  title: 'Welcome To Phoenix',
 }
 
 export default Meta

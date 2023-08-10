@@ -5,8 +5,8 @@ function ContactScreen() {
   return (
     <div className='m-4 px-5'>
       <div className='text-center p-3 my-5'>
-        <h3 style={{ color: 'Green' }}>Thank you for using Bookcorner</h3>
-        <h5 style={{ color: 'purple' }}>A BETTER WAY TO BUY BOOKS ONLINE</h5>
+        <h3 style={{ color: 'Green' }}>Thank you for using Phoenix</h3>
+        <h5 style={{ color: 'purple' }}>A BETTER WAY TO BUY FOOTWEAR ONLINE</h5>
       </div>
       <Row>
         <Col sm={4} >
