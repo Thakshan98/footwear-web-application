@@ -1,60 +1,85 @@
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-} from 'react-router-dom'
-import './App.css'
-import Rootlayout from './Layout/RootLayout'
-import Home from './Screen/Home'
-import AboutUs from './Screen/AboutUs'
-import ContactUs from './Screen/ContactUs'
-import Products from './Screen/Products'
-import SignIn from './Screen/SignIn'
-import Register from './Screen/Register'
-import WishList from './Screen/WishList'
-import ShoppingCart from './Screen/ShoppingCart'
-import Category from './Screen/Category'
-import NewArrivals from './Screen/NewArrivals'
-import Men from './Screen/Men'
-import Child from './Screen/Child'
-import SoldOut from './Screen/SoldOut'
-import Women from './Screen/Women'
-import Functions from './Screen/Functions'
-import NotFound from './Screen/NotFound'
-import Profile from './Screen/Profile'
+import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import HomeScreen from './screens/HomeScreen'
+import ProductScreen from './screens/ProductScreen'
+import CartScreen from './screens/CartScreen'
+import LoginScreen from './screens/LoginScreen'
+import RegisterScreen from './screens/RegisterScreen'
+import ProfileScreen from './screens/ProfileScreen'
+import ShippingScreen from './screens/ShippingScreen'
+import PaymentScreen from './screens/PaymentScreen'
+import PlaceOrderScreen from './screens/PlaceOrderScreen'
+import OrderScreen from './screens/OrderScreen'
+import UserListScreen from './screens/UserListScreen'
+import UserEditScreen from './screens/UserEditScreen'
+import ProductListScreen from './screens/ProductListScreen'
+import ProductEditScreen from './screens/ProductEditScreen'
+import OrderListScreen from './screens/OrderListScreen'
+import AboutUsScreen from './screens/AboutUs'
+import feedbackScreen from './screens/FeedbackScreen'
+import FeedbackListScreen from './screens/FeedbackListScreen'
+import FeedbackDetailScreen from './screens/FeedbackDetailScreen'
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path='/' element={<Rootlayout />}>
-      <Route index element={<Home />} />
-      <Route path='/not-found' element={<NotFound />} />
-      <Route path='/about-us' element={<AboutUs />} />
-      <Route path='/contact-us' element={<ContactUs />} />
-      <Route path='/products' element={<Products />} />
-      <Route path='/sign-in' element={<SignIn />} />
-      <Route path='/register' element={<Register />} />
-      <Route path='/profile' element={<Profile />} />
-      <Route path='/wish-list' element={<WishList />} />
-      <Route path='/shopping-cart' element={<ShoppingCart />} />
-      <Route index element={<Category />} />
-      <Route path='/new-arrivals' element={<NewArrivals />} />
-      <Route path='/men' element={<Men />} />
-      <Route path='/women' element={<Women />} />
-      <Route path='/child' element={<Child />} />
-      <Route path='/sold-out' element={<SoldOut />} />
-      <Route path='/function' element={<Functions />} />
 
-      <Route path='*' element={<NotFound />} />
-    </Route>
-  )
-)
 
-function App() {
+
+const App = () => {
   return (
-    <>
-      <RouterProvider router={router} />
-    </>
+    <Router>
+      <Header />
+      
+      <main>
+        <div>
+
+        <Routes>
+       
+   
+          <Route path='/order/:id' element={<OrderScreen />} />
+          <Route path='/shipping' element={<ShippingScreen />} />
+          <Route path='/payment' element={<PaymentScreen />} />
+          <Route path='/placeorder' element={<PlaceOrderScreen />} />
+          <Route path='/login' element={<LoginScreen />} />
+         
+          <Route path='/register' element={<RegisterScreen />} />
+          <Route path='/profile' element={<ProfileScreen />} />
+          <Route path='/about' element={<AboutUsScreen />} />
+          <Route path='/feedback' element={<feedbackScreen />} />        
+          <Route path='/admin/feedback' element={<FeedbackListScreen />}  exact/>
+          <Route path='/admin/feedback/:id' element={<FeedbackDetailScreen />} />
+          <Route path='/product/:id' element={<ProductScreen />} />
+          <Route path='/cart/:id?' element={<CartScreen />} />
+          <Route path='/admin/userlist' element={<UserListScreen />} />
+          <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
+          <Route
+            path='/admin/productlist'
+            element={<ProductListScreen />}
+            exact
+          />
+          <Route
+            path='/admin/productlist/:pageNumber'
+            element={<ProductListScreen />}
+            exact
+          />
+          <Route path='/admin/product/:id/edit' element={<ProductEditScreen />} />
+          <Route path='/admin/orderlist' element={<OrderListScreen />} />
+          
+          <Route path='/search/:keyword' element={<HomeScreen />} exact />
+          <Route path='/page/:pageNumber' element={<HomeScreen />} exact />
+          <Route
+            path='/search/:keyword/page/:pageNumber'
+            element={<HomeScreen />}
+            exact
+          />
+          <Route path='/' element={<HomeScreen />} exact />
+
+          </Routes>
+        </div>
+      </main>
+      <br/><br/><br/><br/><br/>
+      <Footer />
+    </Router>
   )
 }
 

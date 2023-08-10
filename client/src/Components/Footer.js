@@ -1,175 +1,144 @@
-import React from 'react';
+import React from 'react'
+import { Container, Row, Col, Navbar } from 'react-bootstrap'
 import {
-  FaFacebookSquare,
-  FaTwitterSquare,
-  FaInstagramSquare,
-  FaGithubSquare,
-  FaYoutube,
-} from 'react-icons/fa';
+  FaFacebookF,
+  FaInstagram,
+  FaTelegramPlane,
+  FaWhatsappSquare,
+  FaFacebookMessenger,
+  FaStore,
+  FaPhoneSquareAlt,
+  FaEnvelope,
+  FaTwitter,
+} from 'react-icons/fa'
 
-const Footer = () => {
+function Footer() {
   return (
-    <>
-      <div className="bg-gray-800 pt-16 pb-10 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8">
-            <div className="md:col-span-1 space-y-8 md:mr-4">
-              <span className="text-lg font-semibold text-white w-30">
-                PHOENIX
-              </span>
-              <p className="text-white text-sm leading-loose font-popins tracking-wider">
-                Just name your peers directly in your markup and Tailwind will
-                automatically generate the necessary CSS.
-              </p>
-              <div className="flex space-x-6">
-                <a href="/" className="text-gray-400">
-                  <FaFacebookSquare />
+    <React.Fragment>
+      <div className=' text-light footer' >
+        <Container className='p-4'>
+          <Row>
+            <Col sm={7} className='justify-content-md-center text-center p-2 '>
+              <p style={{fontWeight:"900"}}>Get connected with us on our social networks:</p>
+            </Col>
+            <Col sm={1} className='justify-content-md-center text-light'>
+              <Navbar.Text className='d-inline-block'>
+                <a
+                  href='https://www.facebook.com/Book-Corner-110785811720166/?ref=pages_you_manage'
+                  target='_blank'
+                >
+                  <FaFacebookF size={'18px'} color={'#ffffff'} />
                 </a>
-                <a href="/" className="text-gray-400">
-                  <FaTwitterSquare />
+              </Navbar.Text>
+              </Col>
+              <Col sm={1} className='justify-content-md-center text-light'>
+              <Navbar.Text className='d-inline-block'>
+                <a href='https://www.instagram.com/bookcornerinfo/' target='_blank'>
+                  <FaInstagram size={'18px'} color={'#ffffff'} />
                 </a>
-                <a href="/" className="text-gray-400">
-                  <FaInstagramSquare />
+              </Navbar.Text>
+              </Col>
+              <Col sm={1} className='justify-content-md-center text-light'>
+              <Navbar.Text className='d-inline-block'>
+                <a href='https://web.telegram.org/z/#-1649825626' target='_blank'>
+                  <FaTelegramPlane size={'18px'} color={'#ffffff'} />
                 </a>
-                <a href="/" className="text-gray-400">
-                  <FaGithubSquare />
+              </Navbar.Text>
+              </Col>
+              <Col sm={1} className='justify-content-md-center text-light'>
+              <Navbar.Text className='d-inline-block'>
+                <a href='https://twitter.com/infobookcorner' target='_blank'>
+                  <FaTwitter size={'18px'} color={'#ffffff'} />
                 </a>
-                <a href="/" className="text-gray-400">
-                  <FaYoutube />
+              </Navbar.Text>
+              </Col>
+              <Col sm={1} className='justify-content-md-center text-light'>
+              <Navbar.Text className='d-inline-block'>
+                <a href='https://www.facebook.com/groups/805126427516599' target='_blank'>
+                  <FaFacebookMessenger size={'18px'} color={'#ffffff'} />
                 </a>
-              </div>
-            </div>
-            <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div>
-                <h3 className="text-sm font-semibold text-blue-600 uppercase tracking-wider">
-                  Solution
-                </h3>
-                <div className="mt-4 space-y-4 font-roboto">
-                  <a
-                    href="/"
-                    className="text-base text-white block no-underline"
-                  >
-                    Marketing
-                  </a>
-                  <a
-                    href="/"
-                    className="text-base text-white block no-underline"
-                  >
-                    Analytics
-                  </a>
-                  <a
-                    href="/"
-                    className="text-base text-white block no-underline"
-                  >
-                    Commerce
-                  </a>
-                  <a
-                    href="/"
-                    className="text-base text-white block no-underline"
-                  >
-                    Insights
-                  </a>
-                </div>
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold text-blue-600 uppercase tracking-wider">
-                  Support
-                </h3>
-                <div className="mt-4 space-y-4 font-roboto">
-                  <a
-                    href="/"
-                    className="text-base text-white block no-underline"
-                  >
-                    Pricing
-                  </a>
-                  <a
-                    href="/"
-                    className="text-base text-white block no-underline"
-                  >
-                    Documentation
-                  </a>
-                  <a
-                    href="/"
-                    className="text-base text-white block no-underline"
-                  >
-                    Guides
-                  </a>
-                  <a
-                    href="/"
-                    className="text-base text-white block no-underline"
-                  >
-                    API Status
-                  </a>
-                </div>
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold text-blue-600 uppercase tracking-wider">
-                  Company
-                </h3>
-                <div className="mt-4 space-y-4 font-roboto">
-                  <a
-                    href="/"
-                    className="text-base text-white block no-underline"
-                  >
-                    About
-                  </a>
-                  <a
-                    href="/"
-                    className="text-base text-white block no-underline"
-                  >
-                    Blog
-                  </a>
-                  <a
-                    href="/"
-                    className="text-base text-white block no-underline"
-                  >
-                    Jobs
-                  </a>
-                  <a
-                    href="/"
-                    className="text-base text-white block no-underline"
-                  >
-                    Partners
-                  </a>
-                </div>
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold text-blue-600 uppercase tracking-wider">
-                  Legal
-                </h3>
-                <div className="mt-4 space-y-4 font-roboto">
-                  <a
-                    href="/"
-                    className="text-base text-white block no-underline"
-                  >
-                    Claim
-                  </a>
-                  <a
-                    href="/"
-                    className="text-base text-white block no-underline"
-                  >
-                    Privacy
-                  </a>
-                  <a
-                    href="/"
-                    className="text-base text-white block no-underline"
-                  >
-                    Terms
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <hr className="border-gray-500" />
-          <div className="pt-4 mx-auto">
-            <p className="text-white text-sm font-roboto text-center racking-wider">
-              &copy; 2023 Your Company, Inc. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
+              </Navbar.Text>
+            </Col>
+          </Row>
+        <hr/>
+          <Row>
+            <Col sm={3} className='text-start'>
+              <ul className='list-unstyled  '>
+                <li className='py-2'>
+                  <h5 style={{color:"#fc7b03"}}>CONTACT</h5>
+                </li>
 
-export default Footer;
+                <li className='py-2'>
+                  <a href='tel:+94776408775' target='_blank'>
+                    <FaPhoneSquareAlt size={'16px'} color={'#ffffff'} />
+                  </a>
+                  &nbsp; +94776408775
+                </li>
+                <li className='py-2'>
+                  <a href='https://wa.me/+94776408775' target='_blank'>
+                    <FaWhatsappSquare size={'16px'} color={'#ffffff'} />
+                  </a>
+                  &nbsp; +94776408775
+                </li>
+                <li className='py-2'>
+                  <a href='https://goo.gl/maps/CJXsuk9HqnJxRZBh6' target='_blank'>
+                    <FaStore size={'16px'} color={'#ffffff'} />
+                  </a>
+                  &nbsp; Poonagary, Kilinochchi.
+                </li>
+                <li className='py-2'>
+                  <a href='mailto:infobookcorner@gmail.com'>
+                    <FaEnvelope size={'16px'} color={'#ffffff'} />
+                  </a>
+                  &nbsp; infobookcorner@gmail.com
+                </li>
+              </ul>
+            </Col>
+            <Col sm={3} className='text-start'>
+              <ul className='list-unstyled'>
+                <li className='py-2'>
+                  <h5 style={{color:"#fc7b03"}}>USEFUL LINKS</h5>
+                </li>
+                <li className='py-2'>Feedback</li>
+                <li className='py-2'>About Us</li>
+                <li className='py-2'>Contact Us</li>
+                <li className='py-2'>Search</li>
+              </ul>
+            </Col>
+            <Col sm={3} className='text-start'>
+              <ul className='list-unstyled'>
+                <li className='py-2'>
+                  <h5 style={{color:"#fc7b03"}}>MY ACCOUNT</h5>
+                </li>
+                <li className='py-2'>Profile</li>
+                <li className='py-2'>Cart</li>
+                <li className='py-2'>Account Settings</li>
+                <li className='py-2'>Order Details</li>
+              </ul>
+            </Col>
+            <Col sm={3} className='text-start'>
+              <ul className='list-unstyled'>
+                <li className='py-2'>
+                  <h5 style={{color:"#fc7b03"}}>SERVICES</h5>
+                </li>
+                <li className='py-2'>Doorstep Delivery</li>
+                <li className='py-2'>Online Payment</li>
+                <li className='py-2'>24/7 Helpline</li>
+                <li className='py-2'>Cancel Order within 24hours</li>
+              </ul>
+            </Col>
+          </Row>
+          <hr />
+
+          <Row>
+            <Col sm={12}>
+              <p className='copyright'>&copy; 2022 Copyright bookcorner.com</p>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </React.Fragment>
+  )
+}
+
+export default Footer
