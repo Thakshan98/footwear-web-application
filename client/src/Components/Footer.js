@@ -4,111 +4,144 @@ import {
   FaFacebookF,
   FaInstagram,
   FaTelegramPlane,
-  FaWhatsappSquare,
   FaFacebookMessenger,
-  FaStore,
-  FaPhoneSquareAlt,
-  FaEnvelope,
   FaTwitter,
 } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 function Footer() {
   return (
-    <React.Fragment>
-      <div className=' text-light footer' >
-        <Container className='p-4'>
+    <>
+      <div className='text-light footer' style={{ backgroundColor: '#232F3E' }}>
+        <Container className='p-4 font-popins leading-6 tracking-wider'>
           <Row>
             <Col sm={7} className='justify-content-md-center text-center p-2 '>
-              <p style={{fontWeight:"900"}}>Get connected with us on our social networks:</p>
+              <p style={{ fontWeight: '900' }}>
+                Get connected with us on our social networks:
+              </p>
             </Col>
             <Col sm={1} className='justify-content-md-center text-light'>
               <Navbar.Text className='d-inline-block'>
-                <a
-                  href='https://www.facebook.com/Book-Corner-110785811720166/?ref=pages_you_manage'
+                <Link
+                  to=''
                   target='_blank'
                 >
                   <FaFacebookF size={'18px'} color={'#ffffff'} />
-                </a>
+                </Link>
               </Navbar.Text>
-              </Col>
-              <Col sm={1} className='justify-content-md-center text-light'>
+            </Col>
+            <Col sm={1} className='justify-content-md-center text-light'>
               <Navbar.Text className='d-inline-block'>
-                <a href='https://www.instagram.com/bookcornerinfo/' target='_blank'>
+                <Link
+                  to=''
+                  target='_blank'
+                >
                   <FaInstagram size={'18px'} color={'#ffffff'} />
-                </a>
+                </Link>
               </Navbar.Text>
-              </Col>
-              <Col sm={1} className='justify-content-md-center text-light'>
+            </Col>
+            <Col sm={1} className='justify-content-md-center text-light'>
               <Navbar.Text className='d-inline-block'>
-                <a href='https://web.telegram.org/z/#-1649825626' target='_blank'>
+                <Link
+                  to=''
+                  target='_blank'
+                >
                   <FaTelegramPlane size={'18px'} color={'#ffffff'} />
-                </a>
+                </Link>
               </Navbar.Text>
-              </Col>
-              <Col sm={1} className='justify-content-md-center text-light'>
+            </Col>
+            <Col sm={1} className='justify-content-md-center text-light'>
               <Navbar.Text className='d-inline-block'>
-                <a href='https://twitter.com/infobookcorner' target='_blank'>
+                <Link to=''>
                   <FaTwitter size={'18px'} color={'#ffffff'} />
-                </a>
+                </Link>
               </Navbar.Text>
-              </Col>
-              <Col sm={1} className='justify-content-md-center text-light'>
+            </Col>
+            <Col sm={1} className='justify-content-md-center text-light'>
               <Navbar.Text className='d-inline-block'>
-                <a href='https://www.facebook.com/groups/805126427516599' target='_blank'>
+                <Link
+                  to=''
+                  target='_blank'
+                >
                   <FaFacebookMessenger size={'18px'} color={'#ffffff'} />
-                </a>
+                </Link>
               </Navbar.Text>
             </Col>
           </Row>
-        <hr/>
+          <hr />
           <Row>
             <Col sm={3} className='text-start'>
-              <ul className='list-unstyled  '>
+              <ul className='list-unstyled '>
                 <li className='py-2'>
-                  <h5 style={{color:"#fc7b03"}}>CONTACT</h5>
-                </li>
-
-                <li className='py-2'>
-                  <a href='tel:+94776408775' target='_blank'>
-                    <FaPhoneSquareAlt size={'16px'} color={'#ffffff'} />
-                  </a>
-                  &nbsp; +94776408775
+                  <h5 style={{ color: '#fc7b03' }}>Contact Us</h5>
                 </li>
                 <li className='py-2'>
-                  <a href='https://wa.me/+94776408775' target='_blank'>
-                    <FaWhatsappSquare size={'16px'} color={'#ffffff'} />
-                  </a>
-                  &nbsp; +94776408775
+                  <p>Phoenix industries pvt ltd</p>
                 </li>
                 <li className='py-2'>
-                  <a href='https://goo.gl/maps/CJXsuk9HqnJxRZBh6' target='_blank'>
-                    <FaStore size={'16px'} color={'#ffffff'} />
-                  </a>
-                  &nbsp; Poonagary, Kilinochchi.
+                  <address className='text-white font-popins'>
+                    No 57, Thotupola road, Welisara Sri lanka
+                  </address>
                 </li>
                 <li className='py-2'>
-                  <a href='mailto:infobookcorner@gmail.com'>
-                    <FaEnvelope size={'16px'} color={'#ffffff'} />
-                  </a>
-                  &nbsp; infobookcorner@gmail.com
+                  <Link
+                    to='tel:+94 112952702'
+                    className='text-white font-popins mb-0'
+                    style={{ textDecoration: 'none' }}
+                  >
+                    +94 112952702
+                  </Link>
+                </li>
+                <li className='py-2'>
+                  <Link
+                    to='mailto:phoenixind@yahoo.com'
+                    className='text-white font-popins mb-0'
+                    style={{ textDecoration: 'none' }}
+                  >
+                    phoenixind@yahoo.com
+                  </Link>
                 </li>
               </ul>
             </Col>
             <Col sm={3} className='text-start'>
               <ul className='list-unstyled'>
                 <li className='py-2'>
-                  <h5 style={{color:"#fc7b03"}}>USEFUL LINKS</h5>
+                  <h5 style={{ color: '#fc7b03' }}>Information</h5>
                 </li>
-                <li className='py-2'>Feedback</li>
-                <li className='py-2'>About Us</li>
-                <li className='py-2'>Contact Us</li>
-                <li className='py-2'>Search</li>
+                <li className='py-2'><Link
+                  to='privacy-policy'
+                  className='text-white font-popins text-sm py-2 mb-1'
+                  style={{ textDecoration: 'none' }}
+                >
+                  Privacy Policy
+                </Link></li>
+                <li className='py-2'><Link
+                  to='shipping-policy'
+                  className='text-white font-popins text-sm py-2 mb-1'
+                  style={{ textDecoration: 'none' }}
+                >
+                  Shipping Policy
+                </Link></li>
+                <li className='py-2'><Link
+                  to='order-policy'
+                  className='text-white font-popins text-sm py-2 mb-1'
+                  style={{ textDecoration: 'none' }}
+                >
+                  Order Policy
+                </Link></li>
+                <li className='py-2'><Link
+                  to='term-and-conditions'
+                  className='text-white font-popins text-sm py-2 mb-1'
+                  style={{ textDecoration: 'none' }}
+                >
+                  Terms and Conditions
+                </Link></li>
               </ul>
             </Col>
             <Col sm={3} className='text-start'>
               <ul className='list-unstyled'>
                 <li className='py-2'>
-                  <h5 style={{color:"#fc7b03"}}>MY ACCOUNT</h5>
+                  <h5 style={{ color: '#fc7b03' }}>My Account</h5>
                 </li>
                 <li className='py-2'>Profile</li>
                 <li className='py-2'>Cart</li>
@@ -119,9 +152,9 @@ function Footer() {
             <Col sm={3} className='text-start'>
               <ul className='list-unstyled'>
                 <li className='py-2'>
-                  <h5 style={{color:"#fc7b03"}}>SERVICES</h5>
+                  <h5 style={{ color: '#fc7b03' }}>Services</h5>
                 </li>
-                <li className='py-2'>Doorstep Delivery</li>
+                <li className='py-2'>Door Delivery</li>
                 <li className='py-2'>Online Payment</li>
                 <li className='py-2'>24/7 Helpline</li>
                 <li className='py-2'>Cancel Order within 24hours</li>
@@ -132,12 +165,16 @@ function Footer() {
 
           <Row>
             <Col sm={12}>
-              <p className='copyright'>&copy; 2022 Copyright bookcorner.com</p>
+              <p className='copyright'>
+                {' '}
+                &copy; {new Date().getFullYear()} Powered by Phoenix Industries.
+                All rights reserved.
+              </p>
             </Col>
           </Row>
         </Container>
       </div>
-    </React.Fragment>
+    </>
   )
 }
 

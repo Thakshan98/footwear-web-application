@@ -93,7 +93,7 @@ const RegisterScreen = () => {
   return (
     <FormContainer>   
       <div className='p-2 my-5' style={{background:"white",borderRadius:"10px"}}> 
-        <h1 className='tag ' style={{fontSize:'35px',fontFamily:'Times New Roman',fontWeight:'bold'}}>Sign Up</h1>
+        <h1 className='tag text-center' style={{fontSize:'35px',fontFamily:'Times New Roman',fontWeight:'bold'}}>Sign Up</h1>
         {message && <Message variant='danger'>{message}</Message>}
         {error && <Message variant='danger'>{error}</Message>}
         {loading && <Loader />}
