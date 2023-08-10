@@ -1,5 +1,6 @@
 const  User = require("../models/userModel.js");
 const generateToken = require("../utils/generateToken.js");
+const asyncHandler =require("express-async-handler");
 
 const authUser = async (req, res) => {
   const { email, password } = req.body

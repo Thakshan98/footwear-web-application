@@ -10,10 +10,11 @@ const {
 const { protect, systemAdmin } = require ("../middleware/authMiddleware.js");
 
 router.route('/').get(getCategory).post(protect, systemAdmin, createCategory)
-router
-  .route('/:id')
-  .get( getCategoryById)
-  .delete(protect, systemAdmin, deleteCategory)
-  .put(protect, systemAdmin, updateCategory)
+router.route('/:id').get( getCategoryById)
+router.route('/:id').delete(protect, systemAdmin, deleteCategory)
+router.route('/:id').put(protect, systemAdmin, updateCategory)
 
   module.exports = router;
+
+
+ 

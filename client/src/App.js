@@ -14,8 +14,13 @@ import PlaceOrderScreen from './screens/PlaceOrderScreen'
 import OrderScreen from './screens/OrderScreen'
 import UserListScreen from './screens/UserListScreen'
 import UserEditScreen from './screens/UserEditScreen'
+
 import ProductListScreen from './screens/ProductListScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
+
+import CategoryListScreen from './screens/CategoryListScreen'
+import CategoryEditScreen from './screens/CategoryEditScreen'
+
 import OrderListScreen from './screens/OrderListScreen'
 import AboutUsScreen from './screens/AboutUs'
 import feedbackScreen from './screens/FeedbackScreen'
@@ -57,11 +62,20 @@ const App = () => {
             element={<ProductListScreen />}
             exact
           />
-          <Route
-            path='/admin/productlist/:pageNumber'
-            element={<ProductListScreen />}
+           <Route
+            path='/admin/categorylist'
+            element={<CategoryListScreen />}
             exact
           />
+
+          <Route
+            path='/admin/productlist/:pageNumber'
+            element={<CategoryListScreen />}
+            exact
+          />
+
+         
+          <Route path='/admin/category/:id/edit' element={<CategoryEditScreen />} />
           <Route path='/admin/product/:id/edit' element={<ProductEditScreen />} />
           <Route path='/admin/orderlist' element={<OrderListScreen />} />
           

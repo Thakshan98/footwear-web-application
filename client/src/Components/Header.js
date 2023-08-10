@@ -107,9 +107,12 @@ const Header = () => {
                 <NavDropdown title='Admin' id='adminmenu'>
                    
                 
-                 
+                   <LinkContainer to='/admin/categorylist'>
+                    <NavDropdown.Item>Category</NavDropdown.Item>
+                  </LinkContainer>
+
                   <LinkContainer to='/admin/productlist'>
-                    <NavDropdown.Item>Books</NavDropdown.Item>
+                    <NavDropdown.Item>Footware</NavDropdown.Item>
                   </LinkContainer>
                  
                   <LinkContainer to='/admin/orderlist'>
@@ -125,8 +128,12 @@ const Header = () => {
                     <NavDropdown.Item>Users</NavDropdown.Item>
                   </LinkContainer>
                  
+                  <LinkContainer to='/admin/categorylist'>
+                    <NavDropdown.Item>Category</NavDropdown.Item>
+                  </LinkContainer>
+
                   <LinkContainer to='/admin/productlist'>
-                    <NavDropdown.Item>Books</NavDropdown.Item>
+                    <NavDropdown.Item>Footware</NavDropdown.Item>
                   </LinkContainer>
                  
                   <LinkContainer to='/admin/orderlist'>

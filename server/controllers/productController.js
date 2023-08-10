@@ -1,5 +1,5 @@
 const Footwear =require("../models/footwearModel.js");
-
+const asyncHandler =require("express-async-handler");
 
 const getProducts = async (req, res) => {
   const pageSize = 8
