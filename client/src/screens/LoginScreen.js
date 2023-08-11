@@ -37,7 +37,7 @@ const LoginScreen = () => {
         style={{ background: 'white', borderRadius: '10px' }}
       >
         <h1
-          className='tag my-5'
+          className='tag my-5 text-center'
           style={{
             fontSize: '35px',
             fontFamily: 'Times New Roman',
@@ -96,8 +96,8 @@ const LoginScreen = () => {
             style={{
               marginLeft: '40px',
               width: '80%',
-              backgroundImage:
-                'linear-gradient(to bottom right,#50025c, #d20be0,#db3bb6)',
+              // backgroundImage:
+              //   'linear-gradient(to bottom right,#50025c, #d20be0,#db3bb6)',
               color: 'white',
               fontWeight: '600',
             }}

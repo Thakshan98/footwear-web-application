@@ -9,7 +9,7 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <div className='container-lg py-4'>
+      <div className='py-4 px-0' style={{backgroundColor:'#CBD5E1'}}>
         <Outlet/>
       </div>
       <Footer />

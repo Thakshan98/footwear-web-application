@@ -21,7 +21,7 @@ main {
   border-Radius: 15px ;
   background-image: linear-gradient( rgb(197, 223, 240),#ffffff,#ffffff,#e6dada); 
   overflow:hidden;
-  box-Shadow: 0px 0px 16px 6px rgba(0, 0, 0, 0.33);
+  /* box-Shadow: 0px 0px 16px 6px rgba(0, 0, 0, 0.33); */
   padding-left: 8px;
  
 }

@@ -47,41 +47,42 @@ const UserListScreen = ({ history }) => {
   return (
     <Container>
     <>
-      <h1 className='tag my-5' style={{fontSize:'45px',fontFamily:'Lucida Console',fontWeight:'bold'}}>Users</h1>
+      <h3 className='tag my-5 text-center' style={{fontWeight:'bold'}}>Users List</h3>
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (
-        <Table striped bordered hover responsive className='table-sm'>
-          <thead>
-            <tr style={{background:"#663399"}}>
-              <th className='text-light'>ID</th>
-              <th className='text-light'>NAME</th>
-              <th className='text-light'>EMAIL</th>
-              <th className='text-light'>ADMIN</th>
-              <th className='text-light'>Actions</th>
+        <Table striped bordered hover responsive className='table-sm rounded-md'>
+          <thead >
+            <tr>
+              <th className='text-black text-center py-2'>User Id</th>
+              <th className='text-black text-center py-2'>Name</th>
+              <th className='text-black text-center py-2'>Email Address</th>
+              <th className='text-black text-center py-2'>Admin</th>
+              <th className='text-black text-center py-2'>Actions</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr key={user._id}>
-                <td>{user._id}</td>
-                <td>{user.name}</td>
-                <td>
+              <tr key={user._id} >
+                <td className='text-center'>{user._id}</td>
+                <td className='text-center'>{user.name}</td>
+                <td className='text-center'>
                   <a href={`mailto:${user.email}`}>{user.email}</a>
                 </td>
-                <td>
+                <td className='text-center'>
                   {user.isAdmin ? (
                     <i className='fas fa-check' style={{ color: 'green' }}></i>
                   ) : (
                     <i className='fas fa-times' style={{ color: 'red' }}></i>
                   )}
                 </td>
-                <td>
+                <td className='text-center'>
                   <LinkContainer to={`/admin/user/${user._id}/edit`}>
-                    <Button variant='light' className='btn-sm m-2'>
-                      <i className='fas fa-edit'></i>
+                    <Button variant='success' className='btn-sm m-2'>
+                      {/* <i className='fas fa-edit'></i> */}
+                      Edit
                     </Button>
                   </LinkContainer>
                   <Button
@@ -89,7 +90,8 @@ const UserListScreen = ({ history }) => {
                     className='btn-sm m-3'
                     onClick={() => deleteHandler(user._id)}
                   >
-                    <i className='fas fa-trash'></i>
+                    {/* <i className='fas fa-trash'></i> */}
+                    Delete
                   </Button>
                 </td>
               </tr>

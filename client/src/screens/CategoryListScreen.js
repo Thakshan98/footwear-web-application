@@ -92,7 +92,7 @@ const CategoryListScreen = () => {
     <>
       <Row className='align-items-center'>
         <Col>
-          <h1 className='tag my-5' style={{fontSize:'45px',fontFamily:'Lucida Console',fontWeight:'bold'}}>categories</h1>
+          <h1 className='tag my-5' style={{fontSize:'35px',fontWeight:'bold'}}>categories</h1>
         </Col>
         <Col className='text-right'>
           <Button className='my-3'  style={{ backgroundImage: 'linear-gradient(to bottom right,#0a0366,#475cd1,#8ec7f5)',color:'white',fontWeight:'600'}} onClick={createCategoryHandler}>
@@ -112,9 +112,9 @@ const CategoryListScreen = () => {
             <thead>
               <tr style={{background:"#20B2AA"}}>
                
-                <th className='text-light'>Category</th>
-                <th className='text-light'>Edit</th>
-                <th className='text-light'>Delete</th>
+                <th className='text-black text-center'>Category</th>
+                <th className='text-black text-center'>Edit</th>
+                <th className='text-black text-center'>Delete</th>
              
                 
               </tr>
@@ -123,23 +123,23 @@ const CategoryListScreen = () => {
               {category.map((category) => (
                 <tr key={category._id}>
                 
-                  <td>{category.name}</td>
+                  <td className='text-center'>{category.name}</td>
                  
                   
-                  <td>
+                  <td className='text-center'>
                     <LinkContainer to={`/admin/category/${category._id}/edit`}>
-                      <Button variant='light' className='btn-sm m-2'>
-                        <i className='fas fa-edit'></i>
+                      <Button variant='success' className='btn-sm m-2'>
+                        Edit Category
                       </Button>
                     </LinkContainer>
                     </td> 
-                    <td>
+                    <td className='text-center'>
                     <Button
                       variant='danger'
                       className='btn-sm m-1'
                       onClick={() => deleteHandler(category._id)}
                     >
-                      <i className='fas fa-trash'></i>
+                      Delete Category
                     </Button>
                   </td>
                 </tr>
