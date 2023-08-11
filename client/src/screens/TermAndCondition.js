@@ -7,10 +7,10 @@ const TermAndCondition = () => {
         <div className='container'>
           <div class='grid grid-cols-4 gap-4'>
             <div className='col-span-4 bg-white p-8 font-popins leading-6 tracking-wide'>
-              <h4 className='text-center py-2 text-blue-700'>
+              <h4 className='text-center py-2 pt-4 text-blue-700'>
                 Our Terms and Conditions
               </h4>
-              <div>
+              <div className='px-4 py-3'>
                 <p>
                   Welcome to Phoenix Footwear Online Shop! These Terms and
                   Conditions outline the rules and regulations for using our
