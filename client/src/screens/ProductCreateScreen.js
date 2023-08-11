@@ -21,8 +21,9 @@ const ProductCreateScreen = () => {
   const [gender, setGender] = useState('')
   const [price, setPrice] = useState(0)
   const [size, setSize] = useState(0)
+  const [countInStock, setCount] = useState(0)
   const [image, setImage] = useState('')
-  const [countInStock, setCountInStock] = useState(0)
+  
   const [description, setDescription] = useState('')
   const [uploading, setUploading] = useState(false)
 
@@ -80,7 +81,7 @@ const ProductCreateScreen = () => {
         createProduct({
           category,
           name,
-          size,
+          size,          
           gender,
           price,
           image,
@@ -147,6 +148,18 @@ const ProductCreateScreen = () => {
                 onChange={(e) => setSize(e.target.value)}
               ></Form.Control>
             </Form.Group>
+
+            <Form.Group controlId='countInStock'>
+              <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Count in Stock</Form.Label>
+              <Form.Control
+                min={0}
+                type='number'
+                placeholder='Count in Stock'
+                value={countInStock}
+                onChange={(e) => setCount(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
 
             <Form.Group controlId='price'>
               <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Price</Form.Label>

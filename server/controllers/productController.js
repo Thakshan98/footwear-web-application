@@ -63,23 +63,16 @@ const createProduct = async (req, res) => {
 
   try {
     const product = new Footwear({
-      name: 'Sample name',
-     price: 0,
-    user: req.user._id,
-    image: '/images/sample.jpg',
-    countInStock: 0,
-    numReviews: 0,
-    description: 'Sample description',
-    
-      category: 'Sample description',
-      size:4 ,
-      gender: 'Sample description',
-      
+      name,
+      category,
+      size,
+      gender,
+      price,
       user: req.user._id, // Assuming user authentication is set up
-    
-     
+      image,
+      countInStock,
       numReviews: 0,
-      
+      description,
     });
 
     const createdProduct = await product.save();

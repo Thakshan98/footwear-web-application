@@ -28,9 +28,8 @@ const footwearSchema = mongoose.Schema(
       required: true,
     },
     category: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       required: true,
-      ref: 'Category',
     },
     size: {
       type: Number,
