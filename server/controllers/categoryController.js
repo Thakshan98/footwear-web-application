@@ -36,7 +36,7 @@ const getCategoryById = asyncHandler(async (req, res) => {
 })
 
 
-const deleteCategory = asyncHandler(async (req, res) => {
+const deleteCategory = async (req, res) => {
   const category = await Category.findById(req.params.id)
 
   if (category) {
@@ -46,17 +46,34 @@ const deleteCategory = asyncHandler(async (req, res) => {
     res.status(404)
     throw new Error('Category not found')
   }
-})
+};
 
+const createCategory = async (req, res) => {
+  try {
+    const { name } = req.body;
 
-const createCategory = asyncHandler(async (req, res) => {
-  const category = new Category({
-    name: 'Sample name',
-  })
+    // Input validation
+    if (!name) {
+      return res.status(400).json({ message: 'Category name is required.' });
+    }
 
-  const createdCategory = await category.save()
-  res.status(201).json(createdCategory)
-})
+    // Create a new category
+    const cat = new Category({
+      name: name, // Assuming 'name' is the field in the Category schema
+    });
+
+    // Save the category
+    const createdCategory = await cat.save();
+
+    // Respond with the created category
+    res.status(201).json(createdCategory);
+  } catch (error) {
+    // Handle errors
+    console.error(error);
+    res.status(500).json({ message: 'Category creation failed.' });
+  }
+};
+
 
 const updateCategory = asyncHandler(async (req, res) => {
   const {
@@ -69,7 +86,7 @@ const updateCategory = asyncHandler(async (req, res) => {
     category.name = name
 
     const updatedCategory = await category.save()
-    res.json(updatedcategory)
+    res.json(updatedCategory)
   } else {
     res.status(404)
     throw new Error('Category not found')

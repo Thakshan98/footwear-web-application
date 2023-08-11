@@ -14,12 +14,12 @@ import PlaceOrderScreen from './screens/PlaceOrderScreen'
 import OrderScreen from './screens/OrderScreen'
 import UserListScreen from './screens/UserListScreen'
 import UserEditScreen from './screens/UserEditScreen'
-
 import ProductListScreen from './screens/ProductListScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
-
 import CategoryListScreen from './screens/CategoryListScreen'
 import CategoryEditScreen from './screens/CategoryEditScreen'
+import CategoryCreateScreen from './screens/CategoryCreateScreen'
+import ProductCreateScreen from './screens/ProductCreateScreen'
 
 import OrderListScreen from './screens/OrderListScreen'
 import AboutUsScreen from './screens/AboutUs'
@@ -44,57 +44,6 @@ const App = () => {
             <Route path='/placeorder' element={<PlaceOrderScreen />} />
             <Route path='/login' element={<LoginScreen />} />
 
-<<<<<<< HEAD
-        <Routes>
-       
-   
-          <Route path='/order/:id' element={<OrderScreen />} />
-          <Route path='/shipping' element={<ShippingScreen />} />
-          <Route path='/payment' element={<PaymentScreen />} />
-          <Route path='/placeorder' element={<PlaceOrderScreen />} />
-          <Route path='/login' element={<LoginScreen />} />
-         
-          <Route path='/register' element={<RegisterScreen />} />
-          <Route path='/profile' element={<ProfileScreen />} />
-          <Route path='/about' element={<AboutUsScreen />} />
-          <Route path='/feedback' element={<feedbackScreen />} />        
-          <Route path='/admin/feedback' element={<FeedbackListScreen />}  exact/>
-          <Route path='/admin/feedback/:id' element={<FeedbackDetailScreen />} />
-          <Route path='/product/:id' element={<ProductScreen />} />
-          <Route path='/cart/:id?' element={<CartScreen />} />
-          <Route path='/admin/userlist' element={<UserListScreen />} />
-          <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
-          <Route
-            path='/admin/productlist'
-            element={<ProductListScreen />}
-            exact
-          />
-           <Route
-            path='/admin/categorylist'
-            element={<CategoryListScreen />}
-            exact
-          />
-
-          <Route
-            path='/admin/productlist/:pageNumber'
-            element={<CategoryListScreen />}
-            exact
-          />
-
-         
-          <Route path='/admin/category/:id/edit' element={<CategoryEditScreen />} />
-          <Route path='/admin/product/:id/edit' element={<ProductEditScreen />} />
-          <Route path='/admin/orderlist' element={<OrderListScreen />} />
-          
-          <Route path='/search/:keyword' element={<HomeScreen />} exact />
-          <Route path='/page/:pageNumber' element={<HomeScreen />} exact />
-          <Route
-            path='/search/:keyword/page/:pageNumber'
-            element={<HomeScreen />}
-            exact
-          />
-          <Route path='/' element={<HomeScreen />} exact />
-=======
             <Route path='/register' element={<RegisterScreen />} />
             <Route path='/profile' element={<ProfileScreen />} />
             <Route path='/about' element={<AboutUsScreen />} />
@@ -126,13 +75,26 @@ const App = () => {
               element={<ProductListScreen />}
               exact
             />
+             <Route
+              path='/admin/categorylist/:pageNumber'
+              element={<CategoryListScreen />}
+              exact
+            />
+
+            <Route
+            path='/admin/categorylist'
+            element={<CategoryListScreen />}
+            exact
+          />
             {/* <Route path='/' element={<FeedbackScreen />} />  */}
+            <Route path='/admin/category/:id/edit' element={<CategoryEditScreen />} />
+            <Route path='/admin/category/create' element={<CategoryCreateScreen />} />
+            <Route path='/admin/product/create' element={<ProductCreateScreen />} />
             <Route
               path='/admin/product/:id/edit'
               element={<ProductEditScreen />}
             />
             <Route path='/admin/orderlist' element={<OrderListScreen />} />
->>>>>>> 5fc125c55c404c5fdf26755bbeb5211f7b3d1e4c
 
             <Route path='/search/:keyword' element={<HomeScreen />} exact />
             <Route path='/page/:pageNumber' element={<HomeScreen />} exact />

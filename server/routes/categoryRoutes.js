@@ -9,7 +9,8 @@ const {
 }= require ("../controllers/categoryController.js");
 const { protect, systemAdmin } = require ("../middleware/authMiddleware.js");
 
-router.route('/').get(getCategory).post(protect, systemAdmin, createCategory)
+router.route('/').get(getCategory)
+router.route('/').post(protect, systemAdmin, createCategory)
 router.route('/:id').get( getCategoryById)
 router.route('/:id').delete(protect, systemAdmin, deleteCategory)
 router.route('/:id').put(protect, systemAdmin, updateCategory)

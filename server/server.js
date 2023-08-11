@@ -10,7 +10,7 @@ const categoryRoutes = require("./routes/categoryRoutes.js");
 const userRoutes = require("./routes/userRoutes.js");
 const orderRoutes = require("./routes/orderRoutes.js");
 const uploadRoutes = require("./routes/uploadRoutes.js");
-const feedbackRoutes = require("./routes/feedbackRoutes.js");
+const feedbackRoute = require("./routes/feedbackRoutes.js");
 
 
 
@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use('/api/categories', categoryRoutes);
   app.use('/api/users', userRoutes);
   app.use('/api/orders', orderRoutes);
-  app.use('/api/feedback', feedbackRoutes);
+  app.use('/api/feedback', feedbackRoute);
   app.use('/api/upload', uploadRoutes);
   
  

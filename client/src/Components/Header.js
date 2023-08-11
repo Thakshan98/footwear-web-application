@@ -141,56 +141,16 @@ const Header = () => {
 
                 {userInfo && userInfo.isAdmin && (
                   <NavDropdown title='Admin' id='adminmenu'>
-                    <LinkContainer to='/admin/productlist'>
-                      <NavDropdown.Item>Books</NavDropdown.Item>
+
+                    <LinkContainer to='/admin/categorylist'>
+                      <NavDropdown.Item>Category</NavDropdown.Item>
                     </LinkContainer>
 
-<<<<<<< HEAD
-              {userInfo && userInfo.isAdmin &&(
-                <NavDropdown title='Admin' id='adminmenu'>
-                   
-                
-                   <LinkContainer to='/admin/categorylist'>
-                    <NavDropdown.Item>Category</NavDropdown.Item>
-                  </LinkContainer>
+                    <LinkContainer to='/admin/productlist'>
+                      <NavDropdown.Item>Footware</NavDropdown.Item>
+                    </LinkContainer>
 
-                  <LinkContainer to='/admin/productlist'>
-                    <NavDropdown.Item>Footware</NavDropdown.Item>
-                  </LinkContainer>
-                 
-                  <LinkContainer to='/admin/orderlist'>
-                    <NavDropdown.Item>Orders</NavDropdown.Item>
-                  </LinkContainer>
-                 
-                </NavDropdown>
-              )}
-              {userInfo && userInfo.isSystemAdmin &&(
-                <NavDropdown title='System Admin' id='adminmenu'>
-                   
-                  <LinkContainer to='/admin/userlist'>
-                    <NavDropdown.Item>Users</NavDropdown.Item>
-                  </LinkContainer>
-                 
-                  <LinkContainer to='/admin/categorylist'>
-                    <NavDropdown.Item>Category</NavDropdown.Item>
-                  </LinkContainer>
 
-                  <LinkContainer to='/admin/productlist'>
-                    <NavDropdown.Item>Footware</NavDropdown.Item>
-                  </LinkContainer>
-                 
-                  <LinkContainer to='/admin/orderlist'>
-                    <NavDropdown.Item>Orders</NavDropdown.Item>
-                  </LinkContainer>
-                 
-                </NavDropdown>
-              )}
-            </Nav>
-          </Navbar.Collapse>
-       
-      </Navbar>
-    </header>
-=======
                     <LinkContainer to='/admin/orderlist'>
                       <NavDropdown.Item>Orders</NavDropdown.Item>
                     </LinkContainer>
@@ -202,8 +162,12 @@ const Header = () => {
                       <NavDropdown.Item>Users</NavDropdown.Item>
                     </LinkContainer>
 
+                    <LinkContainer to='/admin/categorylist'>
+                      <NavDropdown.Item>Category</NavDropdown.Item>
+                    </LinkContainer>
+
                     <LinkContainer to='/admin/productlist'>
-                      <NavDropdown.Item>Books</NavDropdown.Item>
+                      <NavDropdown.Item>Footware</NavDropdown.Item>
                     </LinkContainer>
 
                     <LinkContainer to='/admin/orderlist'>
@@ -217,7 +181,6 @@ const Header = () => {
         </div>
       </header>
     </>
->>>>>>> 5fc125c55c404c5fdf26755bbeb5211f7b3d1e4c
   )
 }
 

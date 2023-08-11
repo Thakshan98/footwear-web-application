@@ -82,9 +82,6 @@ const ProductListScreen = () => {
    
  
 
-  const createProductHandler = () => {
-    dispatch(createProduct())
-  }
 
   return (
     <Container className='my-5'>
@@ -94,9 +91,10 @@ const ProductListScreen = () => {
           <h1 className='tag my-5' style={{fontSize:'45px',fontFamily:'Lucida Console',fontWeight:'bold'}}>Products</h1>
         </Col>
         <Col className='text-right'>
-          <Button className='my-3'  style={{ backgroundImage: 'linear-gradient(to bottom right,#0a0366,#475cd1,#8ec7f5)',color:'white',fontWeight:'600'}} onClick={createProductHandler}>
-            <i className='fas fa-plus'></i> Add Products
-          </Button>
+        <Link to='/admin/product/create'><Button className='my-3'  style={{ backgroundImage: 'linear-gradient(to bottom right,#0a0366,#475cd1,#8ec7f5)',color:'white',fontWeight:'600'}} >
+            <i className='fas fa-plus'></i> Add Product
+          </Button></Link>
+          
         </Col>
       </Row>
       {loadingDelete && <Loader />}

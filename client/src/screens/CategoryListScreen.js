@@ -5,7 +5,7 @@ import { Table, Button, Row, Col, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import Paginate from '../components/Paginate'
+import PaginateCategory from '../components/PaginateCategory'
 import { confirm } from "react-confirm-box";
 
 import {
@@ -51,7 +51,7 @@ const CategoryListScreen = () => {
     }
 
     if (successCreate) {
-      navigate(`/admin/category/${createdCategory._id}/edit`)
+      navigate(`/admin/category/${createdCategory._id}/create`)
     } else {
       dispatch(listCategory('', pageNumber))
     }
@@ -65,27 +65,25 @@ const CategoryListScreen = () => {
     pageNumber,
   ])
 
-  const options = {
-    labels: {
-      confirmable: "Confirm",
-      cancellable: "Cancel"
-    }
-  }
-  const deleteHandler = async(id) => {
-    const result = await confirm("Are you sure?", options);
+  // const options = {
+  //   labels: {
+  //     confirmable: "Confirm",
+  //     cancellable: "Cancel"
+  //   }
+  // }
+  // const deleteHandler = async(id) => {
+    const deleteHandler = (id) => {
+    // const result = await confirm("Are you sure?", options);
     
-    if (result) {
+    // if (result) {
       dispatch(deleteCategory(id))
-      return;
-    }
-    console.log("You click No!");
+    //   return;
+    // }
+    // console.log("You click No!");
   };
    
   
 
-  const createCategoryHandler = () => {
-    dispatch(createCategory())
-  }
 
   return (
     <Container className='my-5'>
@@ -95,9 +93,10 @@ const CategoryListScreen = () => {
           <h1 className='tag my-5' style={{fontSize:'45px',fontFamily:'Lucida Console',fontWeight:'bold'}}>categories</h1>
         </Col>
         <Col className='text-right'>
-          <Button className='my-3'  style={{ backgroundImage: 'linear-gradient(to bottom right,#0a0366,#475cd1,#8ec7f5)',color:'white',fontWeight:'600'}} onClick={createCategoryHandler}>
+        <Link to='/admin/category/create'><Button className='my-3'  style={{ backgroundImage: 'linear-gradient(to bottom right,#0a0366,#475cd1,#8ec7f5)',color:'white',fontWeight:'600'}} >
             <i className='fas fa-plus'></i> Add Category
-          </Button>
+          </Button></Link>
+          
         </Col>
       </Row>
       {loadingDelete && <Loader />}
@@ -146,7 +145,7 @@ const CategoryListScreen = () => {
               ))}
             </tbody>
           </Table>
-          <Paginate pages={pages} page={page} isAdmin={true} />
+          <PaginateCategory pages={pages} page={page} isAdmin={true} />
         </>
       )}
     </>

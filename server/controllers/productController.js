@@ -50,21 +50,44 @@ const deleteProduct = async (req, res) => {
 
 
 const createProduct = async (req, res) => {
-  const product = new Footwear({
-    name: 'Sample name',
-    category:'Sample category',
-    size: 1,
-    gender:'Men',
-    price: 0,
+  const {
+    name,
+    category,
+    size,
+    gender,
+    price,
+    image,
+    countInStock,
+    description,
+  } = req.body;
+
+  try {
+    const product = new Footwear({
+      name: 'Sample name',
+     price: 0,
     user: req.user._id,
     image: '/images/sample.jpg',
     countInStock: 0,
     numReviews: 0,
     description: 'Sample description',
-  })
+    
+      category: 'Sample description',
+      size:4 ,
+      gender: 'Sample description',
+      
+      user: req.user._id, // Assuming user authentication is set up
+    
+     
+      numReviews: 0,
+      
+    });
 
-  const createdProduct = await product.save()
-  res.status(201).json(createdProduct)
+    const createdProduct = await product.save();
+    res.status(201).json(createdProduct);
+  } catch (error) {
+    // Handle any errors that occurred during product creation
+    res.status(500).json({ error: 'An error occurred while creating the product.' });
+  }
 };
 
 
