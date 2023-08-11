@@ -41,8 +41,6 @@ if (process.env.NODE_ENV === 'development') {
   
   const __footwear = path.resolve();
   app.use('/uploads', express.static(path.join(__footwear, '/uploads')))
-
-  
   
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__footwear, '/frontend/build')))
