@@ -60,7 +60,7 @@ const CategoryEditScreen = () => {
         Go Back
       </Link>
       <FormContainer>
-        <h1 className='tag my-5' style={{fontSize:'45px',fontFamily:'Lucida Console',fontWeight:'bold'}} >Phonix</h1>
+        <h1 className='tag my-5 font-popins' style={{fontSize:'35px',fontWeight:'bold'}} >Add Category</h1>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
         {loading ? (
@@ -83,7 +83,7 @@ const CategoryEditScreen = () => {
            
 
 
-            <Button type='submit'  style={{  backgroundImage: 'linear-gradient(to bottom right,#79db58,#036920,#79db58)',color:'white',fontWeight:'600',borderRadius: '15px'}}>
+            <Button type='submit' className='my-3' style={{  backgroundImage: 'linear-gradient(to bottom right,#79db58,#036920,#79db58)',color:'white',fontWeight:'600',borderRadius: '15px'}}>
               Update
             </Button>
           </Form>

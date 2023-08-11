@@ -43,7 +43,6 @@ const App = () => {
             <Route path='/payment' element={<PaymentScreen />} />
             <Route path='/placeorder' element={<PlaceOrderScreen />} />
             <Route path='/login' element={<LoginScreen />} />
-
             <Route path='/register' element={<RegisterScreen />} />
             <Route path='/profile' element={<ProfileScreen />} />
             <Route path='/about' element={<AboutUsScreen />} />
@@ -65,6 +64,8 @@ const App = () => {
             <Route path='/cart/:id?' element={<CartScreen />} />
             <Route path='/admin/userlist' element={<UserListScreen />} />
             <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
+            <Route path='/admin/categorylist' element={<CategoryListScreen />} />
+            <Route path='//admin/category/:id/edit' element={<CategoryEditScreen />} />
             <Route
               path='/admin/productlist'
               element={<ProductListScreen />}
@@ -95,7 +96,6 @@ const App = () => {
               element={<ProductEditScreen />}
             />
             <Route path='/admin/orderlist' element={<OrderListScreen />} />
-
             <Route path='/search/:keyword' element={<HomeScreen />} exact />
             <Route path='/page/:pageNumber' element={<HomeScreen />} exact />
             <Route

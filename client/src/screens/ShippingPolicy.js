@@ -7,9 +7,10 @@ const ShippingPolicy = () => {
         <div className='container'>
           <div class='grid grid-cols-4 gap-4'>
             <div className='col-span-4 bg-white p-8 font-popins leading-6 tracking-wide'>
-            <h4 className='text-center py-2 text-blue-700'>
+            <h4 className='text-center py-3 pt-5 text-blue-700'>
                 Our Shipping Policy
               </h4>
+              <div className='px-4 py-3'>
               <p>
                 Thank you for choosing Phoenix Footwear Online Shop for your
                 shopping needs. This Shipping Policy outlines the details of our
@@ -92,6 +93,7 @@ const ShippingPolicy = () => {
                 questions or require further assistance, please do not hesitate
                 to contact our customer service team.
               </p>
+              </div>
             </div>
           </div>
         </div>
