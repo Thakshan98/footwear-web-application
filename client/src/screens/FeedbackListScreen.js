@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
+import { useNavigate} from 'react-router-dom'
 import { Table, Button, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listFeedbacks } from '../actions/feedbackActions'
 
-const FeedbackListScreen = ({ history }) => {
+const FeedbackListScreen = () => {
   const dispatch = useDispatch()
   const [num, setNum] = useState(0)
   const feedbackList = useSelector((state) => state.feedbackList)
@@ -15,6 +16,7 @@ const FeedbackListScreen = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  const navigate = useNavigate();
   useEffect(() => {
     let i = setNum(num + 1)
 
@@ -23,9 +25,9 @@ const FeedbackListScreen = ({ history }) => {
     } else if (userInfo && userInfo.isAdmin) {
       dispatch(listFeedbacks())
     } else {
-      history.push('/login')
+      navigate('/login')
     }
-  }, [dispatch, history, userInfo])
+  }, [dispatch, navigate, userInfo])
 
   return (
     <>
@@ -37,7 +39,7 @@ const FeedbackListScreen = ({ history }) => {
             fontWeight: 'bold',
           }}
         >
-          Feedbacks & Request for Shoes
+          Feedbacks
         </h1>
         {loading ? (
           <Loader />
@@ -50,8 +52,8 @@ const FeedbackListScreen = ({ history }) => {
                 <th className='text-black text-center'>No</th>
                 <th className='text-black text-center'>USER</th>
                 <th className='text-black text-center'>Email</th>
-                <th className='text-black text-center'>Feedback</th>
-                <th className='text-black text-center'>Requested Book</th>
+              
+               
 
                 <th></th>
               </tr>
@@ -62,26 +64,8 @@ const FeedbackListScreen = ({ history }) => {
                   <td>{i + 1}</td>
                   <td>{feedback.user && feedback.user.name}</td>
                   <td>{feedback.user && feedback.user.email}</td>
-                  <td>
-                    {feedback.feedback != '' ? (
-                      <i
-                        className='fas fa-check'
-                        style={{ color: 'green' }}
-                      ></i>
-                    ) : (
-                      <i className='fas fa-times' style={{ color: 'red' }}></i>
-                    )}
-                  </td>
-                  <td>
-                    {feedback.bookName != '' ? (
-                      <i
-                        className='fas fa-check'
-                        style={{ color: 'green' }}
-                      ></i>
-                    ) : (
-                      <i className='fas fa-times' style={{ color: 'red' }}></i>
-                    )}
-                  </td>
+                 
+                  
 
                   <td>
                     <LinkContainer
@@ -93,7 +77,7 @@ const FeedbackListScreen = ({ history }) => {
                         fontWeight: '600',
                       }}
                     >
-                      <Button className='btn btn-sm'>Details</Button>
+                      <Button className='btn btn-sm'>Feedback</Button>
                     </LinkContainer>
                   </td>
                 </tr>

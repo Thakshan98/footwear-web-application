@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link ,useParams,useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   Row,
@@ -18,8 +18,9 @@ import Loader from '../components/Loader'
 import Meta from '../components/Meta'
 import { getFeedbackDetails } from '../actions/feedbackActions'
 
-const FeedbackDetailScreen = ({ history, match }) => {
+const FeedbackDetailScreen = () => {
   const dispatch = useDispatch()
+  const { id:feedbackId }= useParams();
 
   const feedbackDetails = useSelector((state) => state.feedbackDetails)
   const { loading, error, feedbacks } = feedbackDetails
@@ -27,15 +28,16 @@ const FeedbackDetailScreen = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  const navigate = useNavigate();
   useEffect(() => {
     if (userInfo && userInfo.isSystemAdmin) {
-      dispatch(getFeedbackDetails(match.params.id))
+      dispatch(getFeedbackDetails(feedbackId))
     } else if (userInfo && userInfo.isAdmin) {
-      dispatch(getFeedbackDetails(match.params.id))
+      dispatch(getFeedbackDetails(feedbackId))
     } else {
-      history.push('/login')
+      navigate('/login')
     }
-  }, [dispatch, history, userInfo, match])
+  }, [dispatch, navigate, userInfo, ])
 
   return (
     <Container>
@@ -58,97 +60,7 @@ const FeedbackDetailScreen = ({ history, match }) => {
           <Message variant='danger'>{error}</Message>
         ) : (
           <>
-            <Row>
-              {feedbacks.bookName != '' ? (
-                <>
-                  <Col md={4}>
-                    <Image
-                      className='bookImg '
-                      src={feedbacks.image}
-                      alt={feedbacks.bookName}
-                      fluid
-                    />
-                  </Col>
-                  <Col md={8}>
-                    <Table
-                      striped
-                      bordered
-                      hover
-                      responsive
-                      className='table-sm'
-                    >
-                      <thead>
-                        <tr style={{background:"#20B2AA"}}>
-                          <th>
-                            <h5
-                              className='my-2 text-light'
-                              style={{
-                                fontSize: '25px',
-                                fontFamily: 'Times New Roman',
-                                fontWeight: 'bold',
-                              }}
-                            >
-                              Requested Book Name
-                            </h5>
-                          </th>
-                          <th>
-                            <h5
-                              className='my-2 text-light'
-                              style={{
-                                fontSize: '25px',
-                                fontFamily: 'Times New Roman',
-                                fontWeight: 'bold',
-                              }}
-                            >
-                              Author Name
-                            </h5>
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            {' '}
-                            <h5
-                              style={{
-                                fontSize: '15px',
-                                
-                                color: '#591f1f',
-                              }}
-                            >
-                              {feedbacks.bookName}
-                            </h5>
-                          </td>
-                          <td>
-                            {' '}
-                            <h5
-                              style={{
-                                fontSize: '15pxpx',
-                              
-                                color: '#591f1f',
-                              }}
-                            >
-                              {feedbacks.authorName}
-                            </h5>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </Table>
-                  </Col>
-                </>
-              ) : (
-                <Col md={12}>
-                  <ListGroup variant='flush'>
-                    <ListGroup.Item style={{background:"#4682B4"}}>
-                      <h3 class='text-center text-light'>Feedback</h3>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                      <h5>{feedbacks.feedback}</h5>
-                    </ListGroup.Item>
-                  </ListGroup>
-                </Col>
-              )}
-            </Row>
+           
             <Row>
               {feedbacks.bookName != '' && feedbacks.feedback != '' ? (
                 <>
@@ -156,9 +68,7 @@ const FeedbackDetailScreen = ({ history, match }) => {
                   <Col md={8}>
                     <Card style={{background:"#8cb2d1"}}>
                       <ListGroup variant='flush' >
-                        <ListGroup.Item  style={{background:"#8cb2d1"}}>
-                          <h3 class='text-center text-light'>Feedback</h3>
-                        </ListGroup.Item>
+                      
                         <ListGroup.Item>
                           <h5
                             style={{

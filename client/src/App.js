@@ -23,7 +23,7 @@ import ProductCreateScreen from './screens/ProductCreateScreen'
 
 import OrderListScreen from './screens/OrderListScreen'
 import AboutUsScreen from './screens/AboutUs'
-import feedbackScreen from './screens/FeedbackScreen'
+import FeedbackScreen from './screens/FeedbackScreen'
 import FeedbackListScreen from './screens/FeedbackListScreen'
 import FeedbackDetailScreen from './screens/FeedbackDetailScreen'
 import PrivacyPolicy from './screens/PrivacyPolicy'
@@ -46,7 +46,7 @@ const App = () => {
             <Route path='/register' element={<RegisterScreen />} />
             <Route path='/profile' element={<ProfileScreen />} />
             <Route path='/about' element={<AboutUsScreen />} />
-            <Route path='/feedback' element={<feedbackScreen />} />
+            <Route path='/feedback' element={<FeedbackScreen />} />
             <Route
               path='/admin/feedback'
               element={<FeedbackListScreen />}

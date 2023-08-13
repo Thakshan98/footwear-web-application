@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation,useParams,useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Container ,ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 
-const CartScreen = ({ match, location, history }) => {
-  const productId = match.params.id
+const CartScreen = () => {
+ 
+  const { id:productId }= useParams();
 
+  
+  const location = useLocation()
   const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
   const dispatch = useDispatch()
@@ -15,6 +18,7 @@ const CartScreen = ({ match, location, history }) => {
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
 
+  const navigate = useNavigate();
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty))
@@ -26,7 +30,7 @@ const CartScreen = ({ match, location, history }) => {
   }
 
   const checkoutHandler = () => {
-    history.push('/login?redirect=shipping')
+    navigate('/login?redirect=shipping')
   }
 
   return (
@@ -88,7 +92,7 @@ const CartScreen = ({ match, location, history }) => {
             <ListGroup.Item>
               <h2>
                 Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
-                Books
+                Footwears
               </h2>
               LKR.
               {cartItems

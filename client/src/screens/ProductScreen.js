@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Container ,Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
@@ -12,7 +12,9 @@ import {
 } from '../actions/productActions'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 
-const ProductScreen = ({ history, match }) => {
+const ProductScreen = () => {
+  const {id} = useParams();
+
   const [qty, setQty] = useState(1)
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState('')
@@ -32,25 +34,26 @@ const ProductScreen = ({ history, match }) => {
     error: errorProductReview,
   } = productReviewCreate
 
+  const navigate = useNavigate();
   useEffect(() => {
     if (successProductReview) {
       setRating(0)
       setComment('')
     }
-    if (!product._id || product._id !== match.params.id) {
-      dispatch(listProductDetails(match.params.id))
+    if (!product._id || product._id !== id) {
+      dispatch(listProductDetails(id))
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
     }
-  }, [dispatch, match, successProductReview])
+  }, [dispatch,navigate, id, successProductReview])
 
   const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`)
+     navigate(`/cart/${id}?qty=${qty}`)
   }
 
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(
-      createProductReview(match.params.id, {
+      createProductReview(id, {
         rating,
         comment,
       })

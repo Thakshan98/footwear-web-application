@@ -57,15 +57,15 @@ import {
   export const categoryDeleteReducer = (state = {}, action) => {
     switch (action.type) {
       case CATEGORY_DELETE_REQUEST:
-        return { loading: true }
+        return { loading: true };
       case CATEGORY_DELETE_SUCCESS:
-        return { loading: false, success: true }
+        return { loading: false, success: true };
       case CATEGORY_DELETE_FAIL:
-        return { loading: false, error: action.payload }
+        return { loading: false, error: action.payload };
       default:
-        return state
+        return state;
     }
-  }
+  };
 
 
   export const categoryCreateReducer = (state = {}, action) => {
