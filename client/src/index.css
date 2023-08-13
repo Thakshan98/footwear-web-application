@@ -9,7 +9,7 @@ main {
   transition: transform 0.2s;
 }
 
-.tag {
+.heading-color {
   background: -webkit-linear-gradient(rgb(230, 86, 182), rgb(7, 0, 10));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

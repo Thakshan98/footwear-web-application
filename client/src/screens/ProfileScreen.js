@@ -115,128 +115,121 @@ const ProfileScreen = ({ location, history }) => {
       <Container className='mt-5 font-popins'>
         <Row>
           <Col md={3}>
-            <h6
-              className='tag mb-5'
-              style={{
-                fontSize: '27px',
-                fontWeight: 'bold',
-                textAlign: 'center',
-              }}
-            >
-              User Profile
-            </h6>
-            {message && <Message variant='danger'>{message}</Message>}
-            {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
-            {success && <Message variant='success'>Profile Updated</Message>}
-            {loading ? (
-              <Loader />
-            ) : error ? (
-              <Message variant='danger'>{error}</Message>
-            ) : (
-              <Form onSubmit={submitHandler}>
-                <Form.Group controlId='name'>
-                  <Form.Label
+            <div className='bg-white py-3 px-3'>
+              <h4 className='tag mb-2 text-center '>User Profile</h4>
+              {message && <Message variant='danger'>{message}</Message>}
+              {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+              {success && <Message variant='success'>Profile Updated</Message>}
+              {loading ? (
+                <Loader />
+              ) : error ? (
+                <Message variant='danger'>{error}</Message>
+              ) : (
+                <Form onSubmit={submitHandler}>
+                  <Form.Group controlId='name'>
+                    <Form.Label
+                      style={{
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                        color: '#591f1f',
+                      }}
+                    >
+                      Name
+                    </Form.Label>
+                    <Form.Control
+                      type='name'
+                      placeholder='Enter name'
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    ></Form.Control>
+                  </Form.Group>
+
+                  <Form.Group controlId='email'>
+                    <Form.Label
+                      style={{
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                        color: '#591f1f',
+                      }}
+                    >
+                      Email Address
+                    </Form.Label>
+                    <Form.Control
+                      type='email'
+                      placeholder='Enter email'
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    ></Form.Control>
+                  </Form.Group>
+
+                  <Form.Group controlId='password'>
+                    <Form.Label
+                      style={{
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                        color: '#591f1f',
+                      }}
+                    >
+                      Password
+                    </Form.Label>
+                    <Form.Control
+                      type='password'
+                      placeholder='Enter password'
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    ></Form.Control>
+                  </Form.Group>
+
+                  <Form.Group controlId='confirmPassword'>
+                    <Form.Label
+                      style={{
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                        color: '#591f1f',
+                      }}
+                    >
+                      Confirm Password
+                    </Form.Label>
+                    <Form.Control
+                      type='password'
+                      placeholder='Confirm password'
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                    ></Form.Control>
+                  </Form.Group>
+
+                  <Form.Group controlId='currentPassword'>
+                    <Form.Label
+                      style={{
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                        color: '#591f1f',
+                      }}
+                    >
+                      Current Password
+                    </Form.Label>
+                    <Form.Control
+                      type='password'
+                      placeholder='Enter current password'
+                      value={currentPassword}
+                      onChange={(e) => setCurrentPassword(e.target.value)}
+                    ></Form.Control>
+                  </Form.Group>
+
+                  <Button
+                    className='my-3'
+                    type='submit'
                     style={{
-                      fontSize: '14px',
-                      fontWeight: 'bold',
-                      color: '#591f1f',
+                      width: '95%',
+                      color: 'white',
+                      fontWeight: '600',
                     }}
                   >
-                    Name
-                  </Form.Label>
-                  <Form.Control
-                    type='name'
-                    placeholder='Enter name'
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  ></Form.Control>
-                </Form.Group>
-
-                <Form.Group controlId='email'>
-                  <Form.Label
-                    style={{
-                      fontSize: '14px',
-                      fontWeight: 'bold',
-                      color: '#591f1f',
-                    }}
-                  >
-                    Email Address
-                  </Form.Label>
-                  <Form.Control
-                    type='email'
-                    placeholder='Enter email'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  ></Form.Control>
-                </Form.Group>
-
-                <Form.Group controlId='password'>
-                  <Form.Label
-                    style={{
-                      fontSize: '14px',
-                      fontWeight: 'bold',
-                      color: '#591f1f',
-                    }}
-                  >
-                    Password
-                  </Form.Label>
-                  <Form.Control
-                    type='password'
-                    placeholder='Enter password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  ></Form.Control>
-                </Form.Group>
-
-                <Form.Group controlId='confirmPassword'>
-                  <Form.Label
-                    style={{
-                      fontSize: '14px',
-                      fontWeight: 'bold',
-                      color: '#591f1f',
-                    }}
-                  >
-                    Confirm Password
-                  </Form.Label>
-                  <Form.Control
-                    type='password'
-                    placeholder='Confirm password'
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                  ></Form.Control>
-                </Form.Group>
-
-                <Form.Group controlId='currentPassword'>
-                  <Form.Label
-                    style={{
-                      fontSize: '14px',
-                      fontWeight: 'bold',
-                      color: '#591f1f',
-                    }}
-                  >
-                    Current Password
-                  </Form.Label>
-                  <Form.Control
-                    type='password'
-                    placeholder='Enter current password'
-                    value={currentPassword}
-                    onChange={(e) => setCurrentPassword(e.target.value)}
-                  ></Form.Control>
-                </Form.Group>
-
-                <Button
-                  className='my-3'
-                  type='submit'
-                  style={{
-                    width: '95%',
-                    color: 'white',
-                    fontWeight: '600',
-                  }}
-                >
-                  Update
-                </Button>
-              </Form>
-            )}
+                    Update
+                  </Button>
+                </Form>
+              )}
+            </div>
           </Col>
           <Col md={1}></Col>
           <Col md={8}>

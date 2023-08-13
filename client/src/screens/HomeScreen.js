@@ -15,6 +15,7 @@ import { LiaShippingFastSolid } from 'react-icons/lia'
 import { BiSupport } from 'react-icons/bi'
 import { MdPayment } from 'react-icons/md'
 import { GiPriceTag } from 'react-icons/gi'
+import Caros from '../components/Caros'
 
 const HomeScreen = () => {
   const { keyword, pageNumber } = useParams()
@@ -40,10 +41,13 @@ const HomeScreen = () => {
           </Link>
         )}
       </div>
+      {/* <div className='py-3 px-5'>
+        <Caros />
+      </div> */}
       <Container>
         <div>
           <div>
-           <h3 className='text-center bg-stone-600'>Footwear Collections</h3>
+            <h3 className='text-center bg-stone-600'>Footwear Collections</h3>
           </div>
 
           {loading ? (
