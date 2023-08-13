@@ -40,9 +40,7 @@ const FeedbackScreen = () => {
   }
 
   return (
-    <Container>
-      <br />
-      <br />
+    <Container className='py-5'>
       <div className='feedback'>
         <Link
           to='/'
@@ -57,27 +55,20 @@ const FeedbackScreen = () => {
           Go Back
         </Link>
         <Form onSubmit={submitHandler}>
-          <FormContainer className='bg-white py-3 px-4'>
-            <div>
-              <h1
-                className='heading-color text-center'
+          <FormContainer>
+            <div className='bg-white py-3 px-4 rounded'>
+              <h2
+                className='heading-color text-center py-3'
                 style={{
                   fontSize: '35px',
                   fontWeight: 'bold',
                 }}
               >
-                Feedback
-              </h1>
+                Give Feedback
+              </h2>
               {loadingCreate && <Loader />}
               {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
-              <p
-                style={{
-                  fontSize: '20px',
-                  color: '#563491',
-                  textAlign: 'center',
-                  fontWeight: 'bold',
-                }}
-              >
+              <p className='text-secondary text-center'>
                 We all need people who will give us feedback. That’s how we
                 improve.
               </p>
@@ -101,20 +92,18 @@ const FeedbackScreen = () => {
                   onChange={(e) => setFeedback(e.target.value)}
                 ></Form.Control>
               </Form.Group>
-              <Button
-                type='submit'
-                className='my-3'
-                style={{
-                  backgroundImage:
-                    'linear-gradient(to bottom right,#50025c, #d20be0,#db3bb6)',
-                  color: 'white',
-                  fontWeight: '600',
-                  float: 'right',
-                  width: '120px',
-                }}
-              >
-                Send
-              </Button>
+              <div>
+                <Button
+                  type='submit'
+                  className='my-3 text-white'
+                  style={{
+                    fontWeight: '600',
+                    width: '120px',
+                  }}
+                >
+                  Send
+                </Button>
+              </div>
             </div>
           </FormContainer>
         </Form>
