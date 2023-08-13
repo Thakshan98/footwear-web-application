@@ -67,39 +67,35 @@ export const listCategoryDetails = (id) => async (dispatch) => {
 
 export const deleteCategory = (id) => async (dispatch, getState) => {
   try {
-    dispatch({
-      type: CATEGORY_DELETE_REQUEST,
-    })
+    dispatch({ type: CATEGORY_DELETE_REQUEST });
 
-    const {
-      userLogin: { userInfo },
-    } = getState()
+    const { userLogin: { userInfo } } = getState();
 
     const config = {
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
       },
-    }
+    };
 
-    await axios.delete(`/api/categories/${id}`, config)
-  
-    dispatch({
-      type: CATEGORY_DELETE_SUCCESS,
-    })
+    await axios.delete(`/api/categories/${id}`, config);
+
+    dispatch({ type: CATEGORY_DELETE_SUCCESS });
   } catch (error) {
     const message =
       error.response && error.response.data.message
         ? error.response.data.message
-        : error.message
+        : error.message;
+
     if (message === 'Not authorized, token failed') {
-      dispatch(logout())
+      dispatch(logout());
     }
+
     dispatch({
       type: CATEGORY_DELETE_FAIL,
       payload: message,
-    })
+    });
   }
-}
+};
 
 export const createCategory = (category) => async (dispatch, getState) => {
   try {
