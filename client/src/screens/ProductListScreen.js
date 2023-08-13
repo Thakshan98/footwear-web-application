@@ -111,7 +111,7 @@ const ProductListScreen = () => {
           <Message variant='danger'>{error}</Message>
         ) : (
           <>
-            <Table striped bordered hover responsive  className='table-sm'>
+            <Table striped bordered hover responsive className='table-sm'>
               <thead>
                 <tr style={{ background: '#20B2AA' }}>
                   <th
@@ -171,12 +171,14 @@ const ProductListScreen = () => {
                 ))}
               </tbody>
             </Table>
-            <Paginate
-              pages={pages}
-              page={page}
-              keyword={keyword ? keyword : ''}
-              isAdmin={true}
-            />
+            <div className='d-flex align-items-center justify-content-center py-3'>
+              <Paginate
+                pages={pages}
+                page={page}
+                keyword={keyword ? keyword : ''}
+                isAdmin={true}
+              />
+            </div>
           </>
         )}
       </>

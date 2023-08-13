@@ -63,16 +63,18 @@ const HomeScreen = () => {
                   </Col>
                 ))}
               </Row>
-              <Paginate
-                pages={pages}
-                page={page}
-                keyword={keyword ? keyword : ''}
-              />
+              <div className='d-flex align-items-center justify-content-center py-3'>
+                <Paginate
+                  pages={pages}
+                  page={page}
+                  keyword={keyword ? keyword : ''}
+                />
+              </div>
             </div>
           )}
         </div>
 
-        <div class='container py-5 my-5'>
+        <div class='container py-3 my-3'>
           <div class='row'>
             <div class='col-lg-3 col-md-6 col-sm-12'>
               <div class='bg-primary p-3 text-white'>
@@ -129,7 +131,7 @@ const HomeScreen = () => {
           </div>
         </div>
 
-        <div class='container py-5 bg-white font-poppins'>
+        <div class='container py-3 font-poppins'>
           <div class='row'>
             <div class='col'>
               <h5 className='text-center uppercase py-3'>OUR COMPANY SLOGAN</h5>

@@ -114,7 +114,7 @@ const CategoryListScreen = () => {
         ) : error ? (
           <Message variant='danger'>{error}</Message>
         ) : (
-          <>
+          <div>
             <Table striped bordered hover responsive className='table-sm'>
               <thead>
                 <tr style={{ background: '#20B2AA' }}>
@@ -165,13 +165,16 @@ const CategoryListScreen = () => {
                 ))}
               </tbody>
             </Table>
-            <PaginateCategory
-              pages={pages}
-              page={page}
-              keyword={keyword ? keyword : ''}
-              isAdmin={true}
-            />
-          </>
+
+            <div className='d-flex align-items-center justify-content-center py-3'>
+              <PaginateCategory
+                pages={pages}
+                page={page}
+                keyword={keyword ? keyword : ''}
+                isAdmin={true}
+              />
+            </div>
+          </div>
         )}
       </Container>
     </>
