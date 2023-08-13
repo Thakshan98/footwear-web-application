@@ -8,7 +8,10 @@ import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import { listProductDetails, updateProduct } from '../actions/productActions'
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
-
+import {
+  listCategories,
+ 
+} from '../actions/categoryAction'
 
 
 const ProductEditScreen = () => {
@@ -42,6 +45,7 @@ const ProductEditScreen = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
+    dispatch(listCategories())
     if (successUpdate) {
       dispatch({ type: PRODUCT_UPDATE_RESET })
       navigate('/admin/productlist')
