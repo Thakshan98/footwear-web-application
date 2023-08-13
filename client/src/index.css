@@ -1,143 +1,117 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
-*{font-family: 'Open Sans', sans-serif;
-font-family: 'Poppins', sans-serif;}
+* {
+  font-family: 'Open Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
 
 main {
   min-height: 80vh;
-  transition: transform .2s;
+  transition: transform 0.2s;
 }
-.pName{
+.pName {
   font-weight: 500;
   color: rgb(58, 15, 15);
 }
-.tag{
+.tag {
   background: -webkit-linear-gradient(rgb(230, 86, 182), rgb(7, 0, 10));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  
 }
-.book{
+/* .book{
   margin-top: 150px;
   border-Radius: 15px ;
   background-image: linear-gradient( rgb(197, 223, 240),#ffffff,#ffffff,#e6dada); 
   overflow:hidden;
   /* box-Shadow: 0px 0px 16px 6px rgba(0, 0, 0, 0.33); */
-  padding-left: 8px;
- 
-}
+/* padding-left: 8px; */
+
+/* }
 .books{
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 40px;
  
-}
+}  */
 
 .navLink:hover {
-  -ms-transform: scale(1.1); /* IE 9 */
-  -webkit-transform: scale(1.1); /* Safari 3-8 */
-  transform: scale(1.1); 
+  -ms-transform: scale(1.1); 
+  -webkit-transform: scale(1.1); 
+  transform: scale(1.1);
 }
-.color-nav{
-
+/* .color-nav {
   background-image: url('images/nav.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   padding-top: 0%;
   padding-bottom: 0%;
-}
-.baner{
+} */
+.baner {
   height: 500px;
   background-repeat: no-repeat;
   background-size: cover;
   margin-bottom: 100px;
-  background-image: url('images/baner2.jpeg');
   box-shadow: 0px 0px 16px 6px rgb(119, 143, 194);
 }
 
-.latest{
+/* .latest {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.search{
+} */
+.search {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
 }
 
-/* body{
-  background-image: linear-gradient( rgb(160, 195, 216),#f3ebeb,#e6dada); 
-  
-} */
-.btn{
+.btn {
   border-radius: 25px;
- 
-  transition: transform .2s;
+
+  transition: transform 0.2s;
 }
-.btn:hover{
-  -ms-transform: scale(1.1); /* IE 9 */
-  -webkit-transform: scale(1.1); /* Safari 3-8 */
-  transform: scale(1.1); 
+.btn:hover {
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
-.card1{
-  overflow:hidden;
-  
-  transition: transform .2s;
+.card1 {
+  overflow: hidden;
+
+  transition: transform 0.2s;
 }
 .card1:hover {
-  -ms-transform: scale(1.1); /* IE 9 */
-  -webkit-transform: scale(1.1); /* Safari 3-8 */
-  transform: scale(1.1); 
+  -ms-transform: scale(1.1); 
+  -webkit-transform: scale(1.1); 
+  transform: scale(1.1);
 }
-.card{
-  border-Radius: 12px;
-  border:1px solid #7a39e0;
-  background-color:white;
-  overflow:hidden;
-  box-Shadow: 0px 0px 16px 6px rgba(0, 0, 0, 0.33);
-
+.card {
+  border-radius: 12px;
+  border: 1px solid #7a39e0;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0px 0px 16px 6px rgba(0, 0, 0, 0.33);
 }
 
-
-
-img{
+img {
   margin-right: 20px;
   margin-top: 0%;
   margin-bottom: 0%;
 }
-/* h3 {
-  padding: 1rem 0;
-}
-
-h1,H6 {
-  font-size: 1.8rem;
- 
-  margin-top: 35px;
-  text-align: center; 
-} */
-
- 
-
-  
-/* h2 {
-  font-size: 1.4rem;
-  padding: 0.5rem 0;
-} */
 
 .rating span {
   margin: 0.1rem;
 }
-.productImg{
-  height:350px;
-    width:100%;
+.productImg {
+  height: 350px;
+  width: 100%;
 }
-.bookImg{
-  height:300px;
-  width:70%;
+.bookImg {
+  height: 300px;
+  width: 70%;
   border-radius: 10%;
 }
-.pName{
+.pName {
   height: 40px;
 }
 
@@ -155,21 +129,21 @@ h1,H6 {
   text-align: center;
   padding-top: 10px;
 }
-.contact{
+.contact {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
 }
 /* carousel */
-.caro{
+.caro {
   margin: 70px;
 }
-.carousel{
-  background-image: url('images/carousel.jpg'); 
+.carousel {
+  background-image: url('images/carousel.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
-  box-Shadow: 0px 0px 16px 6px rgba(0, 0, 0, 0.33);
+  box-shadow: 0px 0px 16px 6px rgba(0, 0, 0, 0.33);
 }
 .carousel-item-next,
 .carousel-item-prev,
@@ -183,7 +157,6 @@ h1,H6 {
 
 .carousel-caption h2 {
   color: #fff;
-  
 }
 
 .carousel img {
@@ -202,9 +175,7 @@ h1,H6 {
   .carousel-caption h2 {
     font-size: 2.5vw;
   }
-  .baner{
+  .baner {
     height: 150px;
   }
-  
-
 }
