@@ -1,7 +1,5 @@
 import React from 'react'
-import { BrowserRouter , Route, Routes,} from 'react-router-dom'
-// import Header from './components/Header'
-// import Footer from './components/Footer'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import HomeScreen from './screens/HomeScreen'
 import ProductScreen from './screens/ProductScreen'
 import CartScreen from './screens/CartScreen'
@@ -35,9 +33,9 @@ import Layout from './components/Layout'
 const App = () => {
   return (
     <>
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Layout />}>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Layout />}>
             <Route path='/order/:id' element={<OrderScreen />} />
             <Route path='/shipping' element={<ShippingScreen />} />
             <Route path='/payment' element={<PaymentScreen />} />
@@ -64,8 +62,14 @@ const App = () => {
             <Route path='/cart/:id?' element={<CartScreen />} />
             <Route path='/admin/userlist' element={<UserListScreen />} />
             <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
-            <Route path='/admin/categorylist' element={<CategoryListScreen />} />
-            <Route path='//admin/category/:id/edit' element={<CategoryEditScreen />} />
+            <Route
+              path='/admin/categorylist'
+              element={<CategoryListScreen />}
+            />
+            <Route
+              path='//admin/category/:id/edit'
+              element={<CategoryEditScreen />}
+            />
             <Route
               path='/admin/productlist'
               element={<ProductListScreen />}
@@ -76,23 +80,34 @@ const App = () => {
               element={<ProductListScreen />}
               exact
             />
-             <Route
+            <Route
               path='/admin/categorylist/:pageNumber'
               element={<CategoryListScreen />}
               exact
             />
 
             <Route
-            path='/admin/categorylist'
-            element={<CategoryListScreen />}
-            exact
-          />
+              path='/admin/categorylist'
+              element={<CategoryListScreen />}
+              exact
+            />
             {/* <Route path='/' element={<FeedbackScreen />} />  */}
-            <Route path='/admin/category/:id/edit' element={<CategoryEditScreen />} />
-            <Route path='/admin/category/create' element={<CategoryCreateScreen />} />
-            <Route path='/admin/product/create' element={<ProductCreateScreen />} />
             <Route
-              path='/admin/product/:id/edit'   element={<ProductEditScreen />} />
+              path='/admin/category/:id/edit'
+              element={<CategoryEditScreen />}
+            />
+            <Route
+              path='/admin/category/create'
+              element={<CategoryCreateScreen />}
+            />
+            <Route
+              path='/admin/product/create'
+              element={<ProductCreateScreen />}
+            />
+            <Route
+              path='/admin/product/:id/edit'
+              element={<ProductEditScreen />}
+            />
             <Route path='/admin/orderlist' element={<OrderListScreen />} />
             <Route path='/search/:keyword' element={<HomeScreen />} exact />
             <Route path='/page/:pageNumber' element={<HomeScreen />} exact />
@@ -102,7 +117,7 @@ const App = () => {
               exact
             />
             <Route path='/' element={<HomeScreen />} exact />
-            </Route>
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
