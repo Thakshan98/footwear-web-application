@@ -47,9 +47,8 @@ const HomeScreen = () => {
       <Container>
         <div>
           <div>
-            <h3 className='text-center bg-stone-600'>Footwear Collections</h3>
+            <h2 className='text-center bg-stone-600 py-5 text-secondary'>Footwear Collections</h2>
           </div>
-
           {loading ? (
             <Loader />
           ) : error ? (
