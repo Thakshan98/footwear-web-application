@@ -92,9 +92,7 @@ const App = () => {
             <Route path='/admin/category/create' element={<CategoryCreateScreen />} />
             <Route path='/admin/product/create' element={<ProductCreateScreen />} />
             <Route
-              path='/admin/product/:id/edit'
-              element={<ProductEditScreen />}
-            />
+              path='/admin/product/:id/edit'   element={<ProductEditScreen />} />
             <Route path='/admin/orderlist' element={<OrderListScreen />} />
             <Route path='/search/:keyword' element={<HomeScreen />} exact />
             <Route path='/page/:pageNumber' element={<HomeScreen />} exact />

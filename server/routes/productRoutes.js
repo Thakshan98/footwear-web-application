@@ -16,10 +16,11 @@ router.route('/').post(protect, systemAdmin, createProduct)
 
 router.route('/:id/reviews').post(protect, createProductReview)
 router.get('/top', getTopProducts)
-router
-  .route('/:id')
-  .get(getProductById)
-  .delete(protect, systemAdmin, deleteProduct)
-  .put(protect, systemAdmin, updateProduct);
+
+router.route('/:id').get(getProductById)
+router.route('/:id').delete(protect, systemAdmin, deleteProduct)
+router.route('/:id').put(protect, systemAdmin, updateProduct);
+
+
 
 module.exports = router;

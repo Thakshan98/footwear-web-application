@@ -2,7 +2,7 @@ const Category = require("../models/categoryModel.js");
 const asyncHandler =require("express-async-handler");
 
 const getCategory = asyncHandler(async (req, res) => {
-  const pageSize = 6
+  const pageSize = 8
   const page = Number(req.query.pageNumber) || 1
 
   const keyword = req.query.keyword

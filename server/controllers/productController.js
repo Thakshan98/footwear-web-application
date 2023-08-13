@@ -1,7 +1,7 @@
 const Footwear =require("../models/footwearModel.js");
 const asyncHandler =require("express-async-handler");
 
-const getProducts = async (req, res) => {
+const getProducts =asyncHandler( async (req, res) => {
   const pageSize = 8
   const page = Number(req.query.pageNumber) || 1
 
@@ -21,7 +21,7 @@ const getProducts = async (req, res) => {
     .skip(pageSize * (page - 1))
 
   res.json({ products, page, pages: Math.ceil(count / pageSize) })
-};
+})
 
 
 const getProductById = async (req, res) => {

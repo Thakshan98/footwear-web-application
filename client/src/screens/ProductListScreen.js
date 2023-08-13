@@ -16,7 +16,7 @@ import {
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
 
 const ProductListScreen = () => {
-  const pageNumber = useParams();
+  const { keyword, pageNumber } = useParams()
   
   const dispatch = useDispatch()
 
@@ -141,7 +141,7 @@ const ProductListScreen = () => {
               ))}
             </tbody>
           </Table>
-          <Paginate pages={pages} page={page} isAdmin={true} />
+          <Paginate pages={pages} page={page}  keyword={keyword ? keyword : ''} isAdmin={true} />
         </>
       )}
     </>

@@ -12,14 +12,17 @@ import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
 
 
 const ProductEditScreen = () => {
-    const { id: productId } = useParams();
+  const { id: productId } = useParams();
 
-  const [name, setName] = useState('')
-  const [price, setPrice] = useState(0)
-  const [image, setImage] = useState('')
-  const [countInStock, setCountInStock] = useState(0)
-  const [description, setDescription] = useState('')
-  const [uploading, setUploading] = useState(false)
+  const [category, setCategory] = useState('');
+  const [name, setName] = useState('');
+  const [gender, setGender] = useState('');
+  const [price, setPrice] = useState(0);
+  const [size, setSize] = useState(0);
+  const [countInStock, setCount] = useState(0);
+  const [image, setImage] = useState('');
+  const [description, setDescription] = useState('');
+  const [uploading, setUploading] = useState(false);
 
   const dispatch = useDispatch()
 
@@ -46,8 +49,10 @@ const ProductEditScreen = () => {
         setName(product.name)
         setPrice(product.price)
         setImage(product.image)
-    
-        setCountInStock(product.countInStock)
+        setGender(product.gender)
+        setCategory(product.category)
+        setSize(product.size)
+        setCount(product.countInStock)
         setDescription(product.description)
       }
     }
@@ -55,37 +60,32 @@ const ProductEditScreen = () => {
 
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0]
-    const formData = new FormData()
+    
+    const formData = new FormData();
     formData.append('image', file)
-    setUploading(true)
 
-    try {
-      const config = {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }
+    const{ data }  = await axios.post('/api/upload', formData,{
+      headers: {'Content-Type': 'multipart/form-data'},}
+      
+    )
+    setImage(data)
+ 
 
-      const { data } = await axios.post('/api/upload', formData, config)
-
-      setImage(data)
-      setUploading(false)
-    } catch (error) {
-      console.error(error)
-      setUploading(false)
-    }
-  }
+  };
 
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(
       updateProduct({
         _id: productId,
-        name,
-        price,
-        image,
-        description,
-        countInStock,
+        category,
+          name,
+          size,          
+          gender,
+          price,
+          image,
+          description,
+          countInStock,
       })
     )
   }
@@ -97,7 +97,7 @@ const ProductEditScreen = () => {
         Go Back
       </Link>
       <FormContainer>
-        <h1 className='tag my-5' style={{fontSize:'45px',fontFamily:'Lucida Console',fontWeight:'bold'}} >Book Corner</h1>
+        <h1 className='tag my-5' style={{fontSize:'45px',fontFamily:'Lucida Console',fontWeight:'bold'}} >Phonix</h1>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
         {loading ? (
@@ -105,16 +105,60 @@ const ProductEditScreen = () => {
         ) : error ? (
           <Message variant='danger'>{error}</Message>
         ) : (
-          <Form onSubmit={submitHandler}>
-            <Form.Group controlId='name'>
-              <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Title</Form.Label>
+          <Form onSubmit={submitHandler} enctype="multipart/form-data">
+
+            <Form.Group controlId='category'>
+              <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Category</Form.Label>
               <Form.Control
                 type='name'
-                placeholder='Enter title of book'
+                placeholder='Enter category'
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              ></Form.Control>
+            </Form.Group> 
+
+            <Form.Group controlId='gender'>
+              <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Gender</Form.Label>
+              <Form.Control
+                type='name'
+                placeholder='Gender'
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+              ></Form.Control>
+            </Form.Group> 
+
+            <Form.Group controlId='name'>
+              <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Product</Form.Label>
+              <Form.Control
+                type='name'
+                placeholder='Enter product'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               ></Form.Control>
             </Form.Group>
+
+            <Form.Group controlId='size'>
+              <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Size</Form.Label>
+              <Form.Control
+                min={0}
+                type='number'
+                placeholder='Size'
+                value={size}
+                onChange={(e) => setSize(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='countInStock'>
+              <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Count in Stock</Form.Label>
+              <Form.Control
+                min={0}
+                type='number'
+                placeholder='Count in Stock'
+                value={countInStock}
+                onChange={(e) => setCount(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
 
             <Form.Group controlId='price'>
               <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Price</Form.Label>
@@ -126,34 +170,19 @@ const ProductEditScreen = () => {
                 onChange={(e) => setPrice(e.target.value)}
               ></Form.Control>
             </Form.Group>
+       
 
             <Form.Group controlId='image'>
-              <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Image</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Enter image url'
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-              ></Form.Control>
-              <Form.File
-                id='image-file'
-                label='Choose File'
-                custom
-                onChange={uploadFileHandler}
-              ></Form.File>
-              {uploading && <Loader />}
+                <Form.Label className='mt-3' style={{ fontSize: '18px', fontWeight: 'bold', color: '#591f1f' }}>Image</Form.Label>
+                <Form.Control
+                  id='image-file'
+                  type='file'
+                  custom
+                  onChange={uploadFileHandler}
+                  />
+                 {uploading && <Loader />}
             </Form.Group>
 
-            <Form.Group controlId='countInStock'>
-              <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Count In Stock</Form.Label>
-              <Form.Control
-                min={0}
-                type='number'
-                placeholder='Enter countInStock'
-                value={countInStock}
-                onChange={(e) => setCountInStock(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
 
             <Form.Group controlId='description'>
               <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Description</Form.Label>
