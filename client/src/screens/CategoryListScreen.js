@@ -66,21 +66,21 @@ const CategoryListScreen = () => {
     pageNumber,
   ])
 
-  // const options = {
-  //   labels: {
-  //     confirmable: "Confirm",
-  //     cancellable: "Cancel"
-  //   }
-  // }
-  // const deleteHandler = async(id) => {
-    const deleteHandler = (id) => {
-    // const result = await confirm("Are you sure?", options);
+  const options = {
+    labels: {
+      confirmable: "Confirm",
+      cancellable: "Cancel"
+    }
+  }
+  const deleteHandler = async(id) => {
+  
+    const result = await confirm("Are you sure?", options);
     
-    // if (result) {
+    if (result) {
       dispatch(deleteCategory(id))
-    //   return;
-    // }
-    // console.log("You click No!");
+      return;
+    }
+    console.log("You click No!");
   };
    
   

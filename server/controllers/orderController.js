@@ -130,7 +130,7 @@ const deleteOrder = async (req, res) => {
   const order = await Order.findById(req.params.id)
 
   if (order) {
-    await order.remove()
+    await order.deleteOne()
     res.json({ message: 'Order removed' })
   } else {
     res.status(404)

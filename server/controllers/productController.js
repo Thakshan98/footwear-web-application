@@ -40,7 +40,7 @@ const deleteProduct = async (req, res) => {
   const product = await Footwear.findById(req.params.id)
 
   if (product) {
-    await product.remove()
+    await product.deleteOne()
     res.json({ message: 'Product removed' })
   } else {
     res.status(404)
