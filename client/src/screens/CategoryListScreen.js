@@ -17,7 +17,7 @@ import {
 import { CATEGORY_CREATE_RESET } from '../constants/categoryConstants'
 
 const CategoryListScreen = () => {
-  const pageNumber = useParams();
+  const { keyword, pageNumber } = useParams()
   
   const dispatch = useDispatch()
 
@@ -145,7 +145,7 @@ const CategoryListScreen = () => {
               ))}
             </tbody>
           </Table>
-          <PaginateCategory pages={pages} page={page} isAdmin={true} />
+          <PaginateCategory pages={pages} page={page} keyword={keyword ? keyword : ''} isAdmin={true} />
         </>
       )}
     </>
