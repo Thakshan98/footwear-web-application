@@ -81,7 +81,7 @@ const HomeScreen = () => {
                 <div>
                   <LiaShippingFastSolid size='30' />
                   <div>
-                    <h5 className='text-base'>Free Shipping</h5>
+                    <h6 className='text-base'>Free Shipping</h6>
                     <p className='text-sm text-stone-400 mb-0'>
                       From all orders over Rs.20000
                     </p>
@@ -94,7 +94,7 @@ const HomeScreen = () => {
                 <div>
                   <BiSupport size='30' />
                   <div>
-                    <h5 className='text-base'>Support 24/7</h5>
+                    <h6 className='text-base'>Support 24/7</h6>
                     <p className='text-sm text-stone-400 mb-0'>
                       Shop with an expert
                     </p>
@@ -107,7 +107,7 @@ const HomeScreen = () => {
                 <div>
                   <GiPriceTag size='30' />
                   <div>
-                    <h5 className='text-base'>Affordable Price</h5>
+                    <h6 className='text-base'>Affordable Price</h6>
                     <p className='text-sm text-stone-400 mb-0'>
                       Get Factory direct price
                     </p>
@@ -120,7 +120,7 @@ const HomeScreen = () => {
                 <div>
                   <MdPayment size='30' />
                   <div>
-                    <h5 className='text-base'>Secure Payments</h5>
+                    <h6 className='text-base'>Secure Payments</h6>
                     <p className='text-sm text-stone-400 mb-0'>
                       100% protected payments
                     </p>
