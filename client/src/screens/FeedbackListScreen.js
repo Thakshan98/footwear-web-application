@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
-import { useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Table, Button, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
@@ -16,7 +16,7 @@ const FeedbackListScreen = () => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   useEffect(() => {
     let i = setNum(num + 1)
 
@@ -31,11 +31,11 @@ const FeedbackListScreen = () => {
 
   return (
     <>
-      <Container>
+      <Container className='pb-5'>
         <h1
-          className='tag my-5 font-popins text-center text-center'
+          className='my-5 font-popins text-center'
           style={{
-            fontSize: '35px',
+            fontSize: '30px',
             fontWeight: 'bold',
           }}
         >
@@ -48,31 +48,47 @@ const FeedbackListScreen = () => {
         ) : (
           <Table striped bordered hover responsive className='table-sm'>
             <thead>
-              <tr style={{ background: '#20B2AA' }}>
-                <th className='text-black text-center'>No</th>
-                <th className='text-black text-center'>USER</th>
-                <th className='text-black text-center'>Email</th>
-              
-               
-
-                <th></th>
+              <tr>
+                <th
+                  className='text-white text-center py-3'
+                  style={{ backgroundColor: '#019678' }}
+                >
+                  No
+                </th>
+                <th
+                  className='text-white text-center py-3'
+                  style={{ backgroundColor: '#019678' }}
+                >
+                  USER
+                </th>
+                <th
+                  className='text-white text-center py-3'
+                  style={{ backgroundColor: '#019678' }}
+                >
+                  Email
+                </th>
+                <th
+                  className='text-white text-center py-3'
+                  style={{ backgroundColor: '#019678' }}
+                >
+                  Feedbacks
+                </th>
               </tr>
             </thead>
             <tbody>
               {feedbacks.map((feedback, i) => (
                 <tr key={feedback._id}>
-                  <td>{i + 1}</td>
-                  <td>{feedback.user && feedback.user.name}</td>
-                  <td>{feedback.user && feedback.user.email}</td>
-                 
-                  
-
-                  <td>
+                  <td className='text-center p-3'>{i + 1}</td>
+                  <td className='text-center p-3'>
+                    {feedback.user && feedback.user.name}
+                  </td>
+                  <td className='text-center p-3'>
+                    {feedback.user && feedback.user.email}
+                  </td>
+                  <td className='text-center p-3'>
                     <LinkContainer
                       to={`/admin/feedback/${feedback._id}`}
                       style={{
-                        backgroundImage:
-                          'linear-gradient(to right, #191654 , #43C6AC)',
                         color: 'white',
                         fontWeight: '600',
                       }}
