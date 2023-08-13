@@ -56,7 +56,7 @@ const UserListScreen = ({ history }) => {
         <Table striped bordered hover responsive className='table-sm rounded-md'>
           <thead >
             <tr>
-              <th className='text-black text-center py-2'>User Id</th>
+            
               <th className='text-black text-center py-2'>Name</th>
               <th className='text-black text-center py-2'>Email Address</th>
               <th className='text-black text-center py-2'>Admin</th>
@@ -66,7 +66,7 @@ const UserListScreen = ({ history }) => {
           <tbody>
             {users.map((user) => (
               <tr key={user._id} >
-                <td className='text-center'>{user._id}</td>
+              
                 <td className='text-center'>{user.name}</td>
                 <td className='text-center'>
                   <a href={`mailto:${user.email}`}>{user.email}</a>

@@ -9,10 +9,7 @@ import FormContainer from '../components/FormContainer';
 import { createProduct } from '../actions/productActions';
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
 import { date } from 'yup';
-import {
-  listCategories,
- 
-} from '../actions/categoryAction'
+
 
 const ProductCreateScreen = () => {
   const { id: productId } = useParams();
@@ -46,7 +43,7 @@ const ProductCreateScreen = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    dispatch(listCategories())
+ 
     if (successCreate) {
       dispatch({ type: PRODUCT_CREATE_RESET })
       navigate('/admin/productlist')

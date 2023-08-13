@@ -14,7 +14,7 @@ import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
 const ProductEditScreen = () => {
   const { id: productId } = useParams();
 
-  const [category, setCategory] = useState('');
+  const [cat, setCategory] = useState('');
   const [name, setName] = useState('');
   const [gender, setGender] = useState('');
   const [price, setPrice] = useState(0);
@@ -28,6 +28,9 @@ const ProductEditScreen = () => {
 
   const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
+
+  const categoriesList = useSelector((state) => state.categoriesList)
+  const {  category } = categoriesList
 
   const productUpdate = useSelector((state) => state.productUpdate)
   const {
@@ -78,7 +81,7 @@ const ProductEditScreen = () => {
     dispatch(
       updateProduct({
         _id: productId,
-        category,
+        cat,
           name,
           size,          
           gender,
@@ -107,15 +110,20 @@ const ProductEditScreen = () => {
         ) : (
           <Form onSubmit={submitHandler} enctype="multipart/form-data">
 
-            <Form.Group controlId='category'>
-              <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Category</Form.Label>
-              <Form.Control
-                type='name'
-                placeholder='Enter category'
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              ></Form.Control>
-            </Form.Group> 
+<Form.Group controlId='cat'>
+  <Form.Label className='mt-3' style={{ fontSize: '18px', fontWeight: 'bold', color: '#591f1f' }}>Category</Form.Label>
+  <Form.Control
+    as='select'
+    value={cat}
+    onChange={(e) => setCategory(e.target.value)}
+  >
+    {category.map((catItem) => (
+      <option key={catItem._id} value={catItem.name}>
+        {catItem.name}
+      </option>
+    ))}
+  </Form.Control>
+</Form.Group>
 
             <Form.Group controlId='gender'>
               <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Gender</Form.Label>
