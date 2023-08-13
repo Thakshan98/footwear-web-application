@@ -114,9 +114,9 @@ const ProfileScreen = ({ location, history }) => {
       <BreadCrumb title='Account Settings' />
       <Container className='mt-5 font-popins'>
         <Row>
-          <Col md={3}>
-            <div className='bg-white py-3 px-3'>
-              <h4 className='tag mb-2 text-center '>User Profile</h4>
+          <Col md={4} className='my-5 py-4'>
+            <div className='bg-white py-3 px-3 rounded'>
+              <h4 className='tag mb-2 text-center py-2 text-secondary'>User Profile</h4>
               {message && <Message variant='danger'>{message}</Message>}
               {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
               {success && <Message variant='success'>Profile Updated</Message>}
@@ -141,6 +141,7 @@ const ProfileScreen = ({ location, history }) => {
                       placeholder='Enter name'
                       value={name}
                       onChange={(e) => setName(e.target.value)}
+                      className='mb-3'
                     ></Form.Control>
                   </Form.Group>
 
@@ -159,6 +160,7 @@ const ProfileScreen = ({ location, history }) => {
                       placeholder='Enter email'
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      className='mb-3'
                     ></Form.Control>
                   </Form.Group>
 
@@ -177,6 +179,7 @@ const ProfileScreen = ({ location, history }) => {
                       placeholder='Enter password'
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
+                      className='mb-3'
                     ></Form.Control>
                   </Form.Group>
 
@@ -195,6 +198,7 @@ const ProfileScreen = ({ location, history }) => {
                       placeholder='Confirm password'
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
+                      className='mb-3'
                     ></Form.Control>
                   </Form.Group>
 
@@ -213,6 +217,7 @@ const ProfileScreen = ({ location, history }) => {
                       placeholder='Enter current password'
                       value={currentPassword}
                       onChange={(e) => setCurrentPassword(e.target.value)}
+                      className='mb-3'
                     ></Form.Control>
                   </Form.Group>
 
@@ -231,15 +236,13 @@ const ProfileScreen = ({ location, history }) => {
               )}
             </div>
           </Col>
-          <Col md={1}></Col>
           <Col md={8}>
             {userInfo && !userInfo.isAdmin && (
               <h6
-                className='tag mb-5'
+                className='mb-5 text-center text-secondary'
                 style={{
                   fontSize: '27px',
                   fontWeight: 'bold',
-                  textAlign: 'center',
                 }}
               >
                 My Orders
@@ -255,12 +258,12 @@ const ProfileScreen = ({ location, history }) => {
               <Table striped bordered hover responsive className='table-sm'>
                 {userInfo && !userInfo.isAdmin && (
                   <thead>
-                    <tr>
-                      <th>ORDER NO</th>
-                      <th>DATE</th>
-                      <th>TOTAL</th>
-                      <th>PAID</th>
-                      <th>DELIVERED</th>
+                    <tr className='text-center'>
+                      <th>Order No</th>
+                      <th>Date</th>
+                      <th>Total</th>
+                      <th>Paid</th>
+                      <th>Delivered</th>
                       <th></th>
                     </tr>
                   </thead>
