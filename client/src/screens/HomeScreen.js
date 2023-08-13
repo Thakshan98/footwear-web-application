@@ -42,14 +42,10 @@ const HomeScreen = () => {
         )}
       </div>
       <Container>
-        <div className='book'>
-          <div className='latest'>
-            <img src={latest} style={{ width: '60%' }} alt='latest books ' />
+        <div>
+          <div>
+           <h3 className='text-center bg-stone-600'>Footwear Collections</h3>
           </div>
-
-          <br />
-          <br />
-          <br />
 
           {loading ? (
             <Loader />
