@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import { Link,useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Form, Button, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
@@ -10,11 +10,7 @@ import { createFeedback } from '../actions/feedbackActions'
 import { FEEDBACK_CREATE_RESET } from '../constants/feedbackConstants'
 import { FaWhatsappSquare, FaPhoneSquareAlt } from 'react-icons/fa'
 const FeedbackScreen = () => {
-  
-
-
   const [feedback, setFeedback] = useState('')
-  
 
   const dispatch = useDispatch()
 
@@ -25,7 +21,7 @@ const FeedbackScreen = () => {
     success: successCreate,
   } = feedbackCreate
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   useEffect(() => {
     if (successCreate) {
       dispatch({ type: FEEDBACK_CREATE_RESET })
@@ -33,21 +29,18 @@ const FeedbackScreen = () => {
     }
   }, [dispatch, navigate, successCreate])
 
-
   const submitHandler = (e) => {
     e.preventDefault()
 
     dispatch(
-      createFeedback({       
+      createFeedback({
         feedback,
       })
     )
   }
 
   return (
-    <Container>
-      <br />
-      <br />
+    <Container className='py-5'>
       <div className='feedback'>
         <Link
           to='/'
@@ -63,78 +56,57 @@ const FeedbackScreen = () => {
         </Link>
         <Form onSubmit={submitHandler}>
           <FormContainer>
-            <h1
-              className='tag'
-              style={{
-                fontSize: '45px',
-                fontFamily: 'Lucida Console',
-                fontWeight: 'bold',
-              }}
-            >
-              Feedback
-            </h1>
-            {loadingCreate && <Loader />}
-            {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
-            <p
-              style={{
-                fontSize: '20px',
-                fontFamily: 'Lucida Console',
-                color: '#563491',
-                textAlign: 'center',
-                fontWeight: 'bold',
-              }}
-            >
-              We all need people who will give us feedback. That’s how we
-              improve.
-            </p>
-            <br />
-            <br />
-            <br />
-            <Form.Group controlId='feedback'>
-              <Form.Label
+            <div className='bg-white py-3 px-4 rounded'>
+              <h2
+                className='heading-color text-center py-3'
                 style={{
-                  fontSize: '18px',
+                  fontSize: '35px',
                   fontWeight: 'bold',
-                  color: '#591f1f',
                 }}
               >
-                Feedback
-              </Form.Label>
-              <Form.Control
-                as='textarea'
-                row='5'
-                placeholder='feedback'
-                style={{ borderRadius: '10px' }}
-                value={feedback}
-                onChange={(e) => setFeedback(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-        
+                Give Feedback
+              </h2>
+              {loadingCreate && <Loader />}
+              {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
+              <p className='text-secondary text-center'>
+                We all need people who will give us feedback. That’s how we
+                improve.
+              </p>
 
-            <Button
-              type='submit'
-              style={{
-                backgroundImage:
-                  'linear-gradient(to bottom right,#50025c, #d20be0,#db3bb6)',
-                color: 'white',
-                fontWeight: '600',
-                float: 'right',
-                width: '120px',
-              }}
-            >
-              Send
-            </Button>
+              <Form.Group controlId='feedback'>
+                <Form.Label
+                  style={{
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                    color: '#591f1f',
+                  }}
+                >
+                  Feedback
+                </Form.Label>
+                <Form.Control
+                  as='textarea'
+                  row='5'
+                  placeholder='feedback'
+                  style={{ borderRadius: '10px' }}
+                  value={feedback}
+                  onChange={(e) => setFeedback(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <div>
+                <Button
+                  type='submit'
+                  className='my-3 text-white'
+                  style={{
+                    fontWeight: '600',
+                    width: '120px',
+                  }}
+                >
+                  Send
+                </Button>
+              </div>
+            </div>
           </FormContainer>
         </Form>
-
-        <div className='contact'>
-          <Link href='tel:+94776408775' target='_blank'>
-            <FaPhoneSquareAlt size={'60px'} color={'#4CCC5B'} />
-          </Link>
-          <Link href='https://wa.me/+94770334171' target='_blank'>
-            <FaWhatsappSquare size={'60px'} color={'#4CCC5B'} />
-          </Link>
-        </div>
       </div>
     </Container>
   )

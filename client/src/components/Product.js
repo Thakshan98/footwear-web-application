@@ -5,35 +5,40 @@ import Rating from './Rating'
 
 const Product = ({ product }) => {
   return (
-    <Card className='card1 my-3 mx-2 rounded' style={{ width: ' 230px' }}>
-      <Link to={`/product/${product._id}`}>
-        <Card.Img
-          className='cardImg'
-          src={product.image}
-          height='200px'
-          variant='top'
-        />
-      </Link>
-
-      <Card.Body>
+    <div className='d-flex align-items-center justify-content-center'>
+      <Card className='card1 my-3 mx-2 rounded' style={{ width: ' 230px' }}>
         <Link to={`/product/${product._id}`}>
-          <Card.Text>
-            <div>
-              <strong>{product.name}</strong>
-            </div>
-          </Card.Text>
+          <Card.Img
+            className='cardImg'
+            src={product.image}
+            height='180px'
+            variant='top'
+          />
         </Link>
 
-        <Card.Text as='div' className='my-2'>
-          <Rating
-            value={product.rating}
-            text={`${product.numReviews} reviews`}
-          />
-        </Card.Text>
+        <Card.Body>
+          <Link
+            style={{ textDecoration: 'none' }}
+            to={`/product/${product._id}`}
+          >
+            <Card.Text>
+              <div>
+                <strong>{product.name}</strong>
+              </div>
+            </Card.Text>
+          </Link>
 
-        <Card.Text as='h5'>LKR.{product.price}</Card.Text>
-      </Card.Body>
-    </Card>
+          <Card.Text as='div' className='my-2'>
+            <Rating
+              value={product.rating}
+              text={`${product.numReviews} reviews`}
+            />
+          </Card.Text>
+
+          <Card.Text as='h5'>LKR.{product.price}</Card.Text>
+        </Card.Body>
+      </Card>
+    </div>
   )
 }
 

@@ -15,6 +15,7 @@ import { LiaShippingFastSolid } from 'react-icons/lia'
 import { BiSupport } from 'react-icons/bi'
 import { MdPayment } from 'react-icons/md'
 import { GiPriceTag } from 'react-icons/gi'
+import Caros from '../components/Caros'
 
 const HomeScreen = () => {
   const { keyword, pageNumber } = useParams()
@@ -40,10 +41,13 @@ const HomeScreen = () => {
           </Link>
         )}
       </div>
+      {/* <div className='py-3 px-5'>
+        <Caros />
+      </div> */}
       <Container>
         <div>
           <div>
-           <h3 className='text-center bg-stone-600'>Footwear Collections</h3>
+            <h3 className='text-center bg-stone-600'>Footwear Collections</h3>
           </div>
 
           {loading ? (
@@ -51,7 +55,7 @@ const HomeScreen = () => {
           ) : error ? (
             <Message variant='danger'>{error}</Message>
           ) : (
-            <div className='books'>
+            <div>
               <Row>
                 {products.map((product) => (
                   <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
@@ -68,7 +72,7 @@ const HomeScreen = () => {
           )}
         </div>
 
-        <div class='container py-5'>
+        <div class='container py-5 my-5'>
           <div class='row'>
             <div class='col-lg-3 col-md-6 col-sm-12'>
               <div class='bg-primary p-3 text-white'>
