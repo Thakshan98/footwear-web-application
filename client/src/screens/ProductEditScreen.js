@@ -120,12 +120,18 @@ const ProductEditScreen = () => {
             <Form.Group controlId='gender'>
               <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Gender</Form.Label>
               <Form.Control
-                type='name'
-                placeholder='Gender'
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-              ></Form.Control>
+                          as='select'
+                          value={gender}
+                          onChange={(e) => setGender(e.target.value)}
+                        >
+                          <option value=''>Select Gender</option>
+                          <option value='Male'>Male</option>
+                          <option value='Female'>Female</option>
+                          <option value='Unisex'>Unisex</option>                          
+                        </Form.Control>
             </Form.Group> 
+
+           
 
             <Form.Group controlId='name'>
               <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Product</Form.Label>

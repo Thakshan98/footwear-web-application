@@ -23,6 +23,7 @@ const CategoryListScreen = () => {
 
   const categoryList = useSelector((state) => state.categoryList)
   const { loading, error, category, page, pages } = categoryList
+  
 
   const  categoryDelete = useSelector((state) => state.categoryDelete)
   const {

@@ -9,11 +9,15 @@ import FormContainer from '../components/FormContainer';
 import { createProduct } from '../actions/productActions';
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
 import { date } from 'yup';
+import {
+  listCategories,
+ 
+} from '../actions/categoryAction'
 
 const ProductCreateScreen = () => {
   const { id: productId } = useParams();
 
-  const [category, setCategory] = useState('');
+  const [cat, setCategory] = useState('');
   const [name, setName] = useState('');
   const [gender, setGender] = useState('');
   const [price, setPrice] = useState(0);
@@ -28,6 +32,10 @@ const ProductCreateScreen = () => {
   const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
 
+  const categoriesList = useSelector((state) => state.categoriesList)
+  const {  category } = categoriesList
+
+
   const productCreate = useSelector((state) => state.productCreate)
   const {
     loading: loadingCreate,
@@ -38,9 +46,11 @@ const ProductCreateScreen = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
+    dispatch(listCategories())
     if (successCreate) {
       dispatch({ type: PRODUCT_CREATE_RESET })
       navigate('/admin/productlist')
+      
     }   }, [dispatch, navigate, productId, product, successCreate])
 
     
@@ -71,7 +81,7 @@ const ProductCreateScreen = () => {
   
       dispatch(
         createProduct({
-          category,
+          cat,
           name,
           size,          
           gender,
@@ -100,25 +110,39 @@ const ProductCreateScreen = () => {
         ) : (
           <Form onSubmit={submitHandler} enctype="multipart/form-data">
 
-            <Form.Group controlId='category'>
-              <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Category</Form.Label>
-              <Form.Control
-                type='name'
-                placeholder='Enter category'
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              ></Form.Control>
-            </Form.Group> 
+<Form.Group controlId='cat'>
+  <Form.Label className='mt-3' style={{ fontSize: '18px', fontWeight: 'bold', color: '#591f1f' }}>Category</Form.Label>
+  <Form.Control
+    as='select'
+    value={cat}
+    onChange={(e) => setCategory(e.target.value)}
+  >
+    {category.map((catItem) => (
+      <option key={catItem._id} value={catItem.name}>
+        {catItem.name}
+      </option>
+    ))}
+  </Form.Control>
+</Form.Group>
+
+
+
+            
 
             <Form.Group controlId='gender'>
               <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Gender</Form.Label>
               <Form.Control
-                type='name'
-                placeholder='Gender'
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-              ></Form.Control>
+                          as='select'
+                          value={gender}
+                          onChange={(e) => setGender(e.target.value)}
+                        >
+                          <option value=''>Select Gender</option>
+                          <option value='Male'>Male</option>
+                          <option value='Female'>Female</option>
+                          <option value='Unisex'>Unisex</option>                          
+                        </Form.Control>
             </Form.Group> 
+
 
             <Form.Group controlId='name'>
               <Form.Label className='mt-3' style={{fontSize:'18px',fontWeight:'bold',color:'#591f1f'}}>Product</Form.Label>

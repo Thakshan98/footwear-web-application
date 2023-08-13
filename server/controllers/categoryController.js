@@ -23,6 +23,12 @@ const getCategory = asyncHandler(async (req, res) => {
   res.json({ category, page, pages: Math.ceil(count / pageSize) })
 })
 
+const getCategories = async (req, res) => {
+
+  const sort = { length: -1 , createdAt: -1};
+  const category = await Category.find({}).sort(sort)
+  res.json(category)
+};
 
 const getCategoryById = asyncHandler(async (req, res) => {
   const category = await Category.findById(req.params.id)
@@ -100,4 +106,5 @@ module.exports = {
   deleteCategory,
   createCategory,
   updateCategory,
+  getCategories,
 }

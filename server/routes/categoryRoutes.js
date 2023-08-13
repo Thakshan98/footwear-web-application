@@ -2,6 +2,7 @@ const express = require ("express");
 const router = express.Router();
 const {
     getCategory,
+    getCategories,
     getCategoryById,
     deleteCategory,
     createCategory,
@@ -10,6 +11,7 @@ const {
 const { protect, systemAdmin } = require ("../middleware/authMiddleware.js");
 
 router.route('/').get(getCategory)
+router.route('/get').get(getCategories)
 router.route('/').post(protect, systemAdmin, createCategory)
 router.route('/:id').get( getCategoryById)
 router.route('/:id').delete(protect, systemAdmin, deleteCategory)

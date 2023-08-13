@@ -13,6 +13,7 @@ import {
 
 import {
   categoryListReducer,
+  categoriesListReducer,
   categoryDetailsReducer,
   categoryDeleteReducer,
   categoryCreateReducer,
@@ -48,6 +49,7 @@ import {
 
 const reducer = combineReducers({
   categoryList: categoryListReducer,
+  categoriesList: categoriesListReducer,
   categoryDetails: categoryDetailsReducer,
   categoryDelete: categoryDeleteReducer,
   categoryCreate: categoryCreateReducer,

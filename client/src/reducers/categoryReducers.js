@@ -2,6 +2,9 @@ import {
     CATEGORY_LIST_REQUEST,
     CATEGORY_LIST_SUCCESS,
     CATEGORY_LIST_FAIL,
+    CATEGORIES_LIST_REQUEST,
+    CATEGORIES_LIST_SUCCESS,
+    CATEGORIES_LIST_FAIL,
     CATEGORY_DELETE_REQUEST,
     CATEGORY_DELETE_SUCCESS,
     CATEGORY_DELETE_FAIL,
@@ -32,6 +35,21 @@ import {
         }
       case CATEGORY_LIST_FAIL:
         return { loading: false, error: action.payload }
+      default:
+        return state
+    }
+  }
+
+
+  export const categoriesListReducer = (state = {category: [] }, action) => {
+    switch (action.type) {
+      case CATEGORIES_LIST_REQUEST:
+        return { loading: true, category: [] }
+      case CATEGORIES_LIST_SUCCESS:
+        return { loading: false, category: action.payload }
+      case CATEGORIES_LIST_FAIL:
+        return { loading: false, error: action.payload }
+      
       default:
         return state
     }
