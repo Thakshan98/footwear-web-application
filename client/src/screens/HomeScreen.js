@@ -9,7 +9,6 @@ import Paginate from '../components/Paginate'
 import ProductCarousel from '../components/ProductCarousel'
 import Meta from '../components/Meta'
 import { listProducts } from '../actions/productActions'
-import latest from '../images/latest.png'
 import SearchBox from '../components/SearchBox'
 import Marquee from 'react-fast-marquee'
 import { LiaShippingFastSolid } from 'react-icons/lia'
@@ -42,14 +41,10 @@ const HomeScreen = () => {
         )}
       </div>
       <Container>
-        <div className='book'>
-          <div className='latest'>
-            <img src={latest} style={{ width: '60%' }} alt='latest books ' />
+        <div>
+          <div>
+           <h3 className='text-center bg-stone-600'>Footwear Collections</h3>
           </div>
-
-          <br />
-          <br />
-          <br />
 
           {loading ? (
             <Loader />
