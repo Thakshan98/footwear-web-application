@@ -61,7 +61,6 @@ const HomeScreen = () => {
             <Message variant='danger'>{error}</Message>
           ) : (
             <div>
-<<<<<<< HEAD
 {
   category.map((category) => (
     <div key={category._id}>
@@ -85,22 +84,6 @@ const HomeScreen = () => {
                 page={page}
                 keyword={keyword ? keyword : ''}
               />
-=======
-              <Row>
-                {products.map((product) => (
-                  <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                    <Product product={product} />
-                  </Col>
-                ))}
-              </Row>
-              <div className='d-flex align-items-center justify-content-center py-3'>
-                <Paginate
-                  pages={pages}
-                  page={page}
-                  keyword={keyword ? keyword : ''}
-                />
-              </div>
->>>>>>> 3e1013dede4a66ae12e350f24919cec68419206d
             </div>
           )}
         </div>
