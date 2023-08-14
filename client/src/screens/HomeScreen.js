@@ -53,7 +53,7 @@ const HomeScreen = () => {
       <Container>
         <div>
           <div>
-            <h2 className='text-center bg-stone-600 py-5 text-secondary'>Footwear Collections</h2>
+            <h2 className='text-center py-5' style={{color:'#4d0000'}}>Footwear Collections</h2>
           </div>
           {loading ? (
             <Loader />
@@ -68,11 +68,13 @@ const HomeScreen = () => {
                 </Col>
               ))}
             </Row>
+            <div className='d-flex align-items-center justify-content-center py-3'>
             <Paginate
               pages={pages}
               page={page}
               keyword={keyword ? keyword : ''}
             />
+            </div>
           </div>
         )}
       </div>
@@ -134,10 +136,10 @@ const HomeScreen = () => {
           </div>
         </div>
 
-        <div class='container py-3 font-poppins'>
+        <div class='container py-5 font-poppins'>
           <div class='row'>
             <div class='col'>
-              <h5 className='text-center uppercase py-3'>OUR COMPANY SLOGAN</h5>
+              <h3 className='text-center uppercase py-3' style={{color:'#4d0000'}}>OUR COMPANY SLOGAN</h3>
               <Marquee>
                 <p>
                   Step into a world of comfort and style with our premium
