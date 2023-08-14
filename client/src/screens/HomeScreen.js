@@ -61,32 +61,21 @@ const HomeScreen = () => {
             <Message variant='danger'>{error}</Message>
           ) : (
             <div>
-{
-  category.map((category) => (
-    <div key={category._id}>
-      <h2>{category.name}</h2>
-      <Row>
-        {products.map((product) => (
-          product.cat === category.name ? (
-            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-              <Product product={product} />
-            </Col>
-          ) : null
-        ))}
-      </Row>
-    </div>
-  ))
-}
-
-
-              <Paginate
-                pages={pages}
-                page={page}
-                keyword={keyword ? keyword : ''}
-              />
-            </div>
-          )}
-        </div>
+            <Row>
+              {products.map((product) => (
+                <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                  <Product product={product} />
+                </Col>
+              ))}
+            </Row>
+            <Paginate
+              pages={pages}
+              page={page}
+              keyword={keyword ? keyword : ''}
+            />
+          </div>
+        )}
+      </div>
 
         <div class='container py-3 my-3'>
           <div class='row'>
