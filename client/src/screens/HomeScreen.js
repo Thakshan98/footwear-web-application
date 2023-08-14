@@ -53,15 +53,15 @@ const HomeScreen = () => {
       <Container>
         <div>
           <div>
-            <h3 className='text-center bg-stone-600'>Footwear Collections</h3>
+            <h2 className='text-center bg-stone-600 py-5 text-secondary'>Footwear Collections</h2>
           </div>
-
           {loading ? (
             <Loader />
           ) : error ? (
             <Message variant='danger'>{error}</Message>
           ) : (
             <div>
+<<<<<<< HEAD
 {
   category.map((category) => (
     <div key={category._id}>
@@ -85,18 +85,34 @@ const HomeScreen = () => {
                 page={page}
                 keyword={keyword ? keyword : ''}
               />
+=======
+              <Row>
+                {products.map((product) => (
+                  <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                    <Product product={product} />
+                  </Col>
+                ))}
+              </Row>
+              <div className='d-flex align-items-center justify-content-center py-3'>
+                <Paginate
+                  pages={pages}
+                  page={page}
+                  keyword={keyword ? keyword : ''}
+                />
+              </div>
+>>>>>>> 3e1013dede4a66ae12e350f24919cec68419206d
             </div>
           )}
         </div>
 
-        <div class='container py-5 my-5'>
+        <div class='container py-3 my-3'>
           <div class='row'>
             <div class='col-lg-3 col-md-6 col-sm-12'>
               <div class='bg-primary p-3 text-white'>
                 <div>
                   <LiaShippingFastSolid size='30' />
                   <div>
-                    <h5 className='text-base'>Free Shipping</h5>
+                    <h6 className='text-base'>Free Shipping</h6>
                     <p className='text-sm text-stone-400 mb-0'>
                       From all orders over Rs.20000
                     </p>
@@ -109,7 +125,7 @@ const HomeScreen = () => {
                 <div>
                   <BiSupport size='30' />
                   <div>
-                    <h5 className='text-base'>Support 24/7</h5>
+                    <h6 className='text-base'>Support 24/7</h6>
                     <p className='text-sm text-stone-400 mb-0'>
                       Shop with an expert
                     </p>
@@ -122,7 +138,7 @@ const HomeScreen = () => {
                 <div>
                   <GiPriceTag size='30' />
                   <div>
-                    <h5 className='text-base'>Affordable Price</h5>
+                    <h6 className='text-base'>Affordable Price</h6>
                     <p className='text-sm text-stone-400 mb-0'>
                       Get Factory direct price
                     </p>
@@ -135,7 +151,7 @@ const HomeScreen = () => {
                 <div>
                   <MdPayment size='30' />
                   <div>
-                    <h5 className='text-base'>Secure Payments</h5>
+                    <h6 className='text-base'>Secure Payments</h6>
                     <p className='text-sm text-stone-400 mb-0'>
                       100% protected payments
                     </p>
@@ -146,7 +162,7 @@ const HomeScreen = () => {
           </div>
         </div>
 
-        <div class='container py-5 bg-white font-poppins'>
+        <div class='container py-3 font-poppins'>
           <div class='row'>
             <div class='col'>
               <h5 className='text-center uppercase py-3'>OUR COMPANY SLOGAN</h5>

@@ -116,7 +116,9 @@ const ProfileScreen = ({ location, history }) => {
         <Row>
           <Col md={4} className='my-5 py-4'>
             <div className='bg-white py-3 px-3 rounded'>
-              <h4 className='tag mb-2 text-center py-2 text-secondary'>User Profile</h4>
+              <h4 className='tag mb-2 text-center py-2 text-secondary'>
+                User Profile
+              </h4>
               {message && <Message variant='danger'>{message}</Message>}
               {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
               {success && <Message variant='success'>Profile Updated</Message>}
@@ -259,12 +261,40 @@ const ProfileScreen = ({ location, history }) => {
                 {userInfo && !userInfo.isAdmin && (
                   <thead>
                     <tr className='text-center'>
-                      <th>Order No</th>
-                      <th>Date</th>
-                      <th>Total</th>
-                      <th>Paid</th>
-                      <th>Delivered</th>
-                      <th></th>
+                      <th
+                        className='text-white text-center py-3'
+                        style={{ backgroundColor: '#019678' }}
+                      >
+                        Order No
+                      </th>
+                      <th
+                        className='text-white text-center py-3'
+                        style={{ backgroundColor: '#019678' }}
+                      >
+                        Date
+                      </th>
+                      <th
+                        className='text-white text-center py-3'
+                        style={{ backgroundColor: '#019678' }}
+                      >
+                        Total
+                      </th>
+                      <th
+                        className='text-white text-center py-3'
+                        style={{ backgroundColor: '#019678' }}
+                      >
+                        Paid
+                      </th>
+                      <th
+                        className='text-white text-center py-3'
+                        style={{ backgroundColor: '#019678' }}
+                      >
+                        Delivered
+                      </th>
+                      <th
+                        className='text-white text-center py-3'
+                        style={{ backgroundColor: '#019678' }}
+                      >Details</th>
                     </tr>
                   </thead>
                 )}
@@ -272,10 +302,10 @@ const ProfileScreen = ({ location, history }) => {
                 <tbody>
                   {orders.map((order, i) => (
                     <tr key={order._id}>
-                      <td>{i + 1}</td>
-                      <td>{order.createdAt.substring(0, 10)}</td>
-                      <td>{order.totalPrice}</td>
-                      <td>
+                      <td className='text-center p-2'>{i + 1}</td>
+                      <td className='text-center p-2'>{order.createdAt.substring(0, 10)}</td>
+                      <td className='text-center p-2'>{order.totalPrice}</td>
+                      <td className='text-center p-2'>
                         {order.isPaid ? (
                           order.paidAt.substring(0, 10)
                         ) : (
@@ -285,7 +315,7 @@ const ProfileScreen = ({ location, history }) => {
                           ></i>
                         )}
                       </td>
-                      <td>
+                      <td className='text-center p-2'>
                         {order.isDelivered ? (
                           order.deliveredAt.substring(0, 10)
                         ) : (
@@ -295,7 +325,7 @@ const ProfileScreen = ({ location, history }) => {
                           ></i>
                         )}
                       </td>
-                      <td>
+                      <td className='text-center p-2'>
                         <LinkContainer
                           to={`/order/${order._id}`}
                           style={{
@@ -309,7 +339,7 @@ const ProfileScreen = ({ location, history }) => {
                         </LinkContainer>
                       </td>
 
-                      <td>
+                      <td className='text-center p-2'>
                         {order.show ? (
                           <Button
                             style={{
