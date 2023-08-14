@@ -183,6 +183,11 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       type: USER_UPDATE_PROFILE_SUCCESS,
       payload: data,
     })
+
+    toast.success('Update Profile Successfully', {
+      position: 'top-right',
+    })
+
     dispatch({
       type: USER_LOGIN_SUCCESS,
       payload: data,
