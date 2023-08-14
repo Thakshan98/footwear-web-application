@@ -9,6 +9,7 @@ import Paginate from '../components/Paginate'
 import ProductCarousel from '../components/ProductCarousel'
 import Meta from '../components/Meta'
 import { listProducts } from '../actions/productActions'
+import {listCategories} from '../actions/categoryAction'
 import SearchBox from '../components/SearchBox'
 import Marquee from 'react-fast-marquee'
 import { LiaShippingFastSolid } from 'react-icons/lia'
@@ -25,7 +26,12 @@ const HomeScreen = () => {
   const productList = useSelector((state) => state.productList)
   const { loading, error, products, page, pages } = productList
 
+
+  const categoriesList = useSelector((state) => state.categoriesList)
+  const {  category } = categoriesList
+
   useEffect(() => {
+    dispatch(listCategories())
     dispatch(listProducts(keyword, pageNumber))
   }, [dispatch, keyword, pageNumber])
 
@@ -56,13 +62,24 @@ const HomeScreen = () => {
             <Message variant='danger'>{error}</Message>
           ) : (
             <div>
-              <Row>
-                {products.map((product) => (
-                  <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                    <Product product={product} />
-                  </Col>
-                ))}
-              </Row>
+{
+  category.map((category) => (
+    <div key={category._id}>
+      <h2>{category.name}</h2>
+      <Row>
+        {products.map((product) => (
+          product.cat === category.name ? (
+            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+              <Product product={product} />
+            </Col>
+          ) : null
+        ))}
+      </Row>
+    </div>
+  ))
+}
+
+
               <Paginate
                 pages={pages}
                 page={page}

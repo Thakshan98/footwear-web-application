@@ -27,7 +27,7 @@ const footwearSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    category: {
+    cat: {
       type: String,
       required: true,
     },

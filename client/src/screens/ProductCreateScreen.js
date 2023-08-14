@@ -130,6 +130,7 @@ const ProductCreateScreen = () => {
                   value={cat}
                   onChange={(e) => setCategory(e.target.value)}
                 >
+                   <option value=''>Select Category</option>
                   {category.map((catItem) => (
                     <option key={catItem._id} value={catItem.name}>
                       {catItem.name}

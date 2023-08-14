@@ -119,7 +119,7 @@ const ProductListScreen = () => {
             <tbody>
               {products.map((product) => (
                 <tr key={product._id}>
-                  <td>{product.category}</td>
+                  <td>{product.cat}</td>
                   <td>{product.name}</td>
                   <td>LKR.{product.price}</td>
                   <td>{product.countInStock}</td>

@@ -52,7 +52,7 @@ const deleteProduct = async (req, res) => {
 const createProduct = async (req, res) => {
   const {
     name,
-    category,
+    cat,
     size,
     gender,
     price,
@@ -64,7 +64,7 @@ const createProduct = async (req, res) => {
   try {
     const product = new Footwear({
       name,
-      category,
+      cat,
       size,
       gender,
       price,
@@ -87,7 +87,7 @@ const createProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
   const {
     name,
-    category,
+    cat,
     size,
     gender,
     price,
@@ -100,7 +100,7 @@ const updateProduct = async (req, res) => {
 
   if (product) {
     product.name = name
-    product.category = category
+    product.cat = cat
     product.size = size
     product.gender = gender
     product.price = price
