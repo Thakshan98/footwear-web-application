@@ -80,10 +80,13 @@ const CategoryListScreen = () => {
     }
     console.log('You click No!')
   }
+  // const categoryCount = Array.from(
+  //   new Set(category.map((cat) => cat._id))
+  // ).length  ({categoryCount})
 
   return (
     <>
-      <Container className='my-5 font-popins'>
+      <Container className='my-3 font-popins'>
         <Row className='align-items-center'>
           <Col>
             <h1
@@ -122,6 +125,12 @@ const CategoryListScreen = () => {
                     className='text-white text-center py-3'
                     style={{ backgroundColor: '#019678' }}
                   >
+                    No
+                  </th>
+                  <th
+                    className='text-white text-center py-3'
+                    style={{ backgroundColor: '#019678' }}
+                  >
                     Category
                   </th>
                   <th
@@ -139,10 +148,10 @@ const CategoryListScreen = () => {
                 </tr>
               </thead>
               <tbody>
-                {category.map((category) => (
+                {category.map((category, i) => (
                   <tr key={category._id}>
+                    <td className='text-center p-2'>{i+1}</td>
                     <td className='text-center p-2'>{category.name}</td>
-
                     <td className='text-center p-2'>
                       <LinkContainer
                         to={`/admin/category/${category._id}/edit`}

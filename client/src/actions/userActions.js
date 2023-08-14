@@ -26,6 +26,7 @@ import {
   USER_UPDATE_REQUEST,
 } from '../constants/userConstants'
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
+import { toast } from 'react-toastify'
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -97,25 +98,28 @@ export const register = (name, email, password) => async (dispatch) => {
       payload: data,
     })
 
+    toast.success('User Registration succesfully', {
+      position: 'top-right',
+    })
+
     dispatch({
       type: USER_LOGIN_SUCCESS,
       payload: data,
     })
-    
+
     localStorage.setItem('userInfo', JSON.stringify(data))
   } catch (error) {
     const message =
-    error.response && error.response.data.message
-      ? error.response.data.message
-      : error.message
-  if (message === 'Not authorized, token failed') {
-    dispatch(logout())
-  }
-  dispatch({
-    type: USER_REGISTER_FAIL,
-    payload:message,
-  })
- 
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout())
+    }
+    dispatch({
+      type: USER_REGISTER_FAIL,
+      payload: message,
+    })
   }
 }
 
@@ -156,7 +160,6 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
   }
 }
 
-
 export const updateUserProfile = (user) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -187,16 +190,15 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     localStorage.setItem('userInfo', JSON.stringify(data))
   } catch (error) {
     const message =
-    error.response && error.response.data.message
-      ? error.response.data.message
-      : error.message
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
     dispatch({
       type: USER_UPDATE_PROFILE_FAIL,
       payload: message,
     })
   }
 }
-
 
 export const listUsers = () => async (dispatch, getState) => {
   try {
@@ -254,6 +256,10 @@ export const deleteUser = (id) => async (dispatch, getState) => {
     await axios.delete(`/api/users/${id}`, config)
 
     dispatch({ type: USER_DELETE_SUCCESS })
+
+    toast.error('Delete user from List', {
+      position: 'top-right',
+    })
   } catch (error) {
     const message =
       error.response && error.response.data.message
@@ -289,6 +295,10 @@ export const updateUser = (user) => async (dispatch, getState) => {
     const { data } = await axios.put(`/api/users/${user._id}`, user, config)
 
     dispatch({ type: USER_UPDATE_SUCCESS })
+
+    toast.success('Update User Successfully', {
+      position: 'top-right',
+    })
 
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data })
 

@@ -13,7 +13,7 @@ import {
    
   } from '../constants/feedbackConstants'
   import { logout } from './userActions'
-
+  import { toast } from 'react-toastify'
 
 
   export const createFeedback = (feedback) => async (dispatch, getState) => {
@@ -38,6 +38,11 @@ import {
         type: FEEDBACK_CREATE_SUCCESS,
         payload: data,
       })
+
+      toast.success('Feedback send succesfully', {
+        position: 'top-right',
+      })
+      
     } catch (error) {
       const message =
         error.response && error.response.data.message

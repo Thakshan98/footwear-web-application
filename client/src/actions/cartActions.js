@@ -5,6 +5,7 @@ import {
   CART_SAVE_SHIPPING_ADDRESS,
   CART_SAVE_PAYMENT_METHOD,
 } from '../constants/cartConstants'
+import { toast } from 'react-toastify'
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
   const { data } = await axios.get(`/api/products/${id}`)
@@ -22,6 +23,10 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
   })
 
   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+
+  toast.success('Item added to the cart', {
+    position: 'top-right',
+  })
 }
 
 export const removeFromCart = (id) => (dispatch, getState) => {
@@ -31,6 +36,10 @@ export const removeFromCart = (id) => (dispatch, getState) => {
   })
 
   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+
+  toast.error('Remove Item from the cart', {
+    position: 'top-right',
+  })
 }
 
 export const saveShippingAddress = (data) => (dispatch) => {

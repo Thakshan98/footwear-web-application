@@ -1,64 +1,59 @@
 import axios from 'axios'
 import {
- CATEGORY_LIST_REQUEST,
- CATEGORY_LIST_SUCCESS,
- CATEGORY_LIST_FAIL,
- CATEGORIES_LIST_REQUEST,
- CATEGORIES_LIST_SUCCESS,
- CATEGORIES_LIST_FAIL,
- CATEGORY_DETAILS_REQUEST,
- CATEGORY_DETAILS_SUCCESS,
- CATEGORY_DETAILS_FAIL,
- CATEGORY_DELETE_SUCCESS,
- CATEGORY_DELETE_REQUEST,
- CATEGORY_DELETE_FAIL,
- CATEGORY_CREATE_REQUEST,
- CATEGORY_CREATE_SUCCESS,
- CATEGORY_CREATE_FAIL,
- CATEGORY_UPDATE_REQUEST,
- CATEGORY_UPDATE_SUCCESS,
- CATEGORY_UPDATE_FAIL,
-
+  CATEGORY_LIST_REQUEST,
+  CATEGORY_LIST_SUCCESS,
+  CATEGORY_LIST_FAIL,
+  CATEGORIES_LIST_REQUEST,
+  CATEGORIES_LIST_SUCCESS,
+  CATEGORIES_LIST_FAIL,
+  CATEGORY_DETAILS_REQUEST,
+  CATEGORY_DETAILS_SUCCESS,
+  CATEGORY_DETAILS_FAIL,
+  CATEGORY_DELETE_SUCCESS,
+  CATEGORY_DELETE_REQUEST,
+  CATEGORY_DELETE_FAIL,
+  CATEGORY_CREATE_REQUEST,
+  CATEGORY_CREATE_SUCCESS,
+  CATEGORY_CREATE_FAIL,
+  CATEGORY_UPDATE_REQUEST,
+  CATEGORY_UPDATE_SUCCESS,
+  CATEGORY_UPDATE_FAIL,
 } from '../constants/categoryConstants'
 import { logout } from './userActions'
+import { toast } from 'react-toastify'
 
-export const listCategory = (keyword = '', pageNumber = '') => async (
-  dispatch
-) => {
-  try {
-    dispatch({ type: CATEGORY_LIST_REQUEST })
+export const listCategory =
+  (keyword = '', pageNumber = '') =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: CATEGORY_LIST_REQUEST })
 
-    const { data } = await axios.get(
-      `/api/categories?keyword=${keyword}&pageNumber=${pageNumber}`
-    )
+      const { data } = await axios.get(
+        `/api/categories?keyword=${keyword}&pageNumber=${pageNumber}`
+      )
 
-    dispatch({
-      type: CATEGORY_LIST_SUCCESS,
-      payload: data,
-    })
-  } catch (error) {
-    dispatch({
-      type: CATEGORY_LIST_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    })
+      dispatch({
+        type: CATEGORY_LIST_SUCCESS,
+        payload: data,
+      })
+    } catch (error) {
+      dispatch({
+        type: CATEGORY_LIST_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      })
+    }
   }
-}
 
-export const listCategories = ()=> async (dispatch) => {
+export const listCategories = () => async (dispatch) => {
   try {
     dispatch({
       type: CATEGORIES_LIST_REQUEST,
     })
 
-   
-
-    const { data } = await axios.get(
-      `/api/categories/get`
-    )
-
+    const { data } = await axios.get(`/api/categories/get`)
 
     dispatch({
       type: CATEGORIES_LIST_SUCCESS,
@@ -74,7 +69,6 @@ export const listCategories = ()=> async (dispatch) => {
     })
   }
 }
-
 
 export const listCategoryDetails = (id) => async (dispatch) => {
   try {
@@ -97,39 +91,43 @@ export const listCategoryDetails = (id) => async (dispatch) => {
   }
 }
 
-
-
 export const deleteCategory = (id) => async (dispatch, getState) => {
   try {
-    dispatch({ type: CATEGORY_DELETE_REQUEST });
+    dispatch({ type: CATEGORY_DELETE_REQUEST })
 
-    const { userLogin: { userInfo } } = getState();
+    const {
+      userLogin: { userInfo },
+    } = getState()
 
     const config = {
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
       },
-    };
+    }
 
-    await axios.delete(`/api/categories/${id}`, config);
+    await axios.delete(`/api/categories/${id}`, config)
 
-    dispatch({ type: CATEGORY_DELETE_SUCCESS });
+    dispatch({ type: CATEGORY_DELETE_SUCCESS })
+
+    toast.error('Delete category from store', {
+      position: 'top-right',
+    })
   } catch (error) {
     const message =
       error.response && error.response.data.message
         ? error.response.data.message
-        : error.message;
+        : error.message
 
     if (message === 'Not authorized, token failed') {
-      dispatch(logout());
+      dispatch(logout())
     }
 
     dispatch({
       type: CATEGORY_DELETE_FAIL,
       payload: message,
-    });
+    })
   }
-};
+}
 
 export const createCategory = (category) => async (dispatch, getState) => {
   try {
@@ -147,11 +145,15 @@ export const createCategory = (category) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.post(`/api/categories`,category, config)
+    const { data } = await axios.post(`/api/categories`, category, config)
 
     dispatch({
       type: CATEGORY_CREATE_SUCCESS,
       payload: data,
+    })
+
+    toast.success('Add Category Successfully', {
+      position: 'top-right',
     })
   } catch (error) {
     const message =
@@ -195,6 +197,11 @@ export const updateCategory = (category) => async (dispatch, getState) => {
       type: CATEGORY_UPDATE_SUCCESS,
       payload: data,
     })
+
+    toast.success('Update Category Successfully', {
+      position: 'top-right',
+    })
+
     dispatch({ type: CATEGORY_DETAILS_SUCCESS, payload: data })
   } catch (error) {
     const message =

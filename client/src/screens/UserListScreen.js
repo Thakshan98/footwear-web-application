@@ -68,6 +68,12 @@ const UserListScreen = ({ history }) => {
                   className='text-white text-center py-3'
                   style={{ backgroundColor: '#019678' }}
                 >
+                  No
+                </th>
+                <th
+                  className='text-white text-center py-3'
+                  style={{ backgroundColor: '#019678' }}
+                >
                   Name
                 </th>
                 <th
@@ -91,8 +97,9 @@ const UserListScreen = ({ history }) => {
               </tr>
             </thead>
             <tbody>
-              {users.map((user) => (
+              {users.map((user,i) => (
                 <tr key={user._id}>
+                  <td className='text-center p-3'>{i + 1}</td>
                   <td className='text-center p-3'>{user.name}</td>
                   <td className='text-center p-3'>
                     <Link

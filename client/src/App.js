@@ -29,11 +29,14 @@ import ShippingPolicy from './screens/ShippingPolicy'
 import TermAndCondition from './screens/TermAndCondition'
 import OrderPolicy from './screens/OrderPolicy'
 import Layout from './components/Layout'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
+        <ToastContainer />
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route path='/order/:id' element={<OrderScreen />} />
