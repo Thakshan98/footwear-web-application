@@ -140,3 +140,47 @@ img {
     height: 150px;
   }
 }
+
+
+/* Loader */
+.contain{
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.contain > div{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  animation: rotation 5s linear infinite;
+  animation-delay: calc(0.15s*var(--i));
+}
+@keyframes rotation {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(720deg);
+  }
+}
+
+.ball{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background-color: #00a814;
+  border-radius: 50%;
+  animation: resize 2s linear infinite;
+  animation-delay: calc(0.15s*var(--i));
+
+}
+@keyframes resize {
+  0%{
+    filter: hue-rotate(0deg);
+  }
+  90%{
+    transform: scale(50);
+    filter: hue-rotate(360deg);
+  }
+}

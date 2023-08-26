@@ -96,8 +96,7 @@ const RegisterScreen = () => {
     <>
       <FormContainer>
         <div
-          className='p-2 my-5'
-          style={{ background: 'white', borderRadius: '10px' }}
+          className='shadow-lg p-3 m-5 bg-body-tertiary rounded'
         >
           <h1
             className='tag text-center py-3'

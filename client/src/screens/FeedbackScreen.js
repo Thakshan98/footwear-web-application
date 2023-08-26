@@ -43,7 +43,7 @@ const FeedbackScreen = () => {
   return (
     <>
       <BreadCrumb title='Feedback' />
-      <Container className='py-5'>
+      <Container className='py-3'>
         <div className='feedback'>
           <Link
             to='/'
@@ -59,7 +59,7 @@ const FeedbackScreen = () => {
           </Link>
           <Form onSubmit={submitHandler}>
             <FormContainer>
-              <div className='bg-white py-3 px-4 rounded'>
+              <div className='py-3 px-4 shadow-lg my-5 bg-body-tertiary rounded'>
                 <h3
                   className='heading-color text-center py-3'
                   style={{

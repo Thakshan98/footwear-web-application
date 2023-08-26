@@ -19,6 +19,7 @@ const LoginScreen = () => {
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
   const navigate = useNavigate()
+  
   useEffect(() => {
     if (userInfo) {
       navigate(redirect)
@@ -33,8 +34,7 @@ const LoginScreen = () => {
   return (
     <FormContainer>
       <div
-        className='p-2 my-5'
-        style={{ background: 'white', borderRadius: '10px' }}
+        className='shadow-lg p-3 m-5 bg-body-tertiary rounded'
       >
         <h1
           className='tag my-5 text-center'

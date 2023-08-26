@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Kommunicate from "@kommunicate/kommunicate-chatbot-plugin";
 
-Kommunicate.init("12c1660e4328d6f352d4424bd488f0d67", {
+Kommunicate.init("2d884f2526be6a21441febafdc6129a33", {
     automaticChatOpenOnNavigation: true,
     popupWidget: true
   });
