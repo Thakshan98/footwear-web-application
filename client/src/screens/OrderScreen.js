@@ -2,7 +2,15 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { PayPalButton } from 'react-paypal-button-v2'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { Row, Col, ListGroup, Image, Card, Button, Container } from 'react-bootstrap'
+import {
+  Row,
+  Col,
+  ListGroup,
+  Image,
+  Card,
+  Button,
+  Container,
+} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -19,7 +27,6 @@ import {
 } from '../constants/orderConstants'
 
 const OrderScreen = () => {
-  
   const { id } = useParams()
 
   const [sdkReady, setSdkReady] = useState(false)
@@ -32,8 +39,8 @@ const OrderScreen = () => {
   const orderPay = useSelector((state) => state.orderPay)
   const { loading: loadingPay, success: successPay } = orderPay
 
-  const  orderPayCash = useSelector((state) => state. orderPayCash)
-  const { loading: loadingPayCash, success: successPayCash } =  orderPayCash
+  const orderPayCash = useSelector((state) => state.orderPayCash)
+  const { loading: loadingPayCash, success: successPayCash } = orderPayCash
 
   const orderDeliver = useSelector((state) => state.orderDeliver)
   const { loading: loadingDeliver, success: successDeliver } = orderDeliver
@@ -54,7 +61,7 @@ const OrderScreen = () => {
   const navigate = useNavigate()
   useEffect(() => {
     if (!userInfo) {
-     navigate('/login')
+      navigate('/login')
     }
 
     const addPayPalScript = async () => {
@@ -69,7 +76,13 @@ const OrderScreen = () => {
       document.body.appendChild(script)
     }
 
-    if (!order || successPay || successPayCash  || successDeliver || order._id !== id) {
+    if (
+      !order ||
+      successPay ||
+      successPayCash ||
+      successDeliver ||
+      order._id !== id
+    ) {
       dispatch({ type: ORDER_PAY_RESET })
       dispatch({ type: ORDER_PAYCASH_RESET })
       dispatch({ type: ORDER_DELIVER_RESET })
@@ -81,211 +94,226 @@ const OrderScreen = () => {
         setSdkReady(true)
       }
     }
-  }, [dispatch, id, successPay,successPayCash , successDeliver, order])
-  
+  }, [dispatch, id, successPay, successPayCash, successDeliver, order])
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult)
     dispatch(payOrder(id, paymentResult))
   }
 
-  
   const deliverHandler = () => {
     dispatch(deliverOrder(id))
   }
   const cashOnPaymentHandler = () => {
     dispatch(payCashOrder(id))
   }
- 
+
   return loading ? (
     <Loader />
   ) : error ? (
     <Message variant='danger'>{error}</Message>
   ) : (
     <Container>
-    <>
-      <h1>Order {order._id}</h1><br/><br/>
-      <Row>
-        <Col md={8}>
-          <ListGroup variant='flush'>
-            <ListGroup.Item>
-              <h2>Shipping</h2>
-              <p>
-                <strong>Name: </strong> {order.user.name}
-              </p>
-              <p>
-                <strong>Email: </strong>{' '}
-                <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
-              </p>
-              <p>
-                <strong>Address:</strong>
-                {order.shippingAddress.address}, {order.shippingAddress.city}{' '}
-                {order.shippingAddress.postalCode},{' '}
-                {order.shippingAddress.country}
-              </p>
-              {order.isDelivered ? (
-                <Message variant='success'>
-                  Delivered on {order.deliveredAt}
-                </Message>
-              ) : (
-                <Message variant='danger'>Not Delivered</Message>
-              )}
-            </ListGroup.Item>
-
-            <ListGroup.Item>
-              <h2>Payment Method</h2>
-              <p>
-                <strong>Method: </strong>
-                {order.paymentMethod}
-              </p>
-              {order.isPaid ? (
-                <Message variant='success'>Paid on {order.paidAt}</Message>
-              ) : (
-                <Message variant='danger'>Not Paid</Message>
-              )}
-            </ListGroup.Item>
-
-            <ListGroup.Item>
-              <h2>Order Items</h2>
-              
-              {order.orderItems.length === 0 ? (
-                <Message>Order is empty</Message>
-              ) : (
-                <ListGroup variant='flush'>
-                  {order.orderItems.map((item, index) => (
-                    <ListGroup.Item key={index}>
-                      <Row>
-                        <Col md={1}>
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            fluid
-                            rounded
-                          />
-                        </Col>
-                        <Col>
-                          <Link to={`/product/${item.product}`}>
-                            {item.name}
-                          </Link>
-                        </Col>
-                        <Col md={4}>
-                          {item.count} x LKR.{item.price} = LKR.{item.count * item.price}
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
-                  ))}
-                </ListGroup>
-              )}
-            </ListGroup.Item>
-          </ListGroup>
-        </Col>
-        <Col md={4}>
-          <Card>
-            <ListGroup variant='flush'>
-              <ListGroup.Item>
-                <h2>Order Summary</h2>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col>Items</Col>
-                  <Col>LKR.{order.itemsPrice}</Col>
-                </Row>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col>Shipping</Col>
-                  <Col>LKR.{order.shippingPrice}</Col>
-                </Row>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col>Tax</Col>
-                  <Col>LKR.{order.taxPrice}</Col>
-                </Row>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col>Total</Col>
-                  <Col>LKR.{order.totalPrice}</Col>
-                </Row>
-              </ListGroup.Item>
-              {userInfo &&
-                !userInfo.isAdmin &&!order.isPaid && (
-                <ListGroup.Item>
-                  {loadingPay && <Loader />}
-                  {!sdkReady ? (
-                    <Loader />
+      <>
+        <h3 className='text-center my-2'>Order {order._id}</h3>
+        <Row>
+          <Col md={8}>
+            <div className='bg-white px-4 py-2 font-popins shadow-lg p-3 my-5 rounded'>
+              <ListGroup variant='flush'>
+                <ListGroup.Item className='my-2'>
+                  <h3 className='heading-color'>Shipping</h3>
+                  <p>
+                    <strong>Name:&nbsp; </strong> {order.user.name}
+                  </p>
+                  <p>
+                    <strong>Email:&nbsp; </strong>{' '}
+                    <Link
+                      to={`mailto:${order.user.email}`}
+                      style={{ textDecoration: 'none' }}
+                    >
+                      {order.user.email}
+                    </Link>
+                  </p>
+                  <p>
+                    <strong>Address:&nbsp;&nbsp;</strong>
+                    {order.shippingAddress.address},{' '}
+                    {order.shippingAddress.city}{' '}
+                    {order.shippingAddress.postalCode},{' '}
+                    {order.shippingAddress.country}
+                  </p>
+                  {order.isDelivered ? (
+                    <Message variant='success'>
+                      Delivered on {order.deliveredAt}
+                    </Message>
                   ) : (
-                    <PayPalButton
-                      amount={order.totalPrice}
-                      onSuccess={successPaymentHandler}
-                    />
+                    <Message variant='danger'>Not Delivered</Message>
                   )}
                 </ListGroup.Item>
-              )}
-              {loadingDeliver && <Loader />}
-              {userInfo &&
-                userInfo.isSystemAdmin &&                 
-                !order.isDelivered && (
+
+                <ListGroup.Item className='my-2'>
+                  <h3 className='heading-color'>Payment Method</h3>
+                  <p>
+                    <strong>Method: &nbsp;</strong>
+                    {order.paymentMethod}
+                  </p>
+                  {order.isPaid ? (
+                    <Message variant='success'>Paid on {order.paidAt}</Message>
+                  ) : (
+                    <Message variant='danger'>Not Paid</Message>
+                  )}
+                </ListGroup.Item>
+
+                <ListGroup.Item className='my-2'>
+                  <h3 className='heading-color'>Order Items</h3>
+
+                  {order.orderItems.length === 0 ? (
+                    <Message>Order is empty</Message>
+                  ) : (
+                    <ListGroup variant='flush'>
+                      {order.orderItems.map((item, index) => (
+                        <ListGroup.Item key={index}>
+                          <Row>
+                            <Col md={1}>
+                              <Image
+                                src={item.image}
+                                alt={item.name}
+                                fluid
+                                rounded
+                              />
+                            </Col>
+                            <Col>
+                              <Link
+                                to={`/product/${item.product}`}
+                                style={{ textDecoration: 'none' }}
+                              >
+                                {item.name}
+                              </Link>
+                            </Col>
+                            <Col md={4}>
+                              {item.count} x LKR.{item.price} = LKR.
+                              {item.count * item.price}
+                            </Col>
+                          </Row>
+                        </ListGroup.Item>
+                      ))}
+                    </ListGroup>
+                  )}
+                </ListGroup.Item>
+              </ListGroup>
+            </div>
+          </Col>
+          <Col md={4}>
+            <div>
+              <Card className='bg-white px-4 py-2 font-popins shadow-lg p-3 my-5 rounded'>
+                <ListGroup variant='flush'>
                   <ListGroup.Item>
-                    <Button
-                     style={{backgroundImage: 'linear-gradient(to right,#59e35f,#006622)',color:'white',fontWeight:'bold'}}
-                      type='button'
-                      className='btn btn-block'
-                      onClick={deliverHandler}
-                    >
-                      Mark As Delivered
-                    </Button>
+                    <h2>Order Summary</h2>
                   </ListGroup.Item>
-                )}
-              {userInfo &&
-                userInfo.isAdmin &&                 
-                !order.isDelivered && (
                   <ListGroup.Item>
-                    <Button
-                    style={{backgroundImage: 'linear-gradient(to right,#59e35f,#006622)',color:'white',fontWeight:'bold'}}
-                      type='button'
-                      className='btn btn-block'
-                      onClick={deliverHandler}
-                    >
-                      Mark As Delivered
-                    </Button>
+                    <Row>
+                      <Col>Items</Col>
+                      <Col>LKR.{order.itemsPrice}</Col>
+                    </Row>
                   </ListGroup.Item>
-                )}
-               {loadingPayCash && <Loader />}
-              {userInfo &&
-                userInfo.isSystemAdmin &&
-                !order.isPaid && (
                   <ListGroup.Item>
-                    <Button
-                    style={{backgroundImage: 'linear-gradient(to right,#59e35f,#006622)',color:'white',fontWeight:'bold'}}
-                      type='button'
-                      className='btn btn-block'
-                      onClick={cashOnPaymentHandler}
-                    >
-                      Mark As Paid
-                    </Button>
+                    <Row>
+                      <Col>Shipping</Col>
+                      <Col>LKR.{order.shippingPrice}</Col>
+                    </Row>
                   </ListGroup.Item>
-                )}
-              {userInfo &&
-                userInfo.isAdmin &&
-                !order.isPaid && (
                   <ListGroup.Item>
-                    <Button
-                    style={{backgroundImage: 'linear-gradient(to right,#59e35f,#006622)',color:'white',fontWeight:'bold'}}
-                      type='button'
-                      className='btn btn-block'
-                      onClick={cashOnPaymentHandler}
-                    >
-                      Mark As Paid
-                    </Button>
+                    <Row>
+                      <Col>Tax</Col>
+                      <Col>LKR.{order.taxPrice}</Col>
+                    </Row>
                   </ListGroup.Item>
-                )}
-            </ListGroup>
-          </Card>
-        </Col>
-      </Row>
-    </>
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Total</Col>
+                      <Col>LKR.{order.totalPrice}</Col>
+                    </Row>
+                  </ListGroup.Item>
+                  {userInfo && !userInfo.isAdmin && !order.isPaid && (
+                    <ListGroup.Item>
+                      {loadingPay && <Loader />}
+                      {!sdkReady ? (
+                        <Loader />
+                      ) : (
+                        <PayPalButton
+                          amount={order.totalPrice}
+                          onSuccess={successPaymentHandler}
+                        />
+                      )}
+                    </ListGroup.Item>
+                  )}
+                  {loadingDeliver && <Loader />}
+                  {userInfo && userInfo.isSystemAdmin && !order.isDelivered && (
+                    <ListGroup.Item>
+                      <Button
+                        style={{
+                          color: 'white',
+                          fontWeight: 'bold',
+                        }}
+                        type='button'
+                        className='btn btn-block'
+                        onClick={deliverHandler}
+                      >
+                        Mark As Delivered
+                      </Button>
+                    </ListGroup.Item>
+                  )}
+                  {userInfo && userInfo.isAdmin && !order.isDelivered && (
+                    <ListGroup.Item>
+                      <Button
+                        style={{
+                          color: 'white',
+                          fontWeight: 'bold',
+                        }}
+                        type='button'
+                        className='btn btn-block'
+                        onClick={deliverHandler}
+                      >
+                        Mark As Delivered
+                      </Button>
+                    </ListGroup.Item>
+                  )}
+                  {loadingPayCash && <Loader />}
+                  {userInfo && userInfo.isSystemAdmin && !order.isPaid && (
+                    <ListGroup.Item>
+                      <Button
+                        style={{
+                          color: 'white',
+                          fontWeight: 'bold',
+                        }}
+                        type='button'
+                        className='btn btn-block'
+                        onClick={cashOnPaymentHandler}
+                      >
+                        Mark As Paid
+                      </Button>
+                    </ListGroup.Item>
+                  )}
+                  {userInfo && userInfo.isAdmin && !order.isPaid && (
+                    <ListGroup.Item>
+                      <Button
+                        style={{
+                          color: 'white',
+                          fontWeight: 'bold',
+                        }}
+                        type='button'
+                        className='btn btn-block'
+                        onClick={cashOnPaymentHandler}
+                      >
+                        Mark As Paid
+                      </Button>
+                    </ListGroup.Item>
+                  )}
+                </ListGroup>
+              </Card>
+            </div>
+          </Col>
+        </Row>
+      </>
     </Container>
   )
 }

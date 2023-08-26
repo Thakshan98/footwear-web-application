@@ -55,7 +55,7 @@ const CartScreen = () => {
             <ListGroup variant='flush'>
               {cartItems.map((item) => (
                 <ListGroup.Item key={item.product} className='my-2 py-3'>
-                  <Row>
+                  <Row className='d-flex align-items-center justify-content-center'>
                     <Col md={2}>
                       <Image src={item.image} alt={item.name} fluid rounded />
                     </Col>
@@ -70,7 +70,6 @@ const CartScreen = () => {
                     <Col md={2}><b>LKR.</b> {item.price}</Col>
                     <Col md={2}><b>Size</b> {item.size}</Col>
                     <Col md={2}><b>Quantity</b> {item.count}</Col>
-
                     <Col md={2}>
                       <Button
                         type='button'
@@ -111,11 +110,9 @@ const CartScreen = () => {
                   disabled={cartItems.length === 0}
                   onClick={checkoutHandler}
                   style={{
-                    backgroundImage:
-                      'linear-gradient(to bottom right,#50025c, #d20be0,#db3bb6)',
                     color: 'white',
                     fontWeight: '600',
-                    borderRadius: '15px',
+                    borderRadius: '5px',
                   }}
                 >
                   Proceed To Checkout
