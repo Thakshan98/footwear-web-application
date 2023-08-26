@@ -139,7 +139,7 @@ const HomeScreen = () => {
         <div class='container py-5 font-poppins'>
           <div class='row'>
             <div class='col'>
-              <h3 className='text-center uppercase py-3' style={{color:'#4d0000'}}>OUR COMPANY SLOGAN</h3>
+              <h3 className='text-center uppercase py-3' style={{color:'#4d0000'}}>OUR COMPANY VISION</h3>
               <Marquee>
                 <p>
                   Step into a world of comfort and style with our premium

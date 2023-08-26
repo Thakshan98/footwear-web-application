@@ -10,8 +10,9 @@ import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
 import { ORDER_SHOW_RESET } from '../constants/orderConstants'
 import { confirm } from 'react-confirm-box'
 import BreadCrumb from '../components/BreadCrumb'
+import { useNavigate } from 'react-router-dom'
 
-const ProfileScreen = ({ location, history }) => {
+const ProfileScreen = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -51,29 +52,30 @@ const ProfileScreen = ({ location, history }) => {
     success: successDelete,
   } = orderDelete
 
+  const navigate = useNavigate()
   useEffect(() => {
-    let i = setNum(num + 1)
-
+    // Increment num using setNum
+    setNum(prevNum => prevNum + 1);
+  
     if (!userInfo) {
-      history.push('/login')
+      navigate('/login');
     } else {
+      // Reset profile update state before using user and success
+      dispatch({ type: USER_UPDATE_PROFILE_RESET });
+  
+      // Fetch user details if user or success is missing
       if (!user || !user.name || success) {
-        dispatch({ type: USER_UPDATE_PROFILE_RESET })
-        dispatch(getUserDetails('profile'))
-        dispatch(listMyOrders())
+        dispatch(getUserDetails('profile'));
       }
+  
+      // Fetch user's orders
+      dispatch(listMyOrders());
     }
-  }, [
-    dispatch,
-    history,
-    userInfo,
-    user,
-    success,
-    successDelete,
-    orderListMy,
-    successShow,
-  ])
-
+  }, [dispatch, navigate, userInfo, user, success]);
+  
+  // Assuming setNum and num are defined somewhere
+  // and they are intended to be part of the effect's dependencies
+  
   const submitHandler = (e) => {
     e.preventDefault()
 

@@ -1,5 +1,5 @@
 import React, { useEffect,useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 import { Button, Row, Col,Container, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
@@ -9,15 +9,15 @@ import { ORDER_CREATE_RESET } from '../constants/orderConstants'
 import { USER_DETAILS_RESET } from '../constants/userConstants'
 
 
-const PlaceOrderScreen = ({ history}) => {
+const PlaceOrderScreen = () => {
   const dispatch = useDispatch()
 
   const cart = useSelector((state) => state.cart)
-
+  const navigate = useNavigate()
   if (!cart.shippingAddress.address) {
-    history.push('/shipping')
+   navigate('/shipping')
   } else if (!cart.paymentMethod) {
-    history.push('/payment')
+   navigate('/payment')
   }
   //   Calculate prices
   const addDecimals = (num) => {
@@ -25,7 +25,7 @@ const PlaceOrderScreen = ({ history}) => {
   }
 
   cart.itemsPrice = addDecimals(
-    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+    cart.cartItems.reduce((acc, item) => acc + item.price * item.count, 0)
   )
   cart.shippingPrice = addDecimals(cart.itemsPrice > 10000 ? 0 : 500)
   cart.taxPrice = addDecimals(Number((0.05 * cart.itemsPrice).toFixed(2)))
@@ -40,12 +40,12 @@ const PlaceOrderScreen = ({ history}) => {
 
   useEffect(() => {
     if (success) {
-      history.push(`/order/${order._id}`)
+     navigate(`/order/${order._id}`)
       dispatch({ type: USER_DETAILS_RESET })
       dispatch({ type: ORDER_CREATE_RESET })
     }
     // eslint-disable-next-line
-  }, [history, success])
+  }, [ success,navigate])
 
   const placeOrderHandler = () => {
     dispatch(
@@ -108,8 +108,13 @@ const PlaceOrderScreen = ({ history}) => {
                             {item.name}
                           </Link>
                         </Col>
+                        <Col>
+                          <b>Size </b> 
+                            {item.size}
+                         
+                        </Col>
                         <Col md={4}>
-                          {item.qty} x LKR.{item.price} = LKR.{item.qty * item.price}
+                          {item.count} x LKR.{item.price} = LKR.{item.count * item.price}
                         </Col>
                       </Row>
                     </ListGroup.Item>

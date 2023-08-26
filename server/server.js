@@ -38,7 +38,9 @@ if (process.env.NODE_ENV === 'development') {
   app.use('/api/upload', uploadRoutes);
   
  
-  
+  app.get('/api/config/paypal', (req, res) =>
+  res.send('AaJM4Kxb8pCNgBg3vf0cgJMZvnxaRjYD85cl_MQdlXUPWf9dPuuTkcUj7Y6KRPbGU4-rw1MkQDLXjH1p')
+) 
   const __footwear = path.resolve();
   app.use('/uploads', express.static(path.join(__footwear, '/uploads')))
   

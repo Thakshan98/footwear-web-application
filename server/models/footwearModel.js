@@ -16,6 +16,20 @@ const reviewSchema = mongoose.Schema(
   }
 )
 
+const sizeSchema = mongoose.Schema(
+  {
+    size: {
+      type: String,
+      required: true,
+    },
+    count: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+  }
+)
+
 const footwearSchema = mongoose.Schema(
   {
     user: {
@@ -31,10 +45,10 @@ const footwearSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    size: {
-      type: Number,
+    size: [sizeSchema], // Array of size objects
+    gender: {
+      type: String,
       required: true,
-      default: 0,
     },
     gender: {
       type: String,
@@ -63,12 +77,7 @@ const footwearSchema = mongoose.Schema(
       type: Number,
       required: true,
       default: 0,
-    },
-    countInStock: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
+    }
   },
   {
     timestamps: true,

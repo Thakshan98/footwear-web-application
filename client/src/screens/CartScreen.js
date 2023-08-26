@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
-import { Link, useLocation, useParams, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect } from 'react';
+import { Link, useLocation, useParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Row,
   Col,
@@ -10,35 +10,37 @@ import {
   Form,
   Button,
   Card,
-} from 'react-bootstrap'
-import Message from '../components/Message'
-import { addToCart, removeFromCart } from '../actions/cartActions'
+} from 'react-bootstrap';
+import Message from '../components/Message';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 
 const CartScreen = () => {
-  const { id: productId } = useParams()
+  const { id: productId } = useParams();
 
-  const location = useLocation()
-  const qty = location.search ? Number(location.search.split('=')[1]) : 1
+  const location = useLocation();
+  const count = location.search ? Number(location.search.split('=')[1]) : 1;
+  const size = location.search ? location.search.split('=')[2] : ''; // Extract size from URL
 
-  const dispatch = useDispatch()
 
-  const cart = useSelector((state) => state.cart)
-  const { cartItems } = cart
+  const dispatch = useDispatch();
 
-  const navigate = useNavigate()
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+
+  const navigate = useNavigate();
   useEffect(() => {
     if (productId) {
-      dispatch(addToCart(productId, qty))
+      dispatch(addToCart(productId, size, count));
     }
-  }, [dispatch, productId, qty])
+  }, [dispatch, productId, size, count]);
 
   const removeFromCartHandler = (id) => {
-    dispatch(removeFromCart(id))
-  }
+    dispatch(removeFromCart(id));
+  };
 
   const checkoutHandler = () => {
-    navigate('/login?redirect=shipping')
-  }
+    navigate('/login?redirect=/shipping');
+  };
 
   return (
     <Container className='my-5 font-popins'>
@@ -57,32 +59,25 @@ const CartScreen = () => {
                     <Col md={2}>
                       <Image src={item.image} alt={item.name} fluid rounded />
                     </Col>
-                    <Col md={3}>
-                      <Link style={{textDecoration:'none'}} to={`/product/${item.product}`}>{item.name}</Link>
-                    </Col>
-                    <Col md={2}>LKR.{item.price}</Col>
                     <Col md={2}>
-                      <Form.Control
-                        as='select'
-                        value={item.qty}
-                        onChange={(e) =>
-                          dispatch(
-                            addToCart(item.product, Number(e.target.value))
-                          )
-                        }
+                      <Link
+                        style={{ textDecoration: 'none' }}
+                        to={`/product/${item.product}`}
                       >
-                        {[...Array(item.countInStock).keys()].map((x) => (
-                          <option key={x + 1} value={x + 1}>
-                            {x + 1}
-                          </option>
-                        ))}
-                      </Form.Control>
+                        {item.name}
+                      </Link>
                     </Col>
+                    <Col md={2}><b>LKR.</b> {item.price}</Col>
+                    <Col md={2}><b>Size</b> {item.size}</Col>
+                    <Col md={2}><b>Quantity</b> {item.count}</Col>
+
                     <Col md={2}>
                       <Button
                         type='button'
                         variant='light'
-                        onClick={() => removeFromCartHandler(item.product)}
+                        onClick={() =>
+                          removeFromCartHandler(item.product)
+                        }
                       >
                         <i
                           className='fas fa-trash'
@@ -101,12 +96,12 @@ const CartScreen = () => {
             <ListGroup variant='flush'>
               <ListGroup.Item>
                 <h4 className='text-secondary'>
-                  Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}
+                  Subtotal ({cartItems.reduce((acc, item) => acc + item.count, 0)}
                   ) Footwears
                 </h4>
                 LKR.
                 {cartItems
-                  .reduce((acc, item) => acc + item.qty * item.price, 0)
+                  .reduce((acc, item) => acc + item.count * item.price, 0)
                   .toFixed(2)}
               </ListGroup.Item>
               <ListGroup.Item>
@@ -131,7 +126,7 @@ const CartScreen = () => {
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default CartScreen
+export default CartScreen;

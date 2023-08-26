@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { PayPalButton } from 'react-paypal-button-v2'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Row, Col, ListGroup, Image, Card, Button, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
@@ -18,8 +18,9 @@ import {
   ORDER_DELIVER_RESET,
 } from '../constants/orderConstants'
 
-const OrderScreen = ({ match, history }) => {
-  const orderId = match.params.id
+const OrderScreen = () => {
+  
+  const { id } = useParams()
 
   const [sdkReady, setSdkReady] = useState(false)
 
@@ -40,20 +41,20 @@ const OrderScreen = ({ match, history }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
-  if (!loading) {
+  if (!loading && order && order.orderItems) {
     //   Calculate prices
     const addDecimals = (num) => {
       return (Math.round(num * 100) / 100).toFixed(2)
     }
 
     order.itemsPrice = addDecimals(
-      order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+      order.orderItems.reduce((acc, item) => acc + item.price * item.count, 0)
     )
   }
-
+  const navigate = useNavigate()
   useEffect(() => {
     if (!userInfo) {
-      history.push('/login')
+     navigate('/login')
     }
 
     const addPayPalScript = async () => {
@@ -68,11 +69,11 @@ const OrderScreen = ({ match, history }) => {
       document.body.appendChild(script)
     }
 
-    if (!order || successPay || successPayCash  || successDeliver || order._id !== orderId) {
+    if (!order || successPay || successPayCash  || successDeliver || order._id !== id) {
       dispatch({ type: ORDER_PAY_RESET })
       dispatch({ type: ORDER_PAYCASH_RESET })
       dispatch({ type: ORDER_DELIVER_RESET })
-      dispatch(getOrderDetails(orderId))
+      dispatch(getOrderDetails(id))
     } else if (!order.isPaid) {
       if (!window.paypal) {
         addPayPalScript()
@@ -80,19 +81,20 @@ const OrderScreen = ({ match, history }) => {
         setSdkReady(true)
       }
     }
-  }, [dispatch, orderId, successPay,successPayCash , successDeliver, order])
+  }, [dispatch, id, successPay,successPayCash , successDeliver, order])
+  
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult)
-    dispatch(payOrder(orderId, paymentResult))
+    dispatch(payOrder(id, paymentResult))
   }
 
   
   const deliverHandler = () => {
-    dispatch(deliverOrder(orderId))
+    dispatch(deliverOrder(id))
   }
   const cashOnPaymentHandler = () => {
-    dispatch(payCashOrder(orderId))
+    dispatch(payCashOrder(id))
   }
  
   return loading ? (
@@ -145,6 +147,7 @@ const OrderScreen = ({ match, history }) => {
 
             <ListGroup.Item>
               <h2>Order Items</h2>
+              
               {order.orderItems.length === 0 ? (
                 <Message>Order is empty</Message>
               ) : (
@@ -166,7 +169,7 @@ const OrderScreen = ({ match, history }) => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x LKR.{item.price} = LKR.{item.qty * item.price}
+                          {item.count} x LKR.{item.price} = LKR.{item.count * item.price}
                         </Col>
                       </Row>
                     </ListGroup.Item>

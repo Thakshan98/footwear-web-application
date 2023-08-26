@@ -57,7 +57,7 @@ const createProduct = async (req, res) => {
     gender,
     price,
     image,
-    countInStock,
+    
     description,
   } = req.body;
 
@@ -70,12 +70,13 @@ const createProduct = async (req, res) => {
       price,
       user: req.user._id, // Assuming user authentication is set up
       image,
-      countInStock,
+    
       numReviews: 0,
       description,
     });
 
     const createdProduct = await product.save();
+   
     res.status(201).json(createdProduct);
   } catch (error) {
     // Handle any errors that occurred during product creation

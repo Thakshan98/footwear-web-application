@@ -132,12 +132,7 @@ const ProductListScreen = () => {
                   >
                     Price
                   </th>
-                  <th
-                    className='text-white text-center py-3'
-                    style={{ backgroundColor: '#019678' }}
-                  >
-                    Count In Stock
-                  </th>
+               
                   <th
                     className='text-white text-center py-3'
                     style={{ backgroundColor: '#019678' }}
@@ -152,7 +147,7 @@ const ProductListScreen = () => {
                     <td className='text-center p-2'>{product.cat}</td>
                     <td className='text-center p-2'>{product.name}</td>
                     <td className='text-center p-2'>LKR.{product.price}</td>
-                    <td className='text-center p-2'>{product.countInStock}</td>
+                   
                     <td className='text-center p-2'>
                       <LinkContainer to={`/admin/product/${product._id}/edit`}>
                         <Button variant='success' className='btn-sm m-2'>

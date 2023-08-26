@@ -1,7 +1,9 @@
 const Order = require("../models/orderModel.js");
-const asyncHandler =require("express-async-handler");
+const Product = require('../models/footwearModel.js');
+const asyncHandler = require("express-async-handler");
+const mongoose = require('mongoose'); // Import the mongoose library
 
-const addOrderItems =async (req, res) => {
+const addOrderItems = asyncHandler(async (req, res) => {
   const {
     orderItems,
     shippingAddress,
@@ -10,13 +12,43 @@ const addOrderItems =async (req, res) => {
     taxPrice,
     shippingPrice,
     totalPrice,
-  } = req.body
+  } = req.body;
 
-  if (orderItems && orderItems.length === 0) {
-    res.status(400)
-    throw new Error('No order items')
-    return
-  } else {
+  if (!orderItems || orderItems.length === 0) {
+    res.status(400).json({ message: 'No order items' });
+    return;
+  }
+
+  let session; // Declare the session variable here
+
+  try {
+    // Start a database transaction to ensure data consistency
+    session = await mongoose.startSession();
+    session.startTransaction();
+
+    // Update product quantities and create the order
+    for (const item of orderItems) {
+      const product = await Product.findById(item.product);
+      if (!product) {
+        throw new Error(`Product not found: ${item.product}`);
+      }
+
+      const selectedSize = product.size.find(size => size.size === item.size);
+      if (!selectedSize) {
+        throw new Error(`Size not found for product: ${product.name}`);
+      }
+
+      // Check if there's enough quantity
+      if (selectedSize.count < item.count) {
+        throw new Error(`Not enough quantity for product: ${product.name}`);
+      }
+
+      // Decrease product size count
+      selectedSize.count -= item.count;
+      await product.save();
+    }
+
+    // Create the order
     const order = new Order({
       orderItems,
       user: req.user._id,
@@ -26,13 +58,32 @@ const addOrderItems =async (req, res) => {
       taxPrice,
       shippingPrice,
       totalPrice,
-    })
+    });
 
-    const createdOrder = await order.save()
+    const createdOrder = await order.save();
 
-    res.status(201).json(createdOrder)
+    // Commit the transaction
+    await session.commitTransaction();
+    session.endSession();
+
+    res.status(201).json(createdOrder);
+  } catch (error) {
+    console.error('Error creating order:', error);
+    
+    // Rollback the transaction if an error occurs
+    if (session) {
+      await session.abortTransaction();
+      session.endSession();
+    }
+
+    res.status(500).json({ message: 'out of stock' });
   }
-};
+});
+
+
+
+
+
 
 
 const getOrderById = async (req, res) => {
@@ -123,7 +174,14 @@ const updateOrderToDelivered = async (req, res) => {
 
 const getMyOrders = async (req, res) => {
   const orders = await Order.find({ user: req.user._id })
-  res.json(orders)
+
+  if (orders) {
+    res.json(orders)
+  } else {
+    res.status(404)
+    throw new Error('Product not found')
+  }
+  
 };
 
 const deleteOrder = async (req, res) => {

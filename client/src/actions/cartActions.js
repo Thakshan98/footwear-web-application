@@ -1,14 +1,20 @@
-import axios from 'axios'
+import axios from 'axios';
 import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
   CART_SAVE_SHIPPING_ADDRESS,
   CART_SAVE_PAYMENT_METHOD,
-} from '../constants/cartConstants'
-import { toast } from 'react-toastify'
+} from '../constants/cartConstants';
+import { toast } from 'react-toastify';
 
-export const addToCart = (id, qty) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/products/${id}`)
+export const addToCart = (id,size,count) => async (dispatch, getState) => {
+  const { data } = await axios.get(`/api/products/${id}`);
+
+  const selectedSizeObj = data.size.find((sizeObj) => sizeObj.size === size);
+
+   if (!selectedSizeObj) {
+     return; // Size not found, handle this as required
+   }
 
   dispatch({
     type: CART_ADD_ITEM,
@@ -17,17 +23,21 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
       name: data.name,
       image: data.image,
       price: data.price,
-      countInStock: data.countInStock,
-      qty,
+      size: selectedSizeObj.size,
+    
+      count: count,
     },
-  })
+  });
 
-  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
 
   toast.success('Item added to the cart', {
     position: 'top-right',
-  })
-}
+  });
+};
+
+// ... rest of the actions ...
+
 
 export const removeFromCart = (id) => (dispatch, getState) => {
   dispatch({

@@ -4,13 +4,14 @@ import { Table, Button, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import { useNavigate } from 'react-router-dom'
 import { listOrders, showOrder, getOrderDetails } from '../actions/orderActions'
 import { confirm } from 'react-confirm-box'
 import {
   ORDER_SHOW_RESET,
   ORDER_SHOW_SUCCESS,
 } from '../constants/orderConstants'
-const OrderListScreen = ({ history }) => {
+const OrderListScreen = () => {
   const dispatch = useDispatch()
 
   const orderDetails = useSelector((state) => state.orderDetails)
@@ -24,7 +25,7 @@ const OrderListScreen = ({ history }) => {
 
   const orderShow = useSelector((state) => state.orderShow)
   const { loading: loadingShow, success: successShow } = orderShow
-
+  const navigate = useNavigate()
   useEffect(() => {
     if (successShow) {
       dispatch({ type: ORDER_SHOW_RESET })
@@ -35,9 +36,9 @@ const OrderListScreen = ({ history }) => {
     } else if (userInfo && userInfo.isAdmin) {
       dispatch(listOrders())
     } else {
-      history.push('/login')
+      navigate('/login')
     }
-  }, [dispatch, history, userInfo, successShow])
+  }, [dispatch, navigate, userInfo, successShow])
 
   const options = {
     labels: {

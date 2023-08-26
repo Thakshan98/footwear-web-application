@@ -19,12 +19,16 @@ import {
   listProductDetails,
   createProductReview,
 } from '../actions/productActions'
+import {
+  addToCart,
+} from '../actions/cartActions'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 
 const ProductScreen = () => {
   const { id } = useParams()
 
-  const [qty, setQty] = useState(1)
+  const [selectedSize, setSelectedSize] = useState('');
+  const [selectedSizeCount, setSelectedSizeCount] = useState(0);  
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState('')
 
@@ -32,10 +36,16 @@ const ProductScreen = () => {
 
   const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
-
+  
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  const handleSizeChange = (e) => {
+    const newSize = e.target.value;
+    setSelectedSize(newSize);
+    setSelectedSizeCount(1); // Reset count when size changes
+  };
+  
   const productReviewCreate = useSelector((state) => state.productReviewCreate)
   const {
     success: successProductReview,
@@ -56,8 +66,12 @@ const ProductScreen = () => {
   }, [dispatch, navigate, id, successProductReview])
 
   const addToCartHandler = () => {
-    navigate(`/cart/${id}?qty=${qty}`)
-  }
+    if (selectedSize && selectedSizeCount > 0) {
+      dispatch(addToCart(id, selectedSize, selectedSizeCount));
+      navigate('/cart'); // Redirect to the cart page
+    } 
+  };
+  
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -134,44 +148,58 @@ const ProductScreen = () => {
 
                       <ListGroup.Item>
                         <Row>
-                          <Col>Status:</Col>
+                          <Col>Size:</Col>
                           <Col>
-                            {product.countInStock > 0
-                              ? 'In Stock'
-                              : 'Out Of Stock'}
+                          <Form.Control
+    as='select'
+    value={selectedSize}
+    onChange={(e) => handleSizeChange(e)}
+  >
+    <option value=''>Select Size</option>
+    {product.size &&
+      product.size.map((sizeObj, index) => (
+        <option key={index} value={sizeObj.size}>
+          {sizeObj.size}
+        </option>
+      ))}
+  </Form.Control>
                           </Col>
                         </Row>
                       </ListGroup.Item>
 
-                      {product.countInStock > 0 && (
-                        <ListGroup.Item>
-                          <Row>
-                            <Col>Qty</Col>
-                            <Col>
-                              <Form.Control
-                                as='select'
-                                value={qty}
-                                onChange={(e) => setQty(e.target.value)}
-                              >
-                                {[...Array(product.countInStock).keys()].map(
-                                  (x) => (
-                                    <option key={x + 1} value={x + 1}>
-                                      {x + 1}
-                                    </option>
-                                  )
-                                )}
-                              </Form.Control>
-                            </Col>
-                          </Row>
-                        </ListGroup.Item>
-                      )}
+                                          <ListGroup.Item>
+                        <Row>
+                          <Col>Count:</Col>
+                          <Col>
+                          <Form.Control
+    as='select'
+    value={selectedSizeCount}
+    onChange={(e) => setSelectedSizeCount(e.target.value)}
+  >
+    <option value={0}>Select Count</option>
+    {selectedSize &&
+      product.size &&
+      product.size.find((sizeObj) => sizeObj.size === selectedSize) &&
+      [...Array(
+        product.size.find((sizeObj) => sizeObj.size === selectedSize).count
+      ).keys()].map((count) => (
+        <option key={count + 1} value={count + 1}>
+          {count + 1}
+        </option>
+      ))}
+  </Form.Control>
+                          </Col>
+                        </Row>
+                      </ListGroup.Item>
+
+
 
                       <ListGroup.Item>
                         <Button
                           onClick={addToCartHandler}
                           className='btn-block'
                           type='button'
-                          disabled={product.countInStock === 0}
+                          disabled={selectedSizeCount === 0}
                           style={{
                             backgroundImage:
                               'linear-gradient(to bottom right,#50025c, #d20be0,#db3bb6)',
