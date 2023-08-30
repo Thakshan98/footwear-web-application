@@ -2,10 +2,10 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 
 import { logout } from '../actions/userActions'
-import logo from '../images/logoImage.png'
+import logo from '../images/logo.png'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -20,7 +20,7 @@ const Header = () => {
   return (
     <>
       <header
-        className='header-top-content py-4'
+        className='header-top-content py-3'
         style={{
           backgroundColor: '#131921',
           borderBottom: '1px solid #3b4149',
@@ -48,17 +48,38 @@ const Header = () => {
           </div>
         </div>
       </header>
-      <header style={{ backgroundColor: '#232F3E' }}>
+      {/* <div
+        class='toast align-items-center text-bg-primary border-0'
+        role='alert'
+        aria-live='assertive'
+        aria-atomic='true'
+      >
+        <div class='d-flex'>
+          <div class='toast-body'>Hello, world! This is a toast message.</div>
+          <button
+            type='button'
+            class='btn-close btn-close-white me-2 m-auto'
+            data-bs-dismiss='toast'
+            aria-label='Close'
+          ></button>
+        </div>
+      </div> */}
+      <header
+        style={{
+          backgroundColor: '#ffffff',
+          color: '#000000',
+        }}
+      >
         <div className='container-xxl'>
-          <Navbar variant='dark' expand='lg' collapseOnSelect>
+          <Navbar expand='lg' collapseOnSelect>
             <LinkContainer to='/'>
               <Navbar.Brand>
                 {' '}
                 <img
                   src={logo}
-                  height='55px'
-                  width='180px'
-                  class='mx-2 my-2 px-3'
+                  height='45px'
+                  width='130px'
+                  class='mx-2 my-1 px-1'
                   alt='logoImage'
                 />
               </Navbar.Brand>
@@ -67,10 +88,16 @@ const Header = () => {
             <Navbar.Collapse id='basic-navbar-nav'>
               <Nav className='ms-auto'>
                 {userInfo && !userInfo.isAdmin && !userInfo.isSystemAdmin && (
+                  <LinkContainer to='/shop'>
+                    <Nav.Link>
+                      <div className='navLink '>Shop</div>
+                    </Nav.Link>
+                  </LinkContainer>
+                )}
+                {userInfo && !userInfo.isAdmin && !userInfo.isSystemAdmin && (
                   <LinkContainer to='/cart'>
                     <Nav.Link>
                       <div className='navLink'>
-                        {' '}
                         <i className='fas fa-shopping-cart'></i> Cart
                       </div>
                     </Nav.Link>
@@ -91,12 +118,20 @@ const Header = () => {
                   </LinkContainer>
                 )}
                 {userInfo && userInfo.isAdmin && (
+                  <LinkContainer to='/shop'>
+                    <Nav.Link>
+                      <div className='navLink'> Shop</div>
+                    </Nav.Link>
+                  </LinkContainer>
+                )}
+                {userInfo && userInfo.isAdmin && (
                   <LinkContainer to='/about'>
                     <Nav.Link>
                       <div className='navLink'> About Us</div>
                     </Nav.Link>
                   </LinkContainer>
                 )}
+
                 {userInfo && userInfo.isAdmin && (
                   <LinkContainer to='/admin/feedback'>
                     <Nav.Link>
@@ -105,6 +140,13 @@ const Header = () => {
                   </LinkContainer>
                 )}
                 {userInfo && userInfo.isSystemAdmin && (
+                  <LinkContainer to='/shop'>
+                    <Nav.Link>
+                      <div className='navLink'> Shop</div>
+                    </Nav.Link>
+                  </LinkContainer>
+                )}
+                {userInfo && userInfo.isSystemAdmin && (
                   <LinkContainer to='/about'>
                     <Nav.Link>
                       <div className='navLink'> About Us</div>
@@ -118,6 +160,8 @@ const Header = () => {
                     </Nav.Link>
                   </LinkContainer>
                 )}
+              </Nav>
+              <Nav className='ms-auto'>
                 {userInfo ? (
                   <NavDropdown
                     className='navLink'
@@ -138,10 +182,8 @@ const Header = () => {
                     </Nav.Link>
                   </LinkContainer>
                 )}
-
                 {userInfo && userInfo.isAdmin && (
                   <NavDropdown title='Admin' id='adminmenu'>
-
                     <LinkContainer to='/admin/categorylist'>
                       <NavDropdown.Item>Category</NavDropdown.Item>
                     </LinkContainer>
@@ -149,7 +191,6 @@ const Header = () => {
                     <LinkContainer to='/admin/productlist'>
                       <NavDropdown.Item>Footware</NavDropdown.Item>
                     </LinkContainer>
-
 
                     <LinkContainer to='/admin/orderlist'>
                       <NavDropdown.Item>Orders</NavDropdown.Item>
@@ -184,4 +225,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Header

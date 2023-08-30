@@ -31,6 +31,10 @@ import OrderPolicy from './screens/OrderPolicy'
 import Layout from './components/Layout'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import ShopScreen from './screens/ShopScreen'
+import MenCollection from './screens/MenCollection'
+import WomenCollection from './screens/WomenCollection'
+import UnisexCollection from './screens/UnisexCollection'
 
 const App = () => {
   return (
@@ -53,6 +57,7 @@ const App = () => {
               element={<FeedbackListScreen />}
               exact
             />
+            <Route path='/shop' element={<ShopScreen />} />
             <Route
               path='/admin/feedback/:id'
               element={<FeedbackDetailScreen />}
@@ -65,6 +70,9 @@ const App = () => {
             <Route path='/cart/:id?' element={<CartScreen />} />
             <Route path='/admin/userlist' element={<UserListScreen />} />
             <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
+            <Route path='/men-collection' element={<MenCollection />} />
+            <Route path='/women-collection' element={<WomenCollection />} />
+            <Route path='/unisex-collection' element={<UnisexCollection />} />
             <Route
               path='/admin/categorylist'
               element={<CategoryListScreen />}

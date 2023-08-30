@@ -9,7 +9,7 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <div className='py-4 px-0' style={{backgroundColor:'#CBD5E1'}}>
+      <div className='py-4 px-0' style={{backgroundColor:'#F2F3F7'}}>
         <Outlet/>
       </div>
       <Footer />
