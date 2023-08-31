@@ -10,7 +10,7 @@ const Product = ({ product }) => {
         <Card.Img
           className='d-flex align-items-center justify-content-center img-fluid'
           src={product.image}
-          height='250px'
+          height='220px'
           variant='top'
         />
       </Link>
@@ -35,6 +35,7 @@ const Product = ({ product }) => {
         </Card.Text>
 
         <Card.Text as='h5'>LKR.{product.price}</Card.Text>
+        
       </Card.Body>
     </div>
   )

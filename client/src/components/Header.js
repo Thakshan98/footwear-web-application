@@ -70,7 +70,7 @@ const Header = () => {
           color: '#000000',
         }}
       >
-        <div className='container-xxl'>
+        <div className='container-xxl font-popins fs-6 fw-medium collect'>
           <Navbar expand='lg' collapseOnSelect>
             <LinkContainer to='/'>
               <Navbar.Brand>
@@ -90,14 +90,14 @@ const Header = () => {
                 {userInfo && !userInfo.isAdmin && !userInfo.isSystemAdmin && (
                   <LinkContainer to='/shop'>
                     <Nav.Link>
-                      <div className='navLink '>Shop</div>
+                      <div className='navLink navFont'>Shop</div>
                     </Nav.Link>
                   </LinkContainer>
                 )}
                 {userInfo && !userInfo.isAdmin && !userInfo.isSystemAdmin && (
                   <LinkContainer to='/cart'>
                     <Nav.Link>
-                      <div className='navLink'>
+                      <div className='navLink navFont'>
                         <i className='fas fa-shopping-cart'></i> Cart
                       </div>
                     </Nav.Link>
@@ -106,28 +106,28 @@ const Header = () => {
                 {userInfo && !userInfo.isAdmin && !userInfo.isSystemAdmin && (
                   <LinkContainer to='/about'>
                     <Nav.Link>
-                      <div className='navLink'> About Us</div>
+                      <div className='navLink navFont'> About Us</div>
                     </Nav.Link>
                   </LinkContainer>
                 )}
                 {userInfo && !userInfo.isAdmin && !userInfo.isSystemAdmin && (
                   <LinkContainer to='/feedback'>
                     <Nav.Link>
-                      <div className='navLink'> Feedback</div>
+                      <div className='navLink navFont'> Feedback</div>
                     </Nav.Link>
                   </LinkContainer>
                 )}
                 {userInfo && userInfo.isAdmin && (
                   <LinkContainer to='/shop'>
                     <Nav.Link>
-                      <div className='navLink'> Shop</div>
+                      <div className='navLink navFont'> Shop</div>
                     </Nav.Link>
                   </LinkContainer>
                 )}
                 {userInfo && userInfo.isAdmin && (
                   <LinkContainer to='/about'>
                     <Nav.Link>
-                      <div className='navLink'> About Us</div>
+                      <div className='navLink navFont'> About Us</div>
                     </Nav.Link>
                   </LinkContainer>
                 )}
@@ -135,28 +135,28 @@ const Header = () => {
                 {userInfo && userInfo.isAdmin && (
                   <LinkContainer to='/admin/feedback'>
                     <Nav.Link>
-                      <div className='navLink'> Customer Feedback</div>
+                      <div className='navLink navFont'> Customer Feedback</div>
                     </Nav.Link>
                   </LinkContainer>
                 )}
                 {userInfo && userInfo.isSystemAdmin && (
                   <LinkContainer to='/shop'>
                     <Nav.Link>
-                      <div className='navLink'> Shop</div>
+                      <div className='navLink navFont'> Shop</div>
                     </Nav.Link>
                   </LinkContainer>
                 )}
                 {userInfo && userInfo.isSystemAdmin && (
                   <LinkContainer to='/about'>
                     <Nav.Link>
-                      <div className='navLink'> About Us</div>
+                      <div className='navLink navFont'> About Us</div>
                     </Nav.Link>
                   </LinkContainer>
                 )}
                 {userInfo && userInfo.isSystemAdmin && (
                   <LinkContainer to='/admin/feedback'>
                     <Nav.Link>
-                      <div className='navLink'> Customer Feedback</div>
+                      <div className='navLink navFont'> Customer Feedback</div>
                     </Nav.Link>
                   </LinkContainer>
                 )}
@@ -164,20 +164,25 @@ const Header = () => {
               <Nav className='ms-auto'>
                 {userInfo ? (
                   <NavDropdown
-                    className='navLink'
+                    className='navLink navFont'
                     title={userInfo.name}
                     id='username'
                   >
                     <LinkContainer to='/profile'>
-                      <NavDropdown.Item>Profile</NavDropdown.Item>
+                      <NavDropdown.Item className='navFont'>
+                        Profile
+                      </NavDropdown.Item>
                     </LinkContainer>
-                    <NavDropdown.Item onClick={logoutHandler}>
+                    <NavDropdown.Item
+                      onClick={logoutHandler}
+                      className='navFont'
+                    >
                       Logout
                     </NavDropdown.Item>
                   </NavDropdown>
                 ) : (
                   <LinkContainer to='/login'>
-                    <Nav.Link>
+                    <Nav.Link className='navFont'>
                       <i className='fas fa-user'></i> Sign In
                     </Nav.Link>
                   </LinkContainer>
@@ -185,34 +190,48 @@ const Header = () => {
                 {userInfo && userInfo.isAdmin && (
                   <NavDropdown title='Admin' id='adminmenu'>
                     <LinkContainer to='/admin/categorylist'>
-                      <NavDropdown.Item>Category</NavDropdown.Item>
+                      <NavDropdown.Item className='navFont'>
+                        Category
+                      </NavDropdown.Item>
                     </LinkContainer>
 
                     <LinkContainer to='/admin/productlist'>
-                      <NavDropdown.Item>Footware</NavDropdown.Item>
+                      <NavDropdown.Item className='navFont'>
+                        Footware
+                      </NavDropdown.Item>
                     </LinkContainer>
 
                     <LinkContainer to='/admin/orderlist'>
-                      <NavDropdown.Item>Orders</NavDropdown.Item>
+                      <NavDropdown.Item className='navFont'>
+                        Orders
+                      </NavDropdown.Item>
                     </LinkContainer>
                   </NavDropdown>
                 )}
                 {userInfo && userInfo.isSystemAdmin && (
                   <NavDropdown title='System Admin' id='adminmenu'>
                     <LinkContainer to='/admin/userlist'>
-                      <NavDropdown.Item>Users</NavDropdown.Item>
+                      <NavDropdown.Item className='navFont'>
+                        Users
+                      </NavDropdown.Item>
                     </LinkContainer>
 
                     <LinkContainer to='/admin/categorylist'>
-                      <NavDropdown.Item>Category</NavDropdown.Item>
+                      <NavDropdown.Item className='navFont'>
+                        Category
+                      </NavDropdown.Item>
                     </LinkContainer>
 
                     <LinkContainer to='/admin/productlist'>
-                      <NavDropdown.Item>Footware</NavDropdown.Item>
+                      <NavDropdown.Item className='navFont'>
+                        Footware
+                      </NavDropdown.Item>
                     </LinkContainer>
 
                     <LinkContainer to='/admin/orderlist'>
-                      <NavDropdown.Item>Orders</NavDropdown.Item>
+                      <NavDropdown.Item className='navFont'>
+                        Orders
+                      </NavDropdown.Item>
                     </LinkContainer>
                   </NavDropdown>
                 )}
