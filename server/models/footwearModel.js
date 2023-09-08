@@ -42,7 +42,7 @@ const footwearSchema = mongoose.Schema(
       required: true,
     },
     cat: {
-      type: String,
+      type: String,   //Category name
       required: true,
     },
     size: [sizeSchema], // Array of size objects

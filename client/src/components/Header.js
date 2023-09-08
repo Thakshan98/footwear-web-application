@@ -118,6 +118,13 @@ const Header = () => {
                   </LinkContainer>
                 )}
                 {userInfo && userInfo.isAdmin && (
+                  <LinkContainer to='/dashboard'>
+                    <Nav.Link>
+                      <div className='navLink navFont'> Dashboard</div>
+                    </Nav.Link>
+                  </LinkContainer>
+                )}
+                {userInfo && userInfo.isAdmin && (
                   <LinkContainer to='/shop'>
                     <Nav.Link>
                       <div className='navLink navFont'> Shop</div>
@@ -136,6 +143,13 @@ const Header = () => {
                   <LinkContainer to='/admin/feedback'>
                     <Nav.Link>
                       <div className='navLink navFont'> Customer Feedback</div>
+                    </Nav.Link>
+                  </LinkContainer>
+                )}
+                {userInfo && userInfo.isSystemAdmin && (
+                  <LinkContainer to='/dashboard'>
+                    <Nav.Link>
+                      <div className='navLink navFont'> Dashboard</div>
                     </Nav.Link>
                   </LinkContainer>
                 )}

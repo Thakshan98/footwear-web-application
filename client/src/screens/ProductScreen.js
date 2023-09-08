@@ -19,16 +19,14 @@ import {
   listProductDetails,
   createProductReview,
 } from '../actions/productActions'
-import {
-  addToCart,
-} from '../actions/cartActions'
+import { addToCart } from '../actions/cartActions'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 
 const ProductScreen = () => {
   const { id } = useParams()
 
-  const [selectedSize, setSelectedSize] = useState('');
-  const [selectedSizeCount, setSelectedSizeCount] = useState(0);  
+  const [selectedSize, setSelectedSize] = useState('')
+  const [selectedSizeCount, setSelectedSizeCount] = useState(0)
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState('')
 
@@ -36,16 +34,16 @@ const ProductScreen = () => {
 
   const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
-  
+
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
   const handleSizeChange = (e) => {
-    const newSize = e.target.value;
-    setSelectedSize(newSize);
-    setSelectedSizeCount(1); // Reset count when size changes
-  };
-  
+    const newSize = e.target.value
+    setSelectedSize(newSize)
+    setSelectedSizeCount(1) // Reset count when size changes
+  }
+
   const productReviewCreate = useSelector((state) => state.productReviewCreate)
   const {
     success: successProductReview,
@@ -67,11 +65,10 @@ const ProductScreen = () => {
 
   const addToCartHandler = () => {
     if (selectedSize && selectedSizeCount > 0) {
-      dispatch(addToCart(id, selectedSize, selectedSizeCount));
-      navigate('/cart'); // Redirect to the cart page
-    } 
-  };
-  
+      dispatch(addToCart(id, selectedSize, selectedSizeCount))
+      navigate('/cart') // Redirect to the cart page
+    }
+  }
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -106,7 +103,7 @@ const ProductScreen = () => {
           <>
             <Meta title={product.name} />
             <Row>
-              <Col md={3} className='my-3'>
+              <Col md={3} className='my-3 shadow p-3 mb-5 bg-white rounded'>
                 <Image
                   className='productImg'
                   src={product.image}
@@ -115,7 +112,10 @@ const ProductScreen = () => {
                 />
               </Col>
               <Col md={6} className='my-3'>
-                <ListGroup variant='flush' className='rounded px-3'>
+                <ListGroup
+                  variant='flush'
+                  className='rounded px-3 shadow bg-white'
+                >
                   <ListGroup.Item>
                     <h4 className='text-secondary'>{product.name}</h4>
                   </ListGroup.Item>
@@ -135,7 +135,7 @@ const ProductScreen = () => {
               </Col>
               <Col md={3} className='my-3'>
                 {userInfo && !userInfo.isAdmin && !userInfo.isSystemAdmin && (
-                  <Card>
+                  <Card className='shadow p-3 mb-5 bg-white rounded  border-0'>
                     <ListGroup variant='flush'>
                       <ListGroup.Item>
                         <Row>
@@ -150,49 +150,55 @@ const ProductScreen = () => {
                         <Row>
                           <Col>Size:</Col>
                           <Col>
-                          <Form.Control
-    as='select'
-    value={selectedSize}
-    onChange={(e) => handleSizeChange(e)}
-  >
-    <option value=''>Select Size</option>
-    {product.size &&
-      product.size.map((sizeObj, index) => (
-        <option key={index} value={sizeObj.size}>
-          {sizeObj.size}
-        </option>
-      ))}
-  </Form.Control>
+                            <Form.Control
+                              as='select'
+                              value={selectedSize}
+                              onChange={(e) => handleSizeChange(e)}
+                            >
+                              <option value=''>Select Size</option>
+                              {product.size &&
+                                product.size.map((sizeObj, index) => (
+                                  <option key={index} value={sizeObj.size}>
+                                    {sizeObj.size}
+                                  </option>
+                                ))}
+                            </Form.Control>
                           </Col>
                         </Row>
                       </ListGroup.Item>
 
-                                          <ListGroup.Item>
+                      <ListGroup.Item>
                         <Row>
                           <Col>Count:</Col>
                           <Col>
-                          <Form.Control
-    as='select'
-    value={selectedSizeCount}
-    onChange={(e) => setSelectedSizeCount(e.target.value)}
-  >
-    <option value={0}>Select Count</option>
-    {selectedSize &&
-      product.size &&
-      product.size.find((sizeObj) => sizeObj.size === selectedSize) &&
-      [...Array(
-        product.size.find((sizeObj) => sizeObj.size === selectedSize).count
-      ).keys()].map((count) => (
-        <option key={count + 1} value={count + 1}>
-          {count + 1}
-        </option>
-      ))}
-  </Form.Control>
+                            <Form.Control
+                              as='select'
+                              value={selectedSizeCount}
+                              onChange={(e) =>
+                                setSelectedSizeCount(e.target.value)
+                              }
+                            >
+                              <option value={0}>Select Count</option>
+                              {selectedSize &&
+                                product.size &&
+                                product.size.find(
+                                  (sizeObj) => sizeObj.size === selectedSize
+                                ) &&
+                                [
+                                  ...Array(
+                                    product.size.find(
+                                      (sizeObj) => sizeObj.size === selectedSize
+                                    ).count
+                                  ).keys(),
+                                ].map((count) => (
+                                  <option key={count + 1} value={count + 1}>
+                                    {count + 1}
+                                  </option>
+                                ))}
+                            </Form.Control>
                           </Col>
                         </Row>
                       </ListGroup.Item>
-
-
 
                       <ListGroup.Item>
                         <Button
@@ -218,7 +224,7 @@ const ProductScreen = () => {
             <Row>
               <Col md={3}></Col>
               <Col md={6} className='ps-0 rounded'>
-                <div>
+                <div className='shadow p-3 mb-5 bg-white rounded'>
                   {userInfo && !userInfo.isAdmin && !userInfo.isSystemAdmin && (
                     <div class='py-2 m-4 rounded'>
                       <h3 className='text-lg'>Reviews</h3>

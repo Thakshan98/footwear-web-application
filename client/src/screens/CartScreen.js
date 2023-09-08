@@ -27,6 +27,7 @@ const CartScreen = () => {
   const { cartItems } = cart
 
   const navigate = useNavigate()
+  
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, size, count))
@@ -44,8 +45,8 @@ const CartScreen = () => {
   return (
     <Container className='my-5 font-popins'>
       <Row>
-        <Col md={8}>
-          <h2 className='py-2 text-secondary'>Shopping Cart</h2>
+        <Col md={8} v>
+          <h2 className='py-2 collect heading-color'>Shopping Cart</h2>
           {cartItems.length === 0 ? (
             <Message>
               Your cart is empty <Link to='/'>Go Back</Link>
@@ -53,7 +54,10 @@ const CartScreen = () => {
           ) : (
             <ListGroup variant='flush'>
               {cartItems.map((item) => (
-                <ListGroup.Item key={item.product} className='my-2 py-3'>
+                <ListGroup.Item
+                  key={item.product}
+                  className='my-1 py-4 shadow bg-white rounded'
+                >
                   <Row className='d-flex align-items-center justify-content-center'>
                     <Col md={2}>
                       <Image src={item.image} alt={item.name} fluid rounded />
@@ -62,18 +66,19 @@ const CartScreen = () => {
                       <Link
                         style={{ textDecoration: 'none' }}
                         to={`/product/${item.product}`}
+                        className='navFont'
                       >
                         {item.name}
                       </Link>
                     </Col>
                     <Col md={2}>
-                      <b>LKR.</b> {item.price}
+                      <b className='navFont'>LKR.</b> {item.price}
                     </Col>
                     <Col md={2}>
-                      <b>Size</b> {item.size}
+                      <b className='navFont'>Size</b> {item.size}
                     </Col>
                     <Col md={2}>
-                      <b>Quantity</b> {item.count}
+                      <b className='navFont'>Quantity</b> {item.count}
                     </Col>
                     <Col md={2}>
                       <Button
@@ -94,14 +99,14 @@ const CartScreen = () => {
           )}
         </Col>
         <Col md={4} className='py-5 my-3'>
-          <Card className='py-2'>
+          <Card className='py-4 shadow bg-white border-0 rounded'>
             <ListGroup variant='flush'>
               <ListGroup.Item>
-                <h4 className='text-secondary'>
+                <h3 className='collect text-secondary'>
                   Subtotal (
                   {cartItems.reduce((acc, item) => acc + item.count, 0)})
                   Footwears
-                </h4>
+                </h3>
                 LKR.
                 {cartItems
                   .reduce((acc, item) => acc + item.count * item.price, 0)

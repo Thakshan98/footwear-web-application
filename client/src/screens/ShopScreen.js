@@ -1,8 +1,11 @@
 import React from 'react'
+import Category from '../components/Category'
 
 const ShopScreen = () => {
   return (
-    <div className='text-center'>ShopScreen</div>
+    <>
+      <Category />
+    </>
   )
 }
 

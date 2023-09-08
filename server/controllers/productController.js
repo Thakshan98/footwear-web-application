@@ -35,7 +35,6 @@ const getProductById = async (req, res) => {
   }
 };
 
-
 const deleteProduct = async (req, res) => {
   const product = await Footwear.findById(req.params.id)
 
@@ -47,7 +46,6 @@ const deleteProduct = async (req, res) => {
     throw new Error('Product not found')
   }
 };
-
 
 const createProduct = async (req, res) => {
   const {
@@ -84,7 +82,6 @@ const createProduct = async (req, res) => {
   }
 };
 
-
 const updateProduct = async (req, res) => {
   const {
     name,
@@ -116,7 +113,6 @@ const updateProduct = async (req, res) => {
     throw new Error('Product not found')
   }
 };
-
 
 const createProductReview = async (req, res) => {
   const { rating, comment } = req.body
@@ -155,7 +151,6 @@ const createProductReview = async (req, res) => {
     throw new Error('Product not found')
   }
 };
-
 
 const getTopProducts = async (req, res) => {
   const products = await Footwear.find({}).sort({ rating: -1 }).limit(3)

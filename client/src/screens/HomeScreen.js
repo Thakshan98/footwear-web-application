@@ -1,20 +1,15 @@
 import React, { useEffect } from 'react'
-import { Link, Route, useParams, Routes } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Container } from 'react-bootstrap'
 import Product from '../components/Product'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Paginate from '../components/Paginate'
-import ProductCarousel from '../components/ProductCarousel'
 import Meta from '../components/Meta'
 import { listProducts } from '../actions/productActions'
 import { listCategories } from '../actions/categoryAction'
-import SearchBox from '../components/SearchBox'
-import Caros from '../components/Caros'
-import background from '../images/Caro.png'
 import men from '../images/men.png'
-import Hero from '../images/hero.jpg'
 import { FaLongArrowAltRight } from 'react-icons/fa'
 import Service from '../components/Service'
 import MarqueeBrand from '../components/MarqueeBrand'
@@ -65,7 +60,7 @@ const HomeScreen = () => {
             style={{ height: '90vh' }}
             className='d-flex flex-column align-items-center justify-content-center heroBack'
           >
-            <h3 className='text-white'>Shop Collection</h3>
+            <h1 className='text-white collect'>Shop Collection</h1>
             <Link to='/shop'>
               <button className='btn btn-primary px-3 py-2'>Shop Now</button>
             </Link>
@@ -158,7 +153,7 @@ const HomeScreen = () => {
                 </div>
               </div>
             </div>
-            
+
             <div>
               <div className='text-center py-5 collect'>
                 <h1
@@ -213,7 +208,7 @@ const HomeScreen = () => {
         </div> */}
 
           <Service />
-          <MarqueeBrand/>
+          <MarqueeBrand />
         </Container>
       </div>
     </>

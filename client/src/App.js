@@ -35,6 +35,7 @@ import ShopScreen from './screens/ShopScreen'
 import MenCollection from './screens/MenCollection'
 import WomenCollection from './screens/WomenCollection'
 import UnisexCollection from './screens/UnisexCollection'
+import Dashboard from './screens/Dashboard'
 
 const App = () => {
   return (
@@ -77,6 +78,7 @@ const App = () => {
               path='/admin/categorylist'
               element={<CategoryListScreen />}
             />
+            <Route path='/dashboard' element={<Dashboard/>} />
             <Route
               path='//admin/category/:id/edit'
               element={<CategoryEditScreen />}

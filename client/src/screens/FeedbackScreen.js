@@ -61,7 +61,7 @@ const FeedbackScreen = () => {
             <FormContainer>
               <div className='py-3 px-4 shadow-lg my-5 bg-body-tertiary rounded'>
                 <h3
-                  className='heading-color text-center py-3'
+                  className='heading-color collect text-center py-3'
                   style={{
                     fontSize: '30px',
                     fontWeight: 'bold',
@@ -84,6 +84,7 @@ const FeedbackScreen = () => {
                       fontSize: '18px',
                       fontWeight: 'bold',
                       color: '#591f1f',
+                      className: 'collect'
                     }}
                   >
                     Feedback
