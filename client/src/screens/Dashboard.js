@@ -1,40 +1,35 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { FaLongArrowAltRight } from 'react-icons/fa'
-import BarChart from '../components/Chart/BarChart'
-import { UserData } from '../Data'
-import LineChart from '../components/Chart/LineChart'
-import PieChart from '../components/Chart/PieChart'
-import { listProducts } from '../actions/productActions'
-import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { listCategories } from '../actions/categoryAction'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FaLongArrowAltRight } from 'react-icons/fa';
+import BarChart from '../components/Chart/BarChart';
+import LineChart from '../components/Chart/LineChart';
+import PieChart from '../components/Chart/PieChart';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { listFeedbacks } from '../actions/feedbackActions'
+import { listCategory} from '../actions/categoryAction'
+import { listOrders} from '../actions/orderActions'
+import {listProducts} from '../actions/productActions'
 const Dashboard = () => {
-  //   const { keyword, pageNumber } = useParams()
+  const dispatch = useDispatch();
 
-  //   const dispatch = useDispatch()
+  const productList = useSelector((state) => state.productList);
+  const categoryList = useSelector((state) => state.categoryList);
+  const orderList = useSelector((state) => state.orderList);
+  const feedbackList = useSelector((state) => state.feedbackList);
 
-  const productList = useSelector((state) => state.productList)
-  const { products } = productList
+  const [productCount, setProductCount] = useState(0);
+  const [categoryCount, setCategoryCount] = useState(0);
+  const [orderCount, setOrderCount] = useState(0);
+  const [feedbackCount, setFeedbackCount] = useState(0);
 
-  //   const orderDetails = useSelector((state) => state.orderDetails)
-  //   const { order } = orderDetails
 
-  //   const categoriesList = useSelector((state) => state.categoriesList)
-  //   const { category } = categoriesList
-
-  //   useEffect(() => {
-  //     dispatch(listCategories())
-  //     dispatch(listProducts(keyword, pageNumber))
-  //   }, [dispatch, keyword, pageNumber])
-
-  const [userData, setUserData] = useState({
-    labels: products.map((data) => data.name),
+  const userData = {
+    labels: productList.products.map((data) => data.name),
     datasets: [
       {
         label: 'Top 12 New Arrival Product',
-        data: products.map((data) => data.price),
+        data: productList.products.map((data) => data.price),
         backgroundColor: [
           'rgba(75,192,192,1)',
           '#3cf0f1',
@@ -46,23 +41,46 @@ const Dashboard = () => {
         borderWidth: 1,
       },
     ],
-  })
+  };
+
+  useEffect(() => {
+    dispatch(listFeedbacks());
+    dispatch( listCategory());
+    dispatch(listOrders());
+    dispatch(listProducts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (productList.products) {
+      setProductCount(productList.products.length);
+    }
+    if (categoryList.category) {
+      setCategoryCount(categoryList.category.length);
+    }
+    if (orderList.orders) {
+      setOrderCount(orderList.orders.length);
+    }
+    if (feedbackList.feedbacks) {
+      setFeedbackCount(feedbackList.feedbacks.length);
+    }
+  }, [productList, categoryList, orderList, feedbackList]);
+  
 
   return (
     <>
       <div className='container text-center py-3 mt-3'>
-        <h2 classNameName='text-center navFont py-5'>Dashboard</h2>
+        <h2 className='text-center navFont py-5'>Dashboard</h2>
         <div className='row'>
           <div className='col-lg-4 col-md-6 col-sm-12 my-2'>
             <div
               className='shadow p-5  rounded'
               style={{ backgroundColor: '#B3E140' }}
             >
-              <h4 classNameName='mt-4 collect'>Footwear's</h4>
-              <h1>08</h1>
+              <h4 className='mt-4 collect'>Footwear's</h4>
+              <h1>{productCount}</h1>
               <Link to='/admin/productlist'>
                 <button
-                  classNameName='px-4 py-2 mb-3'
+                  className='px-4 py-2 mb-3'
                   style={{ backgroundColor: '#B3E140' }}
                 >
                   Explore All <FaLongArrowAltRight />
@@ -75,12 +93,12 @@ const Dashboard = () => {
               className='shadow p-5  rounded'
               style={{ backgroundColor: '#EEBDEA' }}
             >
-              <h4 classNameName='mt-4 collect'>Categories</h4>
-              <h1>08</h1>
+              <h4 className='mt-4 collect'>Categories</h4>
+              <h1>{categoryCount}</h1>
 
               <Link to='/admin/categorylist'>
                 <button
-                  classNameName='px-4 py-2 mb-3'
+                  className='px-4 py-2 mb-3'
                   style={{ backgroundColor: '#EEBDEA' }}
                 >
                   Explore All <FaLongArrowAltRight />
@@ -93,11 +111,11 @@ const Dashboard = () => {
               className='shadow p-5  rounded'
               style={{ backgroundColor: '#E8D0D0' }}
             >
-              <h4 classNameName='mt-4 collect'>Order's</h4>
-              <h1>08</h1>
+              <h4 className='mt-4 collect'>Order's</h4>
+              <h1>{orderCount}</h1>
               <Link to='/admin/orderlist'>
                 <button
-                  classNameName='px-4 py-2 mb-3'
+                  className='px-4 py-2 mb-3'
                   style={{ backgroundColor: '#E8D0D0' }}
                 >
                   Explore All <FaLongArrowAltRight />
@@ -112,11 +130,11 @@ const Dashboard = () => {
               className='shadow p-5  rounded '
               style={{ backgroundColor: '#3cf0f1' }}
             >
-              <h4 classNameName='mt-4 collect'>Feedback's</h4>
-              <h1>08</h1>
+              <h4 className='mt-4 collect'>Feedback's</h4>
+              <h1>{feedbackCount}</h1>
               <Link to='/admin/feedback'>
                 <button
-                  classNameName='px-4 py-2 mb-3'
+                  className='px-4 py-2 mb-3'
                   style={{ backgroundColor: '#3cf0f1' }}
                 >
                   Explore All <FaLongArrowAltRight />
@@ -129,7 +147,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      {/* <BarChart chartData={userData} /> */}
 
       <div className='container text-center'>
         <div className='row d-flex justify-content-center align-items-center'>
@@ -142,7 +159,7 @@ const Dashboard = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
