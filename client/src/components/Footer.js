@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom'
 function Footer() {
   return (
     <>
-      <div className='text-light footer' style={{ backgroundColor: '#232F3E' }}>
+      <div className='text-light footer navFont' style={{ backgroundColor: '#232F3E' }}>
         <Container className='p-4 font-popins leading-6 tracking-wider'>
           <Row>
             <Col sm={7} className='justify-content-md-center text-center p-2 '>

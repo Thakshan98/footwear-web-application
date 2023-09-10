@@ -1,7 +1,7 @@
-const Footwear =require("../models/footwearModel.js");
-const asyncHandler =require("express-async-handler");
+const Footwear = require('../models/footwearModel.js')
+const asyncHandler = require('express-async-handler')
 
-const getProducts =asyncHandler( async (req, res) => {
+const getProducts = asyncHandler(async (req, res) => {
   const pageSize = 12
   const page = Number(req.query.pageNumber) || 1
 
@@ -15,14 +15,14 @@ const getProducts =asyncHandler( async (req, res) => {
     : {}
 
   const count = await Footwear.countDocuments({ ...keyword })
-  const sort = { length: -1 , createdAt: -1};
-  const products = await Footwear.find({ ...keyword }).sort(sort)
+  const sort = { length: -1, createdAt: -1 }
+  const products = await Footwear.find({ ...keyword })
+    .sort(sort)
     .limit(pageSize)
     .skip(pageSize * (page - 1))
 
   res.json({ products, page, pages: Math.ceil(count / pageSize) })
 })
-
 
 const getProductById = async (req, res) => {
   const product = await Footwear.findById(req.params.id)
@@ -33,7 +33,7 @@ const getProductById = async (req, res) => {
     res.status(404)
     throw new Error('Product not found')
   }
-};
+}
 
 const deleteProduct = async (req, res) => {
   const product = await Footwear.findById(req.params.id)
@@ -45,7 +45,7 @@ const deleteProduct = async (req, res) => {
     res.status(404)
     throw new Error('Product not found')
   }
-};
+}
 
 const createProduct = async (req, res) => {
   const {
@@ -55,9 +55,9 @@ const createProduct = async (req, res) => {
     gender,
     price,
     image,
-    
+
     description,
-  } = req.body;
+  } = req.body
 
   try {
     const product = new Footwear({
@@ -68,31 +68,25 @@ const createProduct = async (req, res) => {
       price,
       user: req.user._id, // Assuming user authentication is set up
       image,
-    
+
       numReviews: 0,
       description,
-    });
+    })
 
-    const createdProduct = await product.save();
-   
-    res.status(201).json(createdProduct);
+    const createdProduct = await product.save()
+
+    res.status(201).json(createdProduct)
   } catch (error) {
     // Handle any errors that occurred during product creation
-    res.status(500).json({ error: 'An error occurred while creating the product.' });
+    res
+      .status(500)
+      .json({ error: 'An error occurred while creating the product.' })
   }
-};
+}
 
 const updateProduct = async (req, res) => {
-  const {
-    name,
-    cat,
-    size,
-    gender,
-    price,
-    description,
-    image,
-    countInStock,
-  } = req.body
+  const { name, cat, size, gender, price, description, image, countInStock } =
+    req.body
 
   const product = await Footwear.findById(req.params.id)
 
@@ -112,7 +106,7 @@ const updateProduct = async (req, res) => {
     res.status(404)
     throw new Error('Product not found')
   }
-};
+}
 
 const createProductReview = async (req, res) => {
   const { rating, comment } = req.body
@@ -150,12 +144,16 @@ const createProductReview = async (req, res) => {
     res.status(404)
     throw new Error('Product not found')
   }
-};
+}
 
 const getTopProducts = async (req, res) => {
-  const products = await Footwear.find({}).sort({ rating: -1 }).limit(3)
-
+  const products = await Footwear.find({}).sort({ rating: -1 }).limit(5)
   res.json(products)
+}
+
+const getTopNewArivals = async (req, res) => {
+  const productsArrival = await Footwear.find({}).sort({ price: -1 }).limit(5);
+  res.json(productsArrival)
 }
 
 module.exports = {
@@ -166,4 +164,5 @@ module.exports = {
   updateProduct,
   createProductReview,
   getTopProducts,
-};
+  getTopNewArivals,
+}

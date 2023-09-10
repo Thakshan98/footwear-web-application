@@ -12,7 +12,7 @@ import Vans from '../images/vans.png'
 const MarqueeBrand = () => {
   return (
     <>
-      <div className='container py-5 text-center '>
+      <div className='container mt-3 mb-5 pt-1 pb-5 text-center '>
       <h1 className='collect headind-color pb-5 pt-1'>Shoes Brands</h1>
         <div className='row'>
           <div className='col'>

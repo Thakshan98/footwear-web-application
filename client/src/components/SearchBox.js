@@ -24,20 +24,9 @@ const SearchBox = () => {
         name='q'
         onChange={(e) => setKeyword(e.target.value)}
         placeholder='Search Books... '
-        style={{ height: '40px', width: '230px', borderRadius: '8px 0 0 8px' }}
+        style={{ height: '40px', width: '350px', borderRadius: '8px' }}
       ></Form.Control>
-      <Button
-        type='submit'
-        variant='success'
-        style={{ height: '40px', borderRadius: '0 8px 8px 0' }}
-      >
-        <FaSearch
-          size={'20px'}
-          style={{ marginBottom: '15px' }}
-          color={'#ffffff'}
-        />
-      </Button>
-      <fieldset></fieldset>
+
     </Form>
   )
 }

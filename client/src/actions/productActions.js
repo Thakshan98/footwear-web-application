@@ -21,6 +21,9 @@ import {
   PRODUCT_TOP_REQUEST,
   PRODUCT_TOP_SUCCESS,
   PRODUCT_TOP_FAIL,
+  PRODUCT_TOP_ARRIVAL_REQUEST,
+  PRODUCT_TOP_ARRIVAL_SUCCESS,
+  PRODUCT_TOP_ARRIVAL_FAIL,
 } from '../constants/productConstants'
 import { logout } from './userActions'
 import { toast } from 'react-toastify'
@@ -96,7 +99,6 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
     toast.error('Delete Footwear from Store', {
       position: 'top-right',
     })
-
   } catch (error) {
     const message =
       error.response && error.response.data.message
@@ -138,7 +140,6 @@ export const createProduct = (product) => async (dispatch, getState) => {
     toast.success('Add Footwear Successfully', {
       position: 'top-right',
     })
-
   } catch (error) {
     const message =
       error.response && error.response.data.message
@@ -229,7 +230,6 @@ export const createProductReview =
       toast.success('Add Review Successfully', {
         position: 'top-right',
       })
-
     } catch (error) {
       const message =
         error.response && error.response.data.message
@@ -258,6 +258,27 @@ export const listTopProducts = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_TOP_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+export const listTopArrivalProducts = () => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_TOP_ARRIVAL_REQUEST })
+
+    const { data } = await axios.get(`/api/products/top-arrival`)
+
+    dispatch({
+      type: PRODUCT_TOP_ARRIVAL_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_TOP_ARRIVAL_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

@@ -7,7 +7,7 @@ import { GiPriceTag } from 'react-icons/gi'
 const Service = () => {
   return (
     <>
-      <div className='container py-5 text-center collect'>
+      <div className='container mt-5 py-5 text-center collect'>
         <h1 className='collect headind-color'>Our Services</h1>
         <div className='row'>
           <div className='col-md-6 col-lg-3 col-sm-12 py-5'>

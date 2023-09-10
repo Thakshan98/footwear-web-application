@@ -13,6 +13,9 @@ import men from '../images/men.png'
 import { FaLongArrowAltRight } from 'react-icons/fa'
 import Service from '../components/Service'
 import MarqueeBrand from '../components/MarqueeBrand'
+import SearchBox from '../components/SearchBox'
+import TopRatedProduct from '../components/TopRatedProduct'
+import TopNewArrivals from '../components/TopNewArrivals'
 
 const HomeScreen = () => {
   const { keyword, pageNumber } = useParams()
@@ -34,28 +37,6 @@ const HomeScreen = () => {
     <>
       <div classNameName='bg-stone-300 text-center'>
         <div>
-          {/* <div
-            style={{ height: '90vh' }}
-            className='d-flex align-items-center justify-content-center heroBack'
-          >
-            <div class='row'>
-              <div class='col-lg-6 col-md-12'>
-                <div className='d-flex align-items-center justify-content-center'>
-                  <div className='m-auto'>
-                    <h4>New Summer</h4>
-                    <h4>Footwear Collection</h4>
-                  </div>
-                </div>
-              </div>
-              <div class='col-lg-6 col-md-12'>
-                <img
-                  src={Hero}
-                  alt='Hero Section Images'
-                  className='img-fluid d-flex align-items-center justify-content-center'
-                />
-              </div>
-            </div>
-          </div> */}
           <div
             style={{ height: '90vh' }}
             className='d-flex flex-column align-items-center justify-content-center heroBack'
@@ -67,23 +48,17 @@ const HomeScreen = () => {
           </div>
         </div>
 
-        {/* <div classNameName='caro'>
-        <Meta />
-        {!keyword ? (
-          <ProductCarousel />
-        ) : (
-          <Link to='/' classNameName='btn btn-light'>
-            Go Back
-          </Link>
-        )}
-      </div> */}
-        {/* <div classNameName='py-3 px-5'>
-        <Caros />
-      </div> */}
-
         <Container>
           <div>
-            <div class='container text-center py-5 mt-5'>
+            <div className='text-center mt-5 pt-5 collect'>
+              <h1
+                classNameName='text-center collect'
+                style={{ color: '#4d0000' }}
+              >
+                Most Popular Collection
+              </h1>
+            </div>
+            <div class='container text-center py-3 mt-5'>
               <div class='row'>
                 <div class='col-lg-4 col-md-6 col-sm-12 my-2'>
                   <div
@@ -155,15 +130,30 @@ const HomeScreen = () => {
             </div>
 
             <div>
-              <div className='text-center py-5 collect'>
+              <div className='text-center mt-5 py-5 collect'>
                 <h1
                   classNameName='text-center collect'
                   style={{ color: '#4d0000' }}
                 >
-                  Footwear Collections
+                  Top Rated Footwears
                 </h1>
               </div>
             </div>
+            <TopRatedProduct />
+
+            <div>
+              <div className='text-center mt-5 py-5 collect'>
+                <h1
+                  classNameName='text-center collect'
+                  style={{ color: '#4d0000' }}
+                >
+                  Top Price Footwears
+                </h1>
+              </div>
+            </div>
+            <TopNewArrivals />
+
+            {/* <SearchBox/>
             {loading ? (
               <Loader />
             ) : error ? (
@@ -185,11 +175,13 @@ const HomeScreen = () => {
                   />
                 </div>
               </div>
-            )}
+            )} */}
           </div>
+
           {/* <div className='text-center'>
             <h3 classNameName='text-center'>Latest Footwear</h3>
           </div> */}
+
           {/* <div className='container py-3 my-3'>
           <div className='row'>
             <div className='col-lg-3 col-md-6 col-sm-12'>
