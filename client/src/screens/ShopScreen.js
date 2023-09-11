@@ -8,15 +8,16 @@ import { listProducts } from '../actions/productActions'
 import { listCategories } from '../actions/categoryAction'
 import SearchBox from '../components/SearchBox'
 import Paginate from '../components/Paginate'
-
+import TopNewArrivals from '../components/TopNewArrivals'
+import TopRatedProduct from '../components/TopRatedProduct'
 
 const ShopScreen = () => {
   const { keyword, pageNumber } = useParams()
- 
+
   const dispatch = useDispatch()
   const productList = useSelector((state) => state.productList)
   const { loading, error, products, page, pages } = productList
-  
+
   const categoriesList = useSelector((state) => state.categoriesList)
   const { category } = categoriesList
 
@@ -26,20 +27,21 @@ const ShopScreen = () => {
   }, [dispatch, keyword, pageNumber])
   return (
     <>
-      
-      <div className='container'>
-      
+      <div className='container py-5'>
+        <div>
+          <div className='text-center py-3 collect'>
+            <h1 classNameName='text-center '>Let's Shop</h1>
+          </div>
+        </div>
         <div className='row'>
-        <div className="search">
-              <SearchBox />
-    
-    </div></div>
-    <div className='row'>
+          <div className='search'>
+            <SearchBox />
+          </div>
+        </div>
+        <div className='row'>
           <div className='col-md-12'>
             <div className='row align-items-end justify-content-start'>
-              <div className='col-lg-12 text-end py-4'>     
-              
-              </div>
+              <div className='col-lg-12 text-end py-4'></div>
             </div>
             {loading ? (
               <Loader />

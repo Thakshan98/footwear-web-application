@@ -17,7 +17,7 @@ const SearchBox = () => {
   };
 
   return (
-    <Form onSubmit={submitHandler} inline style={{ marginRight: '130px' }}>
+    <Form onSubmit={submitHandler} inline className='d-flex flex-row'>
       <Form.Control
         type='text'
         name='q'
@@ -25,16 +25,16 @@ const SearchBox = () => {
         placeholder='Search Footwear... '
         style={{
           height: '40px',
-          width: '230px',
+          width: '250px',
           borderRadius: '8px 0 0 8px',
         }}
       ></Form.Control>
       <Button
         type='submit'
-        variant='success'
+        variant='primary'
         style={{ height: '40px', borderRadius: '0 8px 8px 0' }}
       >
-        <FaSearch size={'20px'} style={{ marginBottom: '15px' }} color={'#ffffff'} />
+        <FaSearch size={'14px'} className='' color={'#ffffff'} />
       </Button>
     </Form>
   );
