@@ -58,7 +58,7 @@ const App = () => {
               element={<FeedbackListScreen />}
               exact
             />
-            <Route path='/shop' element={<ShopScreen />} />
+           
             <Route
               path='/admin/feedback/:id'
               element={<FeedbackDetailScreen />}
@@ -83,6 +83,8 @@ const App = () => {
               path='//admin/category/:id/edit'
               element={<CategoryEditScreen />}
             />
+             <Route path='/shop' element={<ShopScreen />} />
+             <Route path='/shop/:pageNumber' element={<ShopScreen />} />
             <Route
               path='/admin/productlist'
               element={<ProductListScreen />}
@@ -122,11 +124,11 @@ const App = () => {
               element={<ProductEditScreen />}
             />
             <Route path='/admin/orderlist' element={<OrderListScreen />} />
-            <Route path='/search/:keyword' element={<HomeScreen />} exact />
-            <Route path='/page/:pageNumber' element={<HomeScreen />} exact />
+            <Route path='/search/:keyword' element={<ShopScreen />} exact />
+            <Route path='/page/:pageNumber' element={<ShopScreen />} exact />
             <Route
               path='/search/:keyword/page/:pageNumber'
-              element={<HomeScreen />}
+              element={<ShopScreen />}
               exact
             />
             <Route path='/' element={<HomeScreen />} exact />

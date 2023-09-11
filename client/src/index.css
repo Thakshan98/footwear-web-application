@@ -31,7 +31,7 @@ main {
   box-shadow: 0px 0px 16px 6px rgb(119, 143, 194);
 }
 
-.search {
+.search{
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;

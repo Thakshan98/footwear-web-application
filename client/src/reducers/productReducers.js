@@ -28,23 +28,32 @@ import {
   PRODUCT_TOP_ARRIVAL_FAIL,
 } from '../constants/productConstants'
 
-export const productListReducer = (state = { products: [] }, action) => {
+const initialState = {
+  products: [],
+  loading: false,
+  error: null,
+  totalCount: 0, // Initialize totalCount as 0
+};
+
+export const productListReducer = (state = initialState, action) => {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
-      return { loading: true, products: [] }
+      return { ...state, loading: true };
     case PRODUCT_LIST_SUCCESS:
       return {
+        ...state,
         loading: false,
-        products: action.payload.products,
-        pages: action.payload.pages,
-        page: action.payload.page,
-      }
+        products: action.payload,
+        totalCount: action.totalCount,
+        pages: action.pages,
+        page: action.page, // Include totalCount in your state
+      };
     case PRODUCT_LIST_FAIL:
-      return { loading: false, error: action.payload }
+      return { ...state, loading: false, error: action.payload };
     default:
-      return state
+      return state;
   }
-}
+};
 
 export const productDetailsReducer = (
   state = { product: { reviews: [] } },

@@ -18,18 +18,18 @@ const Dashboard = () => {
   const orderList = useSelector((state) => state.orderList);
   const feedbackList = useSelector((state) => state.feedbackList);
 
-  const [productCount, setProductCount] = useState(0);
+  const [productCount, setProductCount] = useState(1);
   const [categoryCount, setCategoryCount] = useState(0);
   const [orderCount, setOrderCount] = useState(0);
   const [feedbackCount, setFeedbackCount] = useState(0);
 
 
   const userData = {
-    labels: productList.products.map((data) => data.name),
+    labels: productList.products ? productList.products.map((data) => data.name) : [],
     datasets: [
       {
         label: 'Top 12 New Arrival Product',
-        data: productList.products.map((data) => data.price),
+        data: productList.products ? productList.products.map((data) => data.price) : [],
         backgroundColor: [
           'rgba(75,192,192,1)',
           '#3cf0f1',
@@ -42,7 +42,7 @@ const Dashboard = () => {
       },
     ],
   };
-
+  
   useEffect(() => {
     dispatch(listFeedbacks());
     dispatch( listCategory());
@@ -51,8 +51,8 @@ const Dashboard = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (productList.products) {
-      setProductCount(productList.products.length);
+    if (productList.totalCount !== undefined) {
+      setProductCount(productList.totalCount);
     }
     if (categoryList.category) {
       setCategoryCount(categoryList.category.length);

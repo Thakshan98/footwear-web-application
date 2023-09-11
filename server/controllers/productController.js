@@ -2,8 +2,8 @@ const Footwear = require('../models/footwearModel.js')
 const asyncHandler = require('express-async-handler')
 
 const getProducts = asyncHandler(async (req, res) => {
-  const pageSize = 12
-  const page = Number(req.query.pageNumber) || 1
+  const pageSize = 12;
+  const page = Number(req.query.pageNumber) || 1;
 
   const keyword = req.query.keyword
     ? {
@@ -12,17 +12,20 @@ const getProducts = asyncHandler(async (req, res) => {
           $options: 'i',
         },
       }
-    : {}
+    : {};
 
-  const count = await Footwear.countDocuments({ ...keyword })
-  const sort = { length: -1, createdAt: -1 }
+  // Fetch the total count of products matching the search criteria
+  const totalCount = await Footwear.countDocuments({ ...keyword });
+
+  // Fetch products with pagination
   const products = await Footwear.find({ ...keyword })
-    .sort(sort)
-    .limit(pageSize)
+    .sort({ length: -1, createdAt: -1 })
     .skip(pageSize * (page - 1))
+    .limit(pageSize);
 
-  res.json({ products, page, pages: Math.ceil(count / pageSize) })
-})
+  res.json({ products, page, pages: Math.ceil(totalCount / pageSize), totalCount });
+});
+
 
 const getProductById = async (req, res) => {
   const product = await Footwear.findById(req.params.id)
