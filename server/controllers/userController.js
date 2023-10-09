@@ -1,6 +1,7 @@
-const  User = require("../models/userModel.js");
+const User = require("../models/userModel.js");
 const generateToken = require("../utils/generateToken.js");
-const asyncHandler =require("express-async-handler");
+const asyncHandler = require("express-async-handler");
+const nodemailer = require("nodemailer"); // Import Nodemailer
 
 const authUser = async (req, res) => {
   const { email, password } = req.body
@@ -8,6 +9,7 @@ const authUser = async (req, res) => {
   const user = await User.findOne({ email })
 
   if (user && (await user.matchPassword(password))) {
+    console.log(user)
     res.json({
       _id: user._id,
       name: user.name,
@@ -15,6 +17,7 @@ const authUser = async (req, res) => {
       isAdmin: user.isAdmin,
       isSystemAdmin: user.isSystemAdmin,
       token: generateToken(user._id),
+      isVerified : user.isVerified,
     })
   } else {
     res.status(401)
@@ -22,24 +25,74 @@ const authUser = async (req, res) => {
   }
 };
 
+const verifyEmail = async (req, res) => { 
+  const { email, token } = req.body;
+  try{  
+    const user = await User.findById(token);  
+    if(user && user.email === email){
+      user.isVerified = true;
+      await user.save();
+      res.status(200).json({ status: true });
+    }else{
+      res.status(200).json({ status: false });
+    }  
+  }catch(error){
+    res.status(200).json({ status: false });
+  }
+
+}
+
+// Create a Nodemailer transporter with your email service credentials
+const transporter = nodemailer.createTransport({
+  service: "gmail", // Example: 'Gmail'
+  auth: {
+    user: "tokenrek@gmail.com",
+    pass: "cmpu mpdf dytk dbyl",
+  },
+});
+
+const sendVerificationEmail = async (email, verificationToken) => {
+  // Email content
+  const mailOptions = {
+    from: "tokenrek@gmail.com",
+    to: email,
+    subject: "Email Verification",
+    text: `Click the following link to verify your email: http://localhost:3000/verify-user/${email}/${verificationToken}`,
+  };
+
+  try {
+    // Send the email
+    await transporter.sendMail(mailOptions);
+    console.log("Verification email sent");
+  } catch (error) {
+    console.error("Error sending verification email:", error);
+  }
+};
 
 const registerUser = async (req, res) => {
-  const { name, email, password } = req.body
+  const { name, email, password } = req.body;
 
-  const userExists = await User.findOne({ email })
+  const userExists = await User.findOne({ email });
 
   if (userExists) {
-    res.status(400)
-    throw new Error('User already exists')
+    res.status(400);
+    throw new Error("User already exists");
   }
-  
+
+  // Generate a verification token
+  const verificationToken = generateToken(email);
+
   const user = await User.create({
     name,
     email,
     password,
-  })
+    verificationToken, // Store the token in the user document
+  });
 
   if (user) {
+    // Send the verification email
+    sendVerificationEmail(email, user._id);
+
     const token = generateToken(user._id);
 
     res.status(201).json({
@@ -49,13 +102,13 @@ const registerUser = async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       isSystemAdmin: user.isSystemAdmin,
-   
-    })
+    });
   } else {
-    res.status(400)
-    throw new Error('Invalid user data')
+    res.status(400);
+    throw new Error("Invalid user data");
   }
 };
+
 
 
 const getUserProfile = async (req, res) => {
@@ -68,6 +121,7 @@ const getUserProfile = async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       isSystemAdmin: user.isSystemAdmin,
+      isVerified: user.isVerified,
     })
   } else {
     res.status(404)
@@ -169,4 +223,5 @@ module.exports =  {
   deleteUser,
   getUserById,
   updateUser,
+  verifyEmail,
 }

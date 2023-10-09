@@ -11,11 +11,14 @@ const {
   deleteUser,
   getUserById,
   updateUser,
+  verifyEmail,
 }  = require ("../controllers/userController.js");
 const { protect,  systemAdmin ,} = require ("../middleware/authMiddleware.js");
 
 router.route('/').post(validateSignupRequest,registerUser, isRequestValidated).get(protect, systemAdmin, getUsers)
-router.post('/login',validateSigninRequest, isRequestValidated, authUser)
+// router.post('/login',validateSigninRequest, isRequestValidated, authUser)
+router.post('/login', authUser)
+router.post('/verify-email',verifyEmail)
 router
   .route('/profile')
   .get(protect, getUserProfile)

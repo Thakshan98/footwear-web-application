@@ -1,0 +1,11 @@
+/* homescreen.css */
+
+.pop-tilt img {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .pop-tilt:hover img {
+    transform: scale(1.05) rotate(-10deg); /* Adjust the scale and rotation as needed */
+  }
+    
+  

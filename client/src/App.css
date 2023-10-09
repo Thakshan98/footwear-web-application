@@ -14,6 +14,17 @@
   --color-blue: #1373f0;
 }
 
+/* CSS for the pop and tilt animation */
+.pop-tilt {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.pop-tilt:hover {
+  transform: scale(1.05) rotate(5deg);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+
 /* .form-control:focus {
   box-shadow: none;
   border-color: inherit;
@@ -89,4 +100,20 @@ footer:not(:first-child){
 
 .productCard:hover .action{
   right: 15px;
+}
+
+.partSetter {
+    
+  width: '20%';
+  display: 'flex';
+  justify-content: 'center';
+  align-items: 'center';
+  flex-direction: 'row';
+  cursor: 'pointer'; 
+     
+}
+.selecterImage {
+  width: '100%';
+  height: '200px';
+  display: 'none';
 }

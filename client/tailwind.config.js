@@ -20,6 +20,7 @@ module.exports = {
       },
       colors: {
         'body': '#FE5056'
+        
       }
     },
   },

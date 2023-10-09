@@ -34,18 +34,20 @@ const addOrderItems = asyncHandler(async (req, res) => {
       }
 
       const selectedSize = product.size.find(size => size.size === item.size);
-      if (!selectedSize) {
+      if (!selectedSize && item.size < 30) {
         throw new Error(`Size not found for product: ${product.name}`);
       }
 
       // Check if there's enough quantity
-      if (selectedSize.count < item.count) {
+      if (item.size < 30 && selectedSize.count < item.count ) {
         throw new Error(`Not enough quantity for product: ${product.name}`);
       }
 
       // Decrease product size count
-      selectedSize.count -= item.count;
-      await product.save();
+      if(item.size < 30){
+        selectedSize.count -= item.count;
+        await product.save();
+      }      
     }
 
     // Create the order

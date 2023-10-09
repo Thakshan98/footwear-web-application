@@ -117,6 +117,13 @@ const Header = () => {
                     </Nav.Link>
                   </LinkContainer>
                 )}
+                {userInfo && !userInfo.isAdmin && !userInfo.isSystemAdmin && (
+                  <LinkContainer to='/design'>
+                    <Nav.Link>
+                      <div className='navLink navFont'> Design</div>
+                    </Nav.Link>
+                  </LinkContainer>
+                )}
                 {userInfo && userInfo.isAdmin && (
                   <LinkContainer to='/dashboard'>
                     <Nav.Link>

@@ -27,7 +27,7 @@ export const addToCart = (id,size,count) => async (dispatch, getState) => {
     
       count: count,
     },
-  });
+  });  
 
   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
 
@@ -35,9 +35,28 @@ export const addToCart = (id,size,count) => async (dispatch, getState) => {
     position: 'top-right',
   });
 };
+export const addToCartCustom = (id,name,image,price,size,count) => async (dispatch, getState) => {
+  
+  dispatch({
+    type: CART_ADD_ITEM,
+    payload: {
+      product: id,
+      name: name,
+      image: image,
+      price: price,
+      size: size,
+    
+      count: count,
+    },
+  });
+  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
+
+  toast.success('Item added to the cart', {
+    position: 'top-right',
+  });
 
 // ... rest of the actions ...
-
+}
 
 export const removeFromCart = (id) => (dispatch, getState) => {
   dispatch({

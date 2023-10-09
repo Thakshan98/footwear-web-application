@@ -36,6 +36,8 @@ import MenCollection from './screens/MenCollection'
 import WomenCollection from './screens/WomenCollection'
 import UnisexCollection from './screens/UnisexCollection'
 import Dashboard from './screens/Dashboard'
+import EmailVerificationScreen from './screens/EmailVerification'
+import { DesignScreen } from './screens/DesignScreen'
 
 const App = () => {
   return (
@@ -53,12 +55,14 @@ const App = () => {
             <Route path='/profile' element={<ProfileScreen />} />
             <Route path='/about' element={<AboutUsScreen />} />
             <Route path='/feedback' element={<FeedbackScreen />} />
+            <Route path='/design' element={<DesignScreen/>} />
+            <Route path='/verify-user/:email/:token' element={<EmailVerificationScreen/>} />
             <Route
               path='/admin/feedback'
               element={<FeedbackListScreen />}
               exact
             />
-           
+
             <Route
               path='/admin/feedback/:id'
               element={<FeedbackDetailScreen />}
@@ -78,13 +82,13 @@ const App = () => {
               path='/admin/categorylist'
               element={<CategoryListScreen />}
             />
-            <Route path='/dashboard' element={<Dashboard/>} />
+            <Route path='/dashboard' element={<Dashboard />} />
             <Route
               path='//admin/category/:id/edit'
               element={<CategoryEditScreen />}
             />
-             <Route path='/shop' element={<ShopScreen />} />
-             <Route path='/shop/:pageNumber' element={<ShopScreen />} />
+            <Route path='/shop' element={<ShopScreen />} />
+            <Route path='/shop/:pageNumber' element={<ShopScreen />} />
             <Route
               path='/admin/productlist'
               element={<ProductListScreen />}

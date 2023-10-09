@@ -45,13 +45,21 @@ export const login = (email, password) => async (dispatch) => {
       { email, password },
       config
     )
+    if(data.isVerified){
+      dispatch({
+        type: USER_LOGIN_SUCCESS,
+        payload: data,
+      })
+      localStorage.setItem('userInfo', JSON.stringify(data))
+    }else{
+      dispatch({
+        type: USER_LOGIN_FAIL,
+        payload: 'User is not verified please check your email to verify your account',
+      })
+    }
+   
 
-    dispatch({
-      type: USER_LOGIN_SUCCESS,
-      payload: data,
-    })
-
-    localStorage.setItem('userInfo', JSON.stringify(data))
+    
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
@@ -102,12 +110,12 @@ export const register = (name, email, password) => async (dispatch) => {
       position: 'top-right',
     })
 
-    dispatch({
-      type: USER_LOGIN_SUCCESS,
-      payload: data,
-    })
-
-    localStorage.setItem('userInfo', JSON.stringify(data))
+    // dispatch({
+    //   type: USER_LOGIN_SUCCESS,
+    //   payload: data,
+    // })
+    //This line commented out to stop the user from being logged in automatically after registration
+    //localStorage.setItem('userInfo', JSON.stringify(data))
   } catch (error) {
     const message =
       error.response && error.response.data.message
