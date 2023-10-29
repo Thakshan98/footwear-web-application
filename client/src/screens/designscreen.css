@@ -1,5 +1,5 @@
 /* designscreen.css */
-select {
+/* select {
         width: 150px;
         height: 40px;
         border-radius: 5px;
@@ -15,7 +15,7 @@ input {
         color: blue;
         margin-left: 20px;
         margin-right: 5px;
-}
+} */
 .part-setter {            
         display: flex;
         justify-content: center;
@@ -93,6 +93,8 @@ input {
         align-items: center;
         position: relative;
         overflow: hidden;
+        margin-left: 150px;
+        margin-top: 30px;
 }
 .action-button-container {
         width : 50%;
@@ -122,6 +124,8 @@ input {
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        padding: 50px;
+        margin-top: 50px auto;
 }
 .count-container {
         display : flex;
