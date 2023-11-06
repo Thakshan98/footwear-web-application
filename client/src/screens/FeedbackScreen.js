@@ -8,8 +8,9 @@ import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import { createFeedback } from '../actions/feedbackActions'
 import { FEEDBACK_CREATE_RESET } from '../constants/feedbackConstants'
-import { FaWhatsappSquare, FaPhoneSquareAlt } from 'react-icons/fa'
 import BreadCrumb from '../components/BreadCrumb'
+import feedbackImage from '../images/feedback.png'
+
 const FeedbackScreen = () => {
   const [feedback, setFeedback] = useState('')
 
@@ -42,8 +43,7 @@ const FeedbackScreen = () => {
 
   return (
     <>
-      <BreadCrumb title='Feedback' />
-      <Container className='py-3'>
+      <Container className='py-5'>
         <div className='feedback'>
           <Link
             to='/'
@@ -60,6 +60,15 @@ const FeedbackScreen = () => {
           <Form onSubmit={submitHandler}>
             <FormContainer>
               <div className='py-3 px-4 shadow-lg my-5 bg-body-tertiary rounded'>
+                <div
+                  className='py-4'
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <img src={feedbackImage} alt='' />
+                </div>
                 <h3
                   className='heading-color collect text-center py-3'
                   style={{
@@ -67,47 +76,60 @@ const FeedbackScreen = () => {
                     fontWeight: 'bold',
                   }}
                 >
-                  Give Feedback
+                  Product Customer Feedback Form
                 </h3>
                 {loadingCreate && <Loader />}
                 {errorCreate && (
                   <Message variant='danger'>{errorCreate}</Message>
                 )}
-                <p className='text-secondary text-center'>
-                  We all need people who will give us feedback. That’s how we
-                  improve.
+                <p
+                  className='text-secondary text-center pb-2'
+                  style={{ lineHeight: '2', color: 'brown' }}
+                >
+                  Thank you for taking time to provide feedback. We appreciate
+                  hearing from you and will review your comments carefully.
                 </p>
-
+                <hr className='py-2' />
                 <Form.Group controlId='feedback'>
                   <Form.Label
+                    className='py-2 text-secondary'
                     style={{
-                      fontSize: '18px',
-                      fontWeight: 'bold',
-                      color: '#591f1f',
-                      className: 'collect'
+                      display: 'flex',
+                      justifyContent: 'center',
+                      textAlign: 'center',
+                      alignItems: 'center',
                     }}
                   >
-                    Feedback
+                    Do you have any suggestions to improve our products and
+                    services?
                   </Form.Label>
                   <Form.Control
                     as='textarea'
-                    row='5'
-                    placeholder='feedback'
-                    style={{ borderRadius: '10px' }}
+                    className='bg-body-tertiary border-secondary'
+                    style={{
+                      borderRadius: '10px',
+                      height: '100px',
+                      opacity: '0.5',
+                    }}
                     value={feedback}
                     onChange={(e) => setFeedback(e.target.value)}
                   ></Form.Control>
                 </Form.Group>
-                <div>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
                   <Button
                     type='submit'
                     className='my-3 text-white'
                     style={{
                       fontWeight: '600',
-                      width: '120px',
                     }}
                   >
-                    Send
+                    Send Feedback
                   </Button>
                 </div>
               </div>
