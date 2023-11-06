@@ -91,7 +91,7 @@ const ProductScreen = () => {
             color: 'white',
             fontWeight: '600',
           }}
-          to='/'
+          to='/shop'
         >
           Go Back
         </Link>

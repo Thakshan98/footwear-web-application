@@ -43,10 +43,10 @@ const CartScreen = () => {
   }
 
   return (
-    <Container className='my-5 font-popins'>
+    <Container className='py-5 font-popins'>
       <Row>
         <Col md={8} v>
-          <h2 className='py-2 collect heading-color'>Shopping Cart</h2>
+          <h2 className='py-5 collect heading-color'>Shopping Cart</h2>
           {cartItems.length === 0 ? (
             <Message>
               Your cart is empty <Link to='/'>Go Back</Link>

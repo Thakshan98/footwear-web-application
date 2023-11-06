@@ -126,7 +126,6 @@ const MenCollection = () => {
                   <option value="Any">Any</option>
                   <option value="Bata">Bata</option>
                   <option value="Sandals">Sandals</option>
-                  <option value="Heels">Heels</option>
                   <option value="Formal Shoe">Formal Shoe</option>
                   <option value="Sports Shoe">Sports Shoe</option>
                   <option value="Sneakers">Sneakers</option>                  

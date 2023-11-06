@@ -160,3 +160,6 @@ input {
 .scroll-button:hover{
         background-color: blue;
 }
+@media(max-width:768px){
+        
+}

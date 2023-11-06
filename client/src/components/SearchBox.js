@@ -32,7 +32,7 @@ const SearchBox = () => {
       <Button
         type='submit'
         variant='primary'
-        style={{ height: '40px', borderRadius: '0 8px 8px 0' }}
+        style={{ height: '40px', width: '60px' ,borderRadius: '0 8px 8px 0' }}
       >
         <FaSearch size={'14px'} className='' color={'#ffffff'} />
       </Button>

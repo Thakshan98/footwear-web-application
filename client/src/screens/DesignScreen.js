@@ -211,9 +211,9 @@ export function DesignScreen(props) {
             flexDirection: 'column',
           }}
         >
-          <div class='container text-center font-popins py-5'>
+          <div class='container text-center font-popins py-3'>
             <div class='row flex justify-content-center align-itmes-center'>
-              <div class='col-md-3 col-lg-3 col-sm-6'>
+              <div class='col-md-3 col-lg-3 col-sm-6 py-4'>
                 <div>
                   Gender :{' '}
                   <select
@@ -237,7 +237,7 @@ export function DesignScreen(props) {
                   </select>
                 </div>
               </div>
-              <div class='col-md-3 col-lg-3 col-sm-6'>
+              <div class='col-md-3 col-lg-3 col-sm-6 py-4'>
                 <div>
                   Width :{' '}
                   <select
@@ -260,7 +260,7 @@ export function DesignScreen(props) {
                   </select>
                 </div>
               </div>
-              <div class='col-md-3 col-lg-3 col-sm-6'>
+              <div class='col-md-3 col-lg-3 col-sm-6 py-4'>
                 <div>
                   Size :{' '}
                   <select
@@ -292,7 +292,7 @@ export function DesignScreen(props) {
                   </select>
                 </div>
               </div>
-              <div class='col-md-3 col-lg-3 col-sm-6'>
+              <div class='col-md-3 col-lg-3 col-sm-6 py-4'>
                 <div>
                   Material :{' '}
                   <select

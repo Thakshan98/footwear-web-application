@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Card } from 'react-bootstrap'
+import { Button, Card } from 'react-bootstrap'
 import Rating from './Rating'
 
 const Product = ({ product }) => {
@@ -8,9 +8,9 @@ const Product = ({ product }) => {
     <div className='shadow p-3 mb-5 bg-white rounded'>
       <Link to={`/product/${product._id}`}>
         <Card.Img
-          className='d-flex align-items-center justify-content-center img-fluid'
+          style={{ height: '250px' }}
+          className='d-flex align-items-center justify-content-center img-fluid rounded border'
           src={product.image}
-          height='220px'
           variant='top'
         />
       </Link>
@@ -22,7 +22,7 @@ const Product = ({ product }) => {
         >
           <Card.Text>
             <div>
-              <strong className='heading-color my-2'>{product.name}</strong>
+              <strong className='d-flex my-2 py-2'>{product.name}</strong>
             </div>
           </Card.Text>
         </Link>
@@ -34,8 +34,21 @@ const Product = ({ product }) => {
           />
         </Card.Text>
 
-        <Card.Text as='h5'>LKR.{product.price}</Card.Text>
-        
+        <Card.Text as='h5'>
+          LKR.{product.price}
+          <Link to=''>
+          <button
+            style={{
+              marginRight: '10px',
+              backgroundColor:'brown',
+              color:'#FFFFFF',
+              float: 'right'
+            }}
+            className='px-3 py-1 no-underline fs-6 border-0'
+          >
+            {product.gender}
+          </button></Link>
+        </Card.Text>
       </Card.Body>
     </div>
   )

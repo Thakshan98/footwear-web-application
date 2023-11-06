@@ -13,7 +13,6 @@ import ChatBot from '../components/ChatBot'
 function ContactScreen() {
   return (
     <>
-      <BreadCrumb title='About Us' />
       <div class='container py-3'>
         <div class='row'>
           <div class='col'>

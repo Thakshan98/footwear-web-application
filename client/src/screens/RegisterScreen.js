@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import {
   Button,
   Row,
   Col,
   Form,
-  Container,
   Alert,
   Spinner,
-} from 'react-bootstrap';
-import FormContainer from '../components/FormContainer';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-import axios from 'axios';
+} from 'react-bootstrap'
+import FormContainer from '../components/FormContainer'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useFormik } from 'formik'
+import * as yup from 'yup'
+import axios from 'axios'
 import { register } from '../actions/userActions'
 
 const Loader = () => {
@@ -28,20 +27,20 @@ const Loader = () => {
         display: 'block',
       }}
     ></Spinner>
-  );
-};
+  )
+}
 
 const Message = ({ variant, children }) => {
-  return <Alert variant={variant}>{children}</Alert>;
-};
+  return <Alert variant={variant}>{children}</Alert>
+}
 
 Message.defaultProps = {
   variant: 'info',
-};
+}
 
 const RegisterScreen = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const formik = useFormik({
     initialValues: {
@@ -71,20 +70,22 @@ const RegisterScreen = () => {
         )
       )
     },
-  });
+  })
 
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('')
 
-  const userRegister = useSelector((state) => state.userRegister);
-  const { loading, error, userInfo } = userRegister;
+  const userRegister = useSelector((state) => state.userRegister)
+  const { loading, error, userInfo } = userRegister
 
-  const location = useLocation();
-  const redirect = location.search ? location.search.split('=')[1] : '/';
+  const location = useLocation()
+  const redirect = location.search ? location.search.split('=')[1] : '/'
 
   const handleRegistration = async () => {
-    setMessage('Registration successful. Please check your email for verification instructions.');
-    formik.submitForm();
-  };
+    setMessage(
+      'Registration successful. Please check your email for verification instructions.'
+    )
+    formik.submitForm()
+  }
 
   return (
     <>
@@ -226,7 +227,8 @@ const RegisterScreen = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               ></Form.Control>
-              {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+              {formik.touched.confirmPassword &&
+              formik.errors.confirmPassword ? (
                 <div style={{ marginLeft: '40px' }} className='text-danger'>
                   {formik.errors.confirmPassword}
                 </div>
@@ -235,7 +237,7 @@ const RegisterScreen = () => {
 
             <Button
               type='button'
-              className='my-3'
+              className='my-3 registerButton'
               style={{
                 marginLeft: '40px',
                 width: '80%',
@@ -274,7 +276,7 @@ const RegisterScreen = () => {
         </div>
       </FormContainer>
     </>
-  );
-};
+  )
+}
 
-export default RegisterScreen;
+export default RegisterScreen

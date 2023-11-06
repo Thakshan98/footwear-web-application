@@ -92,7 +92,7 @@ const LoginScreen = () => {
 
           <Button
             type='submit'
-            className='my-3'
+            className='my-3 logButton'
             style={{
               marginLeft: '40px',
               width: '80%',

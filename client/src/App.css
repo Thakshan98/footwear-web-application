@@ -117,3 +117,14 @@ footer:not(:first-child){
   height: '200px';
   display: 'none';
 }
+.hero-contact{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.justifyCenter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

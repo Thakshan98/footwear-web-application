@@ -65,6 +65,7 @@ const Header = () => {
         </div>
       </div> */}
       <header
+      className=' shadow-xl'
         style={{
           backgroundColor: '#ffffff',
           color: '#000000',
@@ -106,7 +107,7 @@ const Header = () => {
                 {userInfo && !userInfo.isAdmin && !userInfo.isSystemAdmin && (
                   <LinkContainer to='/about'>
                     <Nav.Link>
-                      <div className='navLink navFont'> About Us</div>
+                      <div className='navLink navFont'> Contact Us</div>
                     </Nav.Link>
                   </LinkContainer>
                 )}
@@ -141,7 +142,7 @@ const Header = () => {
                 {userInfo && userInfo.isAdmin && (
                   <LinkContainer to='/about'>
                     <Nav.Link>
-                      <div className='navLink navFont'> About Us</div>
+                      <div className='navLink navFont'> Contact Us</div>
                     </Nav.Link>
                   </LinkContainer>
                 )}
@@ -170,7 +171,7 @@ const Header = () => {
                 {userInfo && userInfo.isSystemAdmin && (
                   <LinkContainer to='/about'>
                     <Nav.Link>
-                      <div className='navLink navFont'> About Us</div>
+                      <div className='navLink navFont'> Contact Us</div>
                     </Nav.Link>
                   </LinkContainer>
                 )}
@@ -203,8 +204,8 @@ const Header = () => {
                   </NavDropdown>
                 ) : (
                   <LinkContainer to='/login'>
-                    <Nav.Link className='navFont'>
-                      <i className='fas fa-user'></i> Sign In
+                    <Nav.Link className='navFont signInButton px-4 mx-4 py-1'>
+                      Sign In
                     </Nav.Link>
                   </LinkContainer>
                 )}

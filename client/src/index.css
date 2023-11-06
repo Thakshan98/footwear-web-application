@@ -1,16 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,700;1,100;1,300;1,500;1,600&display=swap');
-/* {
-  font-family: 'Open Sans', sans-serif;
+:root {
+  --primary: #1f3e72;
+  --secondary: rgba(255, 255, 255, 0.78);
+  --black: #131110;
+  --blue-gradient: linear-gradient(97.05deg, #4066ff 3.76%, #2949c6 100%);
+  --orange-gradient: linear-gradient(270deg, #ffb978 3.76%, #ff922d 100%);
+  --blue: #4066ff;
+  --lightBlue: #eeeeff;
+  --shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25);
+}
+* {
   font-family: 'Poppins', sans-serif;
-} */
-
+}
+.buttonVarient {
+  font-weight: 500;
+  padding: 0.4rem 1.4rem;
+  color: white;
+  background: var(--blue-gradient);
+  border: none;
+  border-radius: 4px;
+  transition: all 300ms ease-in;
+}
+.buttonVarient:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
 main {
   min-height: 80vh;
   transition: transform 0.2s;
 }
-
 .heading-color {
   background: -webkit-linear-gradient(rgb(230, 86, 182), rgb(7, 0, 10));
   -webkit-background-clip: text;
@@ -18,10 +38,14 @@ main {
 }
 
 .navLink:hover {
+  color: black;
+  font-weight: bold;
+}
+/* .navLink:hover {
   -ms-transform: scale(1.1);
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
-}
+} */
 
 .baner {
   height: 500px;
@@ -31,7 +55,7 @@ main {
   box-shadow: 0px 0px 16px 6px rgb(119, 143, 194);
 }
 
-.search{
+.search {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -188,13 +212,69 @@ img {
   font-family: 'ADLaM Display', cursive;
 }
 
-.navFont{
+.navFont {
   font-family: 'Poppins', sans-serif;
 }
-.heroBack{
+/* .heroBack {
   background-image: url(./images/Back.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  
+} */
+.signInButton {
+  border: 2px solid rgb(102, 6, 6);
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 300ms ease-in;
 }
+.signInButton:hover {
+  background-color: black;
+  color: white !important;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.logButton:hover {
+  background-color: green;
+  border: none;
+}
+.registerButton:hover {
+  background-color: green !important;
+  border: none;
+}
+/* .decorated{
+  background-color: -webkit-linear-gradient(0deg, #ff726a, #1593ff, #fffa00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+} */
+/* .hero-wrapper,
+.h-wrapper , .backColor{
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+} */
+.hero-section1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hero-section2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-wrapper h1 {
+  font-weight: 600;
+  padding: 25px 0;
+  font-size: 50px;
+  font-family: Rubik, sans-serif;
+}
+.hero-wrapper p {
+  font-size: 20px;
+  padding: 15px 0;
+}
+/* .hero-wrapper .hero-button {
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  text-decoration: none;
+} */

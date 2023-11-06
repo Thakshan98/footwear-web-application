@@ -115,7 +115,7 @@ const OrderScreen = () => {
   ) : (
     <Container>
       <>
-        <h3 className='text-center my-2'>Order {order._id}</h3>
+        <h3 className='text-center my-2'>Order Information</h3>
         <Row>
           <Col md={8}>
             <div className='bg-white px-4 py-2 font-popins shadow-lg p-3 my-5 rounded'>
@@ -204,7 +204,7 @@ const OrderScreen = () => {
           </Col>
           <Col md={4}>
             <div>
-              <Card className='bg-white px-4 py-2 font-popins shadow-lg p-3 my-5 rounded'>
+              <Card className='bg-white px-4 py-2 font-popins border-0 shadow-lg p-3 my-5 rounded'>
                 <ListGroup variant='flush'>
                   <ListGroup.Item>
                     <h2>Order Summary</h2>

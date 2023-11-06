@@ -46,7 +46,7 @@ const UserListScreen = ({ history }) => {
 
   return (
     <>
-      <Container className='pb-3'>
+      <Container className='py-5'>
         <h3 className='my-3 text-center' style={{ fontWeight: 'bold' }}>
           Users List
         </h3>
@@ -138,6 +138,7 @@ const UserListScreen = ({ history }) => {
             </tbody>
           </Table>
         )}
+        
       </Container>
     </>
   )

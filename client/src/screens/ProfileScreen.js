@@ -297,6 +297,10 @@ const ProfileScreen = () => {
                         className='text-white text-center py-3'
                         style={{ backgroundColor: '#019678' }}
                       >Details</th>
+                      <th
+                        className='text-white text-center py-3'
+                        style={{ backgroundColor: '#019678' }}
+                      >Cancel</th>
                     </tr>
                   </thead>
                 )}
