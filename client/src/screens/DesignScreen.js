@@ -189,9 +189,103 @@ export function DesignScreen(props) {
 
   return (
     <>
-      <h2 className='text-center py-5 font-popins'>
+      <h2 className='text-center pt-5 font-popins collect heading-color'>
         Customize your own footware & 3D view
       </h2>
+      <div className='' style={{ display: 'flex', justifyContent: 'center' }}>
+        <form
+          className='shadow-lg p-4 m-5 bg-body-tertiary rounded'
+          style={{ width: '500px' }}
+        >
+          <h2 className='text-center py-2 collect heading-color'>
+            Select your Favourite
+          </h2>
+          <label className='py-2'>Select the Gender</label>
+          <select
+            className='form-select'
+            value={gender}
+            onChange={(e) => {
+              setGender(e.target.value)
+            }}
+          >
+            <option selected value={'male'}>
+              Male
+            </option>
+            <option value={'female'}>Female</option>
+          </select>
+          <label className='py-2'>Select the Width</label>
+          <select
+            className='form-select'
+            onChange={(e) => {
+              setWidth(e.target.value)
+              updatePrice()
+            }}
+            value={width}
+          >
+            <option value={'wide'}>Wide</option>
+            <option value={'narrow'}>Narrow</option>
+          </select>
+          <label className='py-2'>Select the Size</label>
+          <select
+            className='form-select'
+            onChange={(e) => {
+              setSize(e.target.value)
+            }}
+            value={size}
+          >
+            <option value={36}>36</option>
+            <option value={37}>37</option>
+            <option value={38}>38</option>
+            <option value={39}>39</option>
+            <option value={40}>40</option>
+            <option value={41}>41</option>
+            <option value={42}>42</option>
+            <option value={43}>43</option>
+            <option value={44}>44</option>
+            <option value={45}>45</option>
+            <option value={46}>46</option>
+            <option value={47}>47</option>
+          </select>
+          <label className='py-2'>Select the Material</label>
+          <select
+            className='form-select'
+            onChange={(e) => {
+              setMaterial(e.target.value)
+            }}
+            value={material}
+          >
+            <option value={'leather'}>Leather</option>
+            <option value={'synthetic'}>Synthetic</option>
+            <option value={'fabric'}>Fabric</option>
+          </select>
+          <label className='py-2'>Select the Gender</label>
+          <div>
+            <input
+              type='radio'
+              checked={color === 'brown'}
+              onChange={(e) => {
+                setColor(e.target.value)
+              }}
+              value='brown'
+              name='color'
+            />
+            <span> Brown</span>
+            <input
+              className='mx-2'
+              type='radio'
+              checked={color === 'black'}
+              value='black'
+              name='color'
+              onChange={(e) => {
+                setColor(e.target.value)
+              }}
+            />
+            <span>Black</span>
+          </div>
+        </form>
+      </div>
+
+      {/* Previous Code */}
       <div
         className=' font-popins'
         style={{
@@ -211,7 +305,7 @@ export function DesignScreen(props) {
             flexDirection: 'column',
           }}
         >
-          <div class='container text-center font-popins py-3'>
+          {/* <div class='container text-center font-popins py-3'>
             <div class='row flex justify-content-center align-itmes-center'>
               <div class='col-md-3 col-lg-3 col-sm-6 py-4'>
                 <div>
@@ -343,7 +437,7 @@ export function DesignScreen(props) {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* <div
             style={{
@@ -539,11 +633,15 @@ export function DesignScreen(props) {
           <div className=''>
             <div class='container text-center'>
               <div class='row'>
-                <div class='col-md-6 col-lg-6 col-sm-12'>
+                <div class='col'>
                   <div>
                     {model && (
-                      <div>
+                      <div className='py-5'>
+                        <h2 className='collect heading-color py-3'>
+                          Your Customize 3D Model
+                        </h2>
                         <iframe
+                          className='modelSize'
                           title='Heel Sandal OBJ'
                           frameborder='0'
                           allowfullscreen
@@ -554,16 +652,21 @@ export function DesignScreen(props) {
                           execution-while-out-of-viewport
                           execution-while-not-rendered
                           web-share
-                          width='1000'
-                          height='500'
                           src={model.modelLink}
                         ></iframe>
                       </div>
                     )}
                     {!model && (
-                      <div class='warning-container'>
+                      <div
+                        class='py-5 my-5 text-center'
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}
+                      >
                         <span className='warning-span'>
-                          Model generation failed!
+                          Your Customize Model is Unavailable!
                         </span>
                       </div>
                     )}
@@ -571,10 +674,17 @@ export function DesignScreen(props) {
                   </div>
                 </div>
               </div>
-              <div className='row'>
-                <div class='col-md-6 col-lg-6 col-sm-12'>
-                  <div>
-                    <Button
+
+              <div className='row py-5'>
+                <div class='col'>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {/* <Button
                       disabled={model == null}
                       className='btn-block my-2'
                       style={{
@@ -588,13 +698,13 @@ export function DesignScreen(props) {
                       }}
                     >
                       Calculate Price
-                    </Button>
+                    </Button> */}
 
-                    <span className='price-slot'>
+                    <span className='price-slot collect py-2'>
                       Price : LKR. {price.toFixed(2)}
                     </span>
 
-                    <div>
+                    <div className='my-2'>
                       <span>Quantity : </span>
                       <input
                         type='number'
@@ -608,34 +718,38 @@ export function DesignScreen(props) {
                       />
                     </div>
 
-                    <Button
-                      onClick={() => {
-                        if (model) {
-                          dispatch(
-                            addToCartCustom(
-                              model.id,
-                              model.shoeName,
-                              model.imageLink,
-                              price.toFixed(2),
-                              size,
-                              count
+                    <div>
+                      <Button
+                        onClick={() => {
+                          if (model) {
+                            dispatch(
+                              addToCartCustom(
+                                model.id,
+                                model.shoeName,
+                                model.imageLink,
+                                price.toFixed(2),
+                                size,
+                                count
+                              )
                             )
-                          )
-                          navigate('/cart')
-                        }
-                      }}
-                      className='btn-block'
-                      type='button'
-                      disabled={count <= 0 || model == null}
-                      style={{
-                        backgroundImage:
-                          'linear-gradient(to bottom right,#50025c, #d20be0,#db3bb6)',
-                        color: 'white',
-                        fontWeight: '600',
-                      }}
-                    >
-                      Add To Cart
-                    </Button>
+                            navigate('/cart')
+                          }
+                        }}
+                        className='btn-block py-2'
+                        type='button'
+                        disabled={count <= 0 || model == null}
+                        style={{
+                          backgroundImage:
+                            'linear-gradient(to bottom right,#50025c, #d20be0,#db3bb6)',
+                          color: 'white',
+                          fontWeight: '600',
+                          width: '200px',
+                          float: 'center',
+                        }}
+                      >
+                        Add To Cart
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>

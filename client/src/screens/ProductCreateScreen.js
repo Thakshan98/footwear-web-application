@@ -18,8 +18,9 @@ const ProductCreateScreen = () => {
   const [name, setName] = useState('')
   const [gender, setGender] = useState('')
   const [price, setPrice] = useState(0)
-  const [sizeCounts, setSizeCounts] = useState([{ size: '', count: 0 }]);
+  const [sizeCounts, setSizeCounts] = useState([{ size: '', count: 0 }])
   const [image, setImage] = useState('')
+  const [url, setUrl] = useState('')
   const [description, setDescription] = useState('')
   const [uploading, setUploading] = useState(false)
 
@@ -60,21 +61,20 @@ const ProductCreateScreen = () => {
   }
 
   const handleSizeChange = (e, index) => {
-    const newSizeCounts = [...sizeCounts];
-    newSizeCounts[index].size = e.target.value;
-    setSizeCounts(newSizeCounts);
-  };
-  
+    const newSizeCounts = [...sizeCounts]
+    newSizeCounts[index].size = e.target.value
+    setSizeCounts(newSizeCounts)
+  }
+
   const handleCountChange = (e, index) => {
-    const newSizeCounts = [...sizeCounts];
-    newSizeCounts[index].count = e.target.value;
-    setSizeCounts(newSizeCounts);
-  };
-  
+    const newSizeCounts = [...sizeCounts]
+    newSizeCounts[index].count = e.target.value
+    setSizeCounts(newSizeCounts)
+  }
+
   const addSizeCount = () => {
-    setSizeCounts([...sizeCounts, { size: '', count: 0 }]);
-  };
-  
+    setSizeCounts([...sizeCounts, { size: '', count: 0 }])
+  }
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -87,8 +87,8 @@ const ProductCreateScreen = () => {
         gender,
         price,
         image,
+        url,
         description,
-      
       })
     )
   }
@@ -194,33 +194,28 @@ const ProductCreateScreen = () => {
                   ></Form.Control>
                 </Form.Group>
                 {sizeCounts.map((sizeObj, index) => (
-  <div key={index}>
-    <Form.Group>
-      <Form.Label>Size {index + 1}</Form.Label>
-      <Form.Control
-        type='text'
-        placeholder='Enter size'
-        value={sizeObj.size}
-        onChange={(e) => handleSizeChange(e, index)}
-      />
-    </Form.Group>
-    <Form.Group>
-      <Form.Label>Count {index + 1}</Form.Label>
-      <Form.Control
-        type='number'
-        placeholder='Enter count'
-        value={sizeObj.count}
-        onChange={(e) => handleCountChange(e, index)}
-      />
-    </Form.Group>
-  </div>
-))}
-<Button onClick={addSizeCount}>Add Size</Button>
-
-
-
-
-
+                  <div key={index}>
+                    <Form.Group>
+                      <Form.Label>Size {index + 1}</Form.Label>
+                      <Form.Control
+                        type='text'
+                        placeholder='Enter size'
+                        value={sizeObj.size}
+                        onChange={(e) => handleSizeChange(e, index)}
+                      />
+                    </Form.Group>
+                    <Form.Group>
+                      <Form.Label>Count {index + 1}</Form.Label>
+                      <Form.Control
+                        type='number'
+                        placeholder='Enter count'
+                        value={sizeObj.count}
+                        onChange={(e) => handleCountChange(e, index)}
+                      />
+                    </Form.Group>
+                  </div>
+                ))}
+                <Button className='my-3' onClick={addSizeCount}>Add Size</Button>
 
                 <Form.Group controlId='price'>
                   <Form.Label
@@ -261,7 +256,25 @@ const ProductCreateScreen = () => {
                   />
                   {uploading && <Loader />}
                 </Form.Group>
-
+                <Form.Group controlId='url'>
+                  <Form.Label
+                    className='mt-3'
+                    style={{
+                      fontSize: '18px',
+                      fontWeight: 'bold',
+                      color: '#591f1f',
+                    }}
+                  >
+                    Model UrlLink
+                  </Form.Label>
+                  <Form.Control
+                    id='model-link'
+                    type='url'
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
+                    placeholder='Put the 3D model url'
+                  />
+                </Form.Group>
                 <Form.Group controlId='description'>
                   <Form.Label
                     className='mt-3'

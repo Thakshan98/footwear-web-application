@@ -23,7 +23,7 @@ const ShippingScreen = () => {
   }
 
   return (
-    <div className='my-5'>
+    <div className='py-5'>
       <CheckoutSteps step1 step2 />
       <FormContainer>
         <div className='bg-white px-4 py-2 font-popins shadow-lg p-3 m-5 bg-body-tertiary rounded'>

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const reviewSchema = mongoose.Schema(
   {
@@ -16,19 +16,17 @@ const reviewSchema = mongoose.Schema(
   }
 )
 
-const sizeSchema = mongoose.Schema(
-  {
-    size: {
-      type: String,
-      required: true,
-    },
-    count: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
-  }
-)
+const sizeSchema = mongoose.Schema({
+  size: {
+    type: String,
+    required: true,
+  },
+  count: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
+})
 
 const footwearSchema = mongoose.Schema(
   {
@@ -42,7 +40,7 @@ const footwearSchema = mongoose.Schema(
       required: true,
     },
     cat: {
-      type: String,   //Category name
+      type: String, //Category name
       required: true,
     },
     size: [sizeSchema], // Array of size objects
@@ -57,6 +55,9 @@ const footwearSchema = mongoose.Schema(
     image: {
       type: String,
       required: true,
+    },
+    url: {
+      type: String,
     },
     description: {
       type: String,
@@ -77,14 +78,11 @@ const footwearSchema = mongoose.Schema(
       type: Number,
       required: true,
       default: 0,
-    }
+    },
   },
   {
     timestamps: true,
   }
-);
+)
 
-
-module.exports = mongoose.model('Footwear', footwearSchema);
-
-
+module.exports = mongoose.model('Footwear', footwearSchema)

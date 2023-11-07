@@ -113,7 +113,7 @@ const OrderScreen = () => {
   ) : error ? (
     <Message variant='danger'>{error}</Message>
   ) : (
-    <Container>
+    <Container className='py-5'>
       <>
         <h3 className='text-center my-2'>Order Information</h3>
         <Row>

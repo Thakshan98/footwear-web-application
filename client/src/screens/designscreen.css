@@ -16,150 +16,165 @@ input {
         margin-left: 20px;
         margin-right: 5px;
 } */
-.part-setter {            
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-        min-width: 300px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        margin : 5px;
-        border-radius: 25px;
-        background-color: white;          
+.part-setter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  min-width: 300px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin: 5px;
+  border-radius: 25px;
+  background-color: white;
 }
-.selecter-image {        
-        height: 100%;
-        margin : 0;
-        padding : 0;
+.selecter-image {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 .part-setter p {
-        position : absolute;
-        font-size: 10px;
-        display: none;
-        padding: 5px;
-        top : 5px;
-        right : 5px;
-        z-index: 100;
+  position: absolute;
+  font-size: 10px;
+  display: none;
+  padding: 5px;
+  top: 5px;
+  right: 5px;
+  z-index: 100;
 }
 .part-setter:hover p {
-        display: block;
-        color: white;
-        background-color: black;
+  display: block;
+  color: white;
+  background-color: black;
 }
 ::-webkit-scrollbar {
-        width: 0px;
-        background: transparent; /* make scrollbar transparent */
-    }
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
 .scroll-button {
-        position: absolute;        
-        height : 100%;
-        border : none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+  position: absolute;
+  height: 100%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.left-scroll{
-        left : 80px;
+.left-scroll {
+  left: 80px;
 }
-.right-scroll{
-        right : 80px;
+.right-scroll {
+  right: 80px;
 }
 .scroll-pane {
-        margin-top: 40px;
-        width: 100%;
-        height : 200px;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        
+  margin-top: 40px;
+  width: 100%;
+  height: 200px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .model-result-container {
-        width: 100%;
-        display : flex;
-        height : 400px;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+  width: 100%;
+  display: flex;
+  height: 400px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .model-container {
-        width : 50%;
-        height : 100%;
-        display : flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        overflow: hidden;
-        margin-left: 150px;
-        margin-top: 30px;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  margin-left: 150px;
+  margin-top: 30px;
 }
 .action-button-container {
-        width : 50%;
-        height : 100%;
-        display : flex;
-        justify-content: space-evenly;
-        align-items: center;
-        flex-direction: column;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
 }
 .seleceted-item {
-        border: 2px solid green;
+  border: 2px solid green;
 }
 .check-icon {
-        position: absolute;
-        color: green;
-        font-size: 300px;
-        display: none;
-        z-index: 150;
+  position: absolute;
+  color: green;
+  font-size: 300px;
+  display: none;
+  z-index: 150;
 }
 .warning-span {
-        color: red;
-        font-size: 20px;        
-        z-index: 150;
+  color: red;
+  font-size: 20px;
+  z-index: 150;
 }
 .warning-container {
-        display : flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        padding: 50px;
-        margin-top: 50px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px;
+  margin-top: 50px auto;
 }
 .count-container {
-        display : flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 .count-container span {
-        margin : 5px;
-        font-size: 20px;
+  margin: 5px;
+  font-size: 20px;
 }
 .quantity-input {
-        width: 50px;
-        height: 20px;
-        border-radius: 25px;
-        text-align: center;
-        font-size: 15px;
-        margin : 5px;
+  width: 50px;
+  height: 20px;
+  border-radius: 25px;
+  text-align: center;
+  font-size: 15px;
+  margin: 5px;
 }
 .price-slot {
-        margin : 5px;
-        font-size: 20px;
+  margin: 5px;
+  font-size: 20px;
 }
-.scroll-button{
-        font-size: 30px;
-        color: white;
-        background-color: skyblue;
-        width: 50px;
-        height: 50px;
-        border-radius: 100%;
+.scroll-button {
+  font-size: 30px;
+  color: white;
+  background-color: skyblue;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
 }
-.scroll-button:hover{
-        background-color: blue;
+.scroll-button:hover {
+  background-color: blue;
 }
-@media(max-width:768px){
-        
+
+.modelSize {
+  width: 900px;
+  height: 500px;
+}
+
+@media only screen and (max-width: 540px) {
+  .modelSize {
+    width: 300px;
+    height: 200px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .modelSize {
+    width: 600px;
+    height: 300px;
+  }
 }

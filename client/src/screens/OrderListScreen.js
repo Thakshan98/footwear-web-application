@@ -57,8 +57,11 @@ const OrderListScreen = () => {
   }
 
   return (
-    <Container className=' font-popins'>
-      <h1 className='text-center my-5' style={{ fontSize: '25px', fontWeight: 'bold' }}>
+    <Container className='py-5 font-popins'>
+      <h1
+        className='text-center py-5'
+        style={{ fontSize: '25px', fontWeight: 'bold' }}
+      >
         Orders
       </h1>
       {loadingShow && <Loader />}
@@ -70,12 +73,7 @@ const OrderListScreen = () => {
         <Table striped bordered hover responsive className='table-sm'>
           <thead>
             <tr style={{ background: '#663399' }}>
-              <th
-                className='text-white text-center py-3'
-                style={{ backgroundColor: '#019678' }}
-              >
-                ID
-              </th>
+              
               <th
                 className='text-white text-center py-3'
                 style={{ backgroundColor: '#019678' }}
@@ -123,7 +121,6 @@ const OrderListScreen = () => {
           <tbody>
             {orders.map((order) => (
               <tr key={order._id}>
-                <td className='text-center p-2'>{order._id}</td>
                 <td className='text-center p-2'>
                   {order.user && order.user.name}
                 </td>

@@ -82,7 +82,7 @@ const ProductScreen = () => {
 
   return (
     <>
-      <Container className='my-5 font-popins'>
+      <Container className='py-5 font-popins'>
         <Link
           className='btn btn-sm my-3'
           style={{
@@ -103,7 +103,11 @@ const ProductScreen = () => {
           <>
             <Meta title={product.name} />
             <Row>
-              <Col md={3} className='my-3 shadow p-3 mb-5 bg-white rounded'>
+              <Col
+                lg={3}
+                md={12}
+                className='my-3 shadow p-3 mb-5 bg-white rounded'
+              >
                 <Image
                   className='productImg'
                   src={product.image}
@@ -111,13 +115,13 @@ const ProductScreen = () => {
                   fluid
                 />
               </Col>
-              <Col md={6} className='my-3'>
+              <Col lg={6} md={6} className='my-3'>
                 <ListGroup
                   variant='flush'
                   className='rounded px-3 shadow bg-white'
                 >
                   <ListGroup.Item>
-                    <h4 className='text-secondary'>{product.name}</h4>
+                    <h4 className='text-secondary collect heading-color'>{product.name}</h4>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Rating
@@ -133,7 +137,7 @@ const ProductScreen = () => {
                   </ListGroup.Item>
                 </ListGroup>
               </Col>
-              <Col md={3} className='my-3'>
+              <Col lg={3} md={6} className='my-3'>
                 {userInfo && !userInfo.isAdmin && !userInfo.isSystemAdmin && (
                   <Card className='shadow p-3 mb-5 bg-white rounded  border-0'>
                     <ListGroup variant='flush'>
@@ -222,7 +226,32 @@ const ProductScreen = () => {
               </Col>
             </Row>
             <Row>
-              <Col md={3}></Col>
+              <Col md={6}>
+                {userInfo && !userInfo.isAdmin && !userInfo.isSystemAdmin && (
+                  <div class='sketchfab-embed-wrapper'>
+                    <h2 className='collect heading-color py-3 text-center'>
+                      Footwear 3D Model
+                    </h2>{' '}
+                    <iframe
+                      title='Rockrooster AP611 Boot'
+                      frameborder='0'
+                      allowfullscreen
+                      mozallowfullscreen='true'
+                      webkitallowfullscreen='true'
+                      allow='autoplay; fullscreen; xr-spatial-tracking'
+                      xr-spatial-tracking
+                      execution-while-out-of-viewport
+                      execution-while-not-rendered
+                      web-share
+                      width='600'
+                      height='400'
+                      src={product.url}
+                    >
+                      {' '}
+                    </iframe>{' '}
+                  </div>
+                )}
+              </Col>
               <Col md={6} className='ps-0 rounded'>
                 <div className='shadow p-3 mb-5 bg-white rounded'>
                   {userInfo && !userInfo.isAdmin && !userInfo.isSystemAdmin && (

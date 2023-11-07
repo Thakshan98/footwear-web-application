@@ -55,27 +55,27 @@ const ProfileScreen = () => {
   const navigate = useNavigate()
   useEffect(() => {
     // Increment num using setNum
-    setNum(prevNum => prevNum + 1);
-  
+    setNum((prevNum) => prevNum + 1)
+
     if (!userInfo) {
-      navigate('/login');
+      navigate('/login')
     } else {
       // Reset profile update state before using user and success
-      dispatch({ type: USER_UPDATE_PROFILE_RESET });
-  
+      dispatch({ type: USER_UPDATE_PROFILE_RESET })
+
       // Fetch user details if user or success is missing
       if (!user || !user.name || success) {
-        dispatch(getUserDetails('profile'));
+        dispatch(getUserDetails('profile'))
       }
-  
+
       // Fetch user's orders
-      dispatch(listMyOrders());
+      dispatch(listMyOrders())
     }
-  }, [dispatch, navigate, userInfo, user, success]);
-  
+  }, [dispatch, navigate, userInfo, user, success])
+
   // Assuming setNum and num are defined somewhere
   // and they are intended to be part of the effect's dependencies
-  
+
   const submitHandler = (e) => {
     e.preventDefault()
 
@@ -113,8 +113,7 @@ const ProfileScreen = () => {
 
   return (
     <>
-      <BreadCrumb title='Account Settings' />
-      <Container className='mt-5 font-popins'>
+      <Container className='py-5 font-popins'>
         <Row>
           <Col md={4} className='my-5 py-4'>
             <div className='bg-white py-3 px-3 rounded'>
@@ -259,112 +258,120 @@ const ProfileScreen = () => {
             ) : errorOrders ? (
               <Message variant='danger'>{errorOrders}</Message>
             ) : (
-              <Table striped bordered hover responsive className='table-sm'>
-                {userInfo && !userInfo.isAdmin && (
-                  <thead>
-                    <tr className='text-center'>
-                      <th
-                        className='text-white text-center py-3'
-                        style={{ backgroundColor: '#019678' }}
-                      >
-                        Order No
-                      </th>
-                      <th
-                        className='text-white text-center py-3'
-                        style={{ backgroundColor: '#019678' }}
-                      >
-                        Date
-                      </th>
-                      <th
-                        className='text-white text-center py-3'
-                        style={{ backgroundColor: '#019678' }}
-                      >
-                        Total
-                      </th>
-                      <th
-                        className='text-white text-center py-3'
-                        style={{ backgroundColor: '#019678' }}
-                      >
-                        Paid
-                      </th>
-                      <th
-                        className='text-white text-center py-3'
-                        style={{ backgroundColor: '#019678' }}
-                      >
-                        Delivered
-                      </th>
-                      <th
-                        className='text-white text-center py-3'
-                        style={{ backgroundColor: '#019678' }}
-                      >Details</th>
-                      <th
-                        className='text-white text-center py-3'
-                        style={{ backgroundColor: '#019678' }}
-                      >Cancel</th>
-                    </tr>
-                  </thead>
-                )}
-
-                <tbody>
-                  {orders.map((order, i) => (
-                    <tr key={order._id}>
-                      <td className='text-center p-2'>{i + 1}</td>
-                      <td className='text-center p-2'>{order.createdAt.substring(0, 10)}</td>
-                      <td className='text-center p-2'>{order.totalPrice}</td>
-                      <td className='text-center p-2'>
-                        {order.isPaid ? (
-                          order.paidAt.substring(0, 10)
-                        ) : (
-                          <i
-                            className='fas fa-times'
-                            style={{ color: 'red' }}
-                          ></i>
-                        )}
-                      </td>
-                      <td className='text-center p-2'>
-                        {order.isDelivered ? (
-                          order.deliveredAt.substring(0, 10)
-                        ) : (
-                          <i
-                            className='fas fa-times'
-                            style={{ color: 'red' }}
-                          ></i>
-                        )}
-                      </td>
-                      <td className='text-center p-2'>
-                        <LinkContainer
-                          to={`/order/${order._id}`}
-                          style={{
-                            backgroundImage:
-                              'linear-gradient(to bottom right,#0a0366,#475cd1,#8ec7f5)',
-                            color: 'white',
-                            fontWeight: '600',
-                          }}
+              <div className='table-responsive'>
+                <Table striped bordered hover responsive className='table-sm'>
+                  {userInfo && !userInfo.isAdmin && (
+                    <thead>
+                      <tr className='text-center'>
+                        <th
+                          className='text-white text-center py-3'
+                          style={{ backgroundColor: '#019678' }}
                         >
-                          <Button className='btn-sm'>Details</Button>
-                        </LinkContainer>
-                      </td>
+                          Order No
+                        </th>
+                        <th
+                          className='text-white text-center py-3'
+                          style={{ backgroundColor: '#019678' }}
+                        >
+                          Date
+                        </th>
+                        <th
+                          className='text-white text-center py-3'
+                          style={{ backgroundColor: '#019678' }}
+                        >
+                          Total
+                        </th>
+                        <th
+                          className='text-white text-center py-3'
+                          style={{ backgroundColor: '#019678' }}
+                        >
+                          Paid
+                        </th>
+                        <th
+                          className='text-white text-center py-3'
+                          style={{ backgroundColor: '#019678' }}
+                        >
+                          Delivered
+                        </th>
+                        <th
+                          className='text-white text-center py-3'
+                          style={{ backgroundColor: '#019678' }}
+                        >
+                          Details
+                        </th>
+                        <th
+                          className='text-white text-center py-3'
+                          style={{ backgroundColor: '#019678' }}
+                        >
+                          Cancel
+                        </th>
+                      </tr>
+                    </thead>
+                  )}
 
-                      <td className='text-center p-2'>
-                        {order.show ? (
-                          <Button
+                  <tbody>
+                    {orders.map((order, i) => (
+                      <tr key={order._id}>
+                        <td className='text-center p-2'>{i + 1}</td>
+                        <td className='text-center p-2'>
+                          {order.createdAt.substring(0, 10)}
+                        </td>
+                        <td className='text-center p-2'>{order.totalPrice}</td>
+                        <td className='text-center p-2'>
+                          {order.isPaid ? (
+                            order.paidAt.substring(0, 10)
+                          ) : (
+                            <i
+                              className='fas fa-times'
+                              style={{ color: 'red' }}
+                            ></i>
+                          )}
+                        </td>
+                        <td className='text-center p-2'>
+                          {order.isDelivered ? (
+                            order.deliveredAt.substring(0, 10)
+                          ) : (
+                            <i
+                              className='fas fa-times'
+                              style={{ color: 'red' }}
+                            ></i>
+                          )}
+                        </td>
+                        <td className='text-center p-2'>
+                          <LinkContainer
+                            to={`/order/${order._id}`}
                             style={{
                               backgroundImage:
-                                'linear-gradient(to bottom right,#c20e0e,#bf301d,#a19c99)',
+                                'linear-gradient(to bottom right,#0a0366,#475cd1,#8ec7f5)',
                               color: 'white',
                               fontWeight: '600',
                             }}
-                            className='btn-sm'
-                            onClick={() => deleteHandler(order._id)}
                           >
-                            Cancel
-                          </Button>
-                        ) : null}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
+                            <Button className='btn-sm'>Details</Button>
+                          </LinkContainer>
+                        </td>
+
+                        <td className='text-center p-2'>
+                          {order.show ? (
+                            <Button
+                              style={{
+                                backgroundImage:
+                                  'linear-gradient(to bottom right,#c20e0e,#bf301d,#a19c99)',
+                                color: 'white',
+                                fontWeight: '600',
+                              }}
+                              className='btn-sm'
+                              onClick={() => deleteHandler(order._id)}
+                            >
+                              Cancel
+                            </Button>
+                          ) : null}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </div>
             )}
           </Col>
         </Row>

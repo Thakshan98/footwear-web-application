@@ -81,7 +81,7 @@ const ProductListScreen = () => {
   }
 
   return (
-    <Container className='my-5 font-popins'>
+    <Container className='py-5 font-popins'>
       <>
         <Row className='align-items-center'>
           <Col>

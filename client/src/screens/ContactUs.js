@@ -17,10 +17,10 @@ function ContactScreen() {
         <div class='row'>
           <div class='col'>
             <div className='text-center p-3 my-5'>
-              <h3 style={{ color: 'Green' }}>Thank you for using Phoenix</h3>
-              <h5 className=' uppercase' style={{ color: 'purple' }}>
+              <h1 style={{ color: 'Green' }} className='collect'>Thank you for using Phoenix</h1>
+              <h3 className='collect py-2' style={{ color: 'purple' }}>
                 Sole Haven Footwear Emporium.
-              </h5>
+              </h3>
             </div>
             <div>
               <iframe
@@ -52,7 +52,7 @@ function ContactScreen() {
           <div class='col-lg-6 col-md-12 col-sm-12'>
             <div class='p-3 text-black'>
               <div>
-                <h3 className='text-2xl font-semibold mt-2 py-3 mr-6'>
+                <h3 className='collect text-2xl font-semibold mt-2 py-3 mr-6'>
                   Get In Touch With Us
                 </h3>
                 <div>

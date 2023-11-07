@@ -2,8 +2,8 @@ const Footwear = require('../models/footwearModel.js')
 const asyncHandler = require('express-async-handler')
 
 const getProducts = asyncHandler(async (req, res) => {
-  const pageSize = 12;
-  const page = Number(req.query.pageNumber) || 1;
+  const pageSize = 12
+  const page = Number(req.query.pageNumber) || 1
 
   const keyword = req.query.keyword
     ? {
@@ -12,20 +12,24 @@ const getProducts = asyncHandler(async (req, res) => {
           $options: 'i',
         },
       }
-    : {};
+    : {}
 
   // Fetch the total count of products matching the search criteria
-  const totalCount = await Footwear.countDocuments({ ...keyword });
+  const totalCount = await Footwear.countDocuments({ ...keyword })
 
   // Fetch products with pagination
   const products = await Footwear.find({ ...keyword })
     .sort({ length: -1, createdAt: -1 })
     .skip(pageSize * (page - 1))
-    .limit(pageSize);
+    .limit(pageSize)
 
-  res.json({ products, page, pages: Math.ceil(totalCount / pageSize), totalCount });
-});
-
+  res.json({
+    products,
+    page,
+    pages: Math.ceil(totalCount / pageSize),
+    totalCount,
+  })
+})
 
 const getProductById = async (req, res) => {
   const product = await Footwear.findById(req.params.id)
@@ -58,6 +62,7 @@ const createProduct = async (req, res) => {
     gender,
     price,
     image,
+    url,
 
     description,
   } = req.body
@@ -69,6 +74,7 @@ const createProduct = async (req, res) => {
       size,
       gender,
       price,
+      url,
       user: req.user._id, // Assuming user authentication is set up
       image,
 
@@ -88,8 +94,17 @@ const createProduct = async (req, res) => {
 }
 
 const updateProduct = async (req, res) => {
-  const { name, cat, size, gender, price, description, image, countInStock } =
-    req.body
+  const {
+    name,
+    cat,
+    size,
+    gender,
+    price,
+    description,
+    url,
+    image,
+    countInStock,
+  } = req.body
 
   const product = await Footwear.findById(req.params.id)
 
@@ -99,6 +114,7 @@ const updateProduct = async (req, res) => {
     product.size = size
     product.gender = gender
     product.price = price
+    product.url = url
     product.description = description
     product.image = image
     product.countInStock = countInStock
@@ -155,7 +171,7 @@ const getTopProducts = async (req, res) => {
 }
 
 const getTopNewArivals = async (req, res) => {
-  const productsArrival = await Footwear.find({}).sort({ price: -1 }).limit(5);
+  const productsArrival = await Footwear.find({}).sort({ price: -1 }).limit(5)
   res.json(productsArrival)
 }
 

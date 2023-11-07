@@ -70,7 +70,7 @@ const PlaceOrderScreen = () => {
 
   return (
     <>
-      <Container className='my-5'>
+      <Container className='py-5'>
         <CheckoutSteps step1 step2 step3 step4 />
         <Row>
           <Col md={8}>
@@ -132,7 +132,7 @@ const PlaceOrderScreen = () => {
           </Col>
           <Col md={4}>
             <div>
-              <Card className='bg-white px-4 py-2 font-popins shadow-lg p-3 my-5 rounded'>
+              <Card className='bg-white px-4 py-2 font-popins shadow-lg p-3 my-5 rounded border-0'>
                 <ListGroup variant='flush'>
                   <ListGroup.Item >
                     <h2>Order Summary</h2>

@@ -29,8 +29,8 @@ const ShopScreen = () => {
     <>
       <div className='container py-5'>
         <div>
-          <div className='text-center py-3 collect'>
-            <h1 classNameName='text-center '>Let's Shop</h1>
+          <div className='text-center py-3'>
+            <h1 classNameName='text-center collect'>Let's Shop</h1>
           </div>
         </div>
         <div className='row'>

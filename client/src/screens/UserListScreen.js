@@ -47,7 +47,7 @@ const UserListScreen = ({ history }) => {
   return (
     <>
       <Container className='py-5'>
-        <h3 className='my-3 text-center' style={{ fontWeight: 'bold' }}>
+        <h3 className='py-5 text-center' style={{ fontWeight: 'bold' }}>
           Users List
         </h3>
         {loading ? (
