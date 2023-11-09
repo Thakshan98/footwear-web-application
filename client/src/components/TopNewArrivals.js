@@ -42,7 +42,7 @@ const TopNewArrivals = () => {
                     src={product.image}
                     alt={product.name}
                     fluid
-                    className='pop-img border m-3 img-fluid'
+                    className='pop-img border m-3 img-fluid popImage'
                   />
                   <Card.Body>
                     <Card.Title

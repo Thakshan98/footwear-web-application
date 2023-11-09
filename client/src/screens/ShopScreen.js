@@ -8,8 +8,6 @@ import { listProducts } from '../actions/productActions'
 import { listCategories } from '../actions/categoryAction'
 import SearchBox from '../components/SearchBox'
 import Paginate from '../components/Paginate'
-import TopNewArrivals from '../components/TopNewArrivals'
-import TopRatedProduct from '../components/TopRatedProduct'
 
 const ShopScreen = () => {
   const { keyword, pageNumber } = useParams()

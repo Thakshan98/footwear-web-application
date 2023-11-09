@@ -9,7 +9,7 @@ const Product = ({ product }) => {
       <Link to={`/product/${product._id}`}>
         <Card.Img
           style={{ height: '250px' }}
-          className='d-flex align-items-center justify-content-center img-fluid rounded border'
+          className='d-flex align-items-center justify-content-center img-fluid rounded border popImage'
           src={product.image}
           variant='top'
         />

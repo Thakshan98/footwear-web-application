@@ -215,7 +215,9 @@ const ProductCreateScreen = () => {
                     </Form.Group>
                   </div>
                 ))}
-                <Button className='my-3' onClick={addSizeCount}>Add Size</Button>
+                <Button className='my-3' onClick={addSizeCount}>
+                  Add Size
+                </Button>
 
                 <Form.Group controlId='price'>
                   <Form.Label
@@ -287,7 +289,8 @@ const ProductCreateScreen = () => {
                     Description
                   </Form.Label>
                   <Form.Control
-                    type='text'
+                    as='textarea'
+                    rows={3}
                     placeholder='Enter description'
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}

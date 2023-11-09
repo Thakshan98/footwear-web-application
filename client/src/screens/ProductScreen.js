@@ -21,10 +21,19 @@ import {
 } from '../actions/productActions'
 import { addToCart } from '../actions/cartActions'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
+import QR from '../components/QR'
+import ARViewer from '../components/ARViewer'
+import { BsFillSkipBackwardCircleFill } from 'react-icons/bs'
+import QRCode from 'qrcode.react'
+import { TbBoxModel } from 'react-icons/tb'
 
 const ProductScreen = () => {
   const { id } = useParams()
-
+  // Click the button model will be displayed
+  const [isModelVisible, setModelVisible] = useState(false)
+  const toggleModelVisibility = () => {
+    setModelVisible(!isModelVisible)
+  }
   const [selectedSize, setSelectedSize] = useState('')
   const [selectedSizeCount, setSelectedSizeCount] = useState(0)
   const [rating, setRating] = useState(0)
@@ -83,18 +92,15 @@ const ProductScreen = () => {
   return (
     <>
       <Container className='py-5 font-popins'>
-        <Link
-          className='btn btn-sm my-3'
-          style={{
-            backgroundImage:
-              'linear-gradient(to bottom right,#0a0366,#475cd1,#8ec7f5)',
-            color: 'white',
-            fontWeight: '600',
-          }}
-          to='/shop'
-        >
-          Go Back
-        </Link>
+        <div className='py-3 pb-4'>
+          <Link to='/shop'>
+            <BsFillSkipBackwardCircleFill
+              className='rounded'
+              size={45}
+              color='black'
+            />
+          </Link>
+        </div>
         {loading ? (
           <Loader />
         ) : error ? (
@@ -103,25 +109,20 @@ const ProductScreen = () => {
           <>
             <Meta title={product.name} />
             <Row>
-              <Col
-                lg={3}
-                md={12}
-                className='my-3 shadow p-3 mb-5 bg-white rounded'
-              >
+              <Col lg={3} md={12} className='my-3 p-3 mb-5 bg-white rounded'>
                 <Image
-                  className='productImg'
+                  className='productImg popImage border rounded'
                   src={product.image}
                   alt={product.name}
                   fluid
                 />
               </Col>
               <Col lg={6} md={6} className='my-3'>
-                <ListGroup
-                  variant='flush'
-                  className='rounded px-3 shadow bg-white'
-                >
+                <ListGroup variant='flush' className='rounded px-3 bg-white'>
                   <ListGroup.Item>
-                    <h4 className='text-secondary collect heading-color'>{product.name}</h4>
+                    <h4 className='text-secondary collect heading-color py-2'>
+                      {product.name}
+                    </h4>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Rating
@@ -135,11 +136,12 @@ const ProductScreen = () => {
                       Description: {product.description}
                     </div>
                   </ListGroup.Item>
+                  <div className='py-3 px-3'>{/* <QR /> */}</div>
                 </ListGroup>
               </Col>
               <Col lg={3} md={6} className='my-3'>
                 {userInfo && !userInfo.isAdmin && !userInfo.isSystemAdmin && (
-                  <Card className='shadow p-3 mb-5 bg-white rounded  border-0'>
+                  <Card className='shadow-none p-3 mb-5 rounded  border-0'>
                     <ListGroup variant='flush'>
                       <ListGroup.Item>
                         <Row>
@@ -232,28 +234,75 @@ const ProductScreen = () => {
                     <h2 className='collect heading-color py-3 text-center'>
                       Footwear 3D Model
                     </h2>{' '}
-                    <iframe
-                      title='Rockrooster AP611 Boot'
-                      frameborder='0'
-                      allowfullscreen
-                      mozallowfullscreen='true'
-                      webkitallowfullscreen='true'
-                      allow='autoplay; fullscreen; xr-spatial-tracking'
-                      xr-spatial-tracking
-                      execution-while-out-of-viewport
-                      execution-while-not-rendered
-                      web-share
-                      width='600'
-                      height='400'
-                      src={product.url}
+                    <div
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center', // Center horizontally
+                        justifyContent: 'center', // Center vertically
+                      }}
                     >
-                      {' '}
-                    </iframe>{' '}
+                      <button
+                        className='py-1 px-3 my-2 rounded btn btn-primary'
+                        onClick={toggleModelVisibility}
+                        style={{
+                          fontWeight: 'bold',
+                          border: '1px solid #DCDCDC',
+                        }}
+                      >
+                        <TbBoxModel
+                          color='white'
+                          size={35}
+                          style={{
+                            padding: '6px',
+                          }}
+                        />
+                        Click View in 3D
+                      </button>
+                      {isModelVisible && (
+                        <iframe
+                          title='Footwear model'
+                          frameBorder='0'
+                          allowFullScreen
+                          mozAllowFullScreen='true'
+                          webkitAllowFullScreen='true'
+                          allow='autoplay; fullscreen; xr-spatial-tracking'
+                          xr-spatial-tracking
+                          execution-while-out-of-viewport
+                          execution-while-not-rendered
+                          web-share
+                          width='600'
+                          height='400'
+                          src={product.url}
+                        ></iframe>
+                      )}
+                    </div>
+                    <div
+                      className='mx-5 py-3'
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexDirection: 'column',
+                      }}
+                    >
+                      <QRCode value={product.url} />
+                      <h4
+                        className='collect heading-color text-center py-3'
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}
+                      >
+                        Scan the QR and see the 3D View in Your Mobile Phone
+                      </h4>
+                    </div>
                   </div>
                 )}
               </Col>
               <Col md={6} className='ps-0 rounded'>
-                <div className='shadow p-3 mb-5 bg-white rounded'>
+                <div className='p-3 mb-5 bg-white rounded'>
                   {userInfo && !userInfo.isAdmin && !userInfo.isSystemAdmin && (
                     <div class='py-2 m-4 rounded'>
                       <h3 className='text-lg'>Reviews</h3>
@@ -316,11 +365,9 @@ const ProductScreen = () => {
                                 type='submit'
                                 className='btn-block my-3'
                                 style={{
-                                  backgroundImage:
-                                    'linear-gradient(to bottom right,#79db58,#036920,#79db58)',
                                   color: 'white',
                                   fontWeight: '600',
-                                  borderRadius: '15px',
+                                  borderRadius: '5px',
                                 }}
                               >
                                 Submit

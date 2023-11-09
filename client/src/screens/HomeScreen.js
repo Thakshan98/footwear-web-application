@@ -7,7 +7,9 @@ import Service from '../components/Service'
 import MarqueeBrand from '../components/MarqueeBrand'
 import TopRatedProduct from '../components/TopRatedProduct'
 import TopNewArrivals from '../components/TopNewArrivals'
-import men from '../images/men.png'
+import men from '../images/men-shoe.png'
+import unisex from '../images/unisex-shoe.png'
+import women from '../images/women.png'
 import './homescreen.css'
 import Hero from '../components/Hero'
 
@@ -26,7 +28,7 @@ const HomeScreen = () => {
     <>
       <div>
         <div>
-          <Hero/>
+          <Hero />
           {/* <div>
             <div
               style={{ height: '90vh' }}
@@ -53,9 +55,9 @@ const HomeScreen = () => {
                   <h4 className='mt-4 collect'>MEN COLLECTION</h4>
                   <img
                     src={men}
-                    style={{ width: '300px', height: '150px' }}
+                    style={{ width: '250px', height: '120px' }}
                     alt='Men Collection'
-                    className='img-fluid'
+                    className='img-fluid my-4'
                   />
                   <Link to='/men-collection'>
                     <button
@@ -74,10 +76,10 @@ const HomeScreen = () => {
                 >
                   <h4 className='mt-4 collect'>WOMEN COLLECTION</h4>
                   <img
-                    src={men}
-                    style={{ width: '300px', height: '150px' }}
+                    src={women}
+                    style={{ width: '250px', height: '120px' }}
                     alt='Men Collection'
-                    className='img-fluid'
+                    className='img-fluid my-4'
                   />
                   <Link to='/women-collection'>
                     <button
@@ -96,10 +98,10 @@ const HomeScreen = () => {
                 >
                   <h4 className='mt-4 collect'>UNISEX COLLECTION</h4>
                   <img
-                    src={men}
-                    style={{ width: '300px', height: '150px' }}
+                    src={unisex}
+                    style={{ width: '250px', height: '120px' }}
                     alt='Men Collection'
-                    className='img-fluid'
+                    className='img-fluid my-4'
                   />
                   <Link to='/unisex-collection'>
                     <button

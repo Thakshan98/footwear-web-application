@@ -297,13 +297,13 @@ const ProductEditScreen = () => {
                     Description
                   </Form.Label>
                   <Form.Control
-                    type='text'
+                    as='textarea'
+                    rows={3}
                     placeholder='Enter description'
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                   ></Form.Control>
                 </Form.Group>
-
                 <Button
                   className='my-3'
                   type='submit'

@@ -11,7 +11,7 @@ const Service = () => {
         <h1 className='collect headind-color'>Our Services</h1>
         <div className='row'>
           <div className='col-md-6 col-lg-3 col-sm-12 py-5'>
-            <div className='py-4 d-flex align-items-center rounded shadow justify-content-center bg-primary'>
+            <div className='py-4 d-flex align-items-center rounded shadow justify-content-center bg-primary pop'>
               <div className=' text-white'>
                 <div>
                   <LiaShippingFastSolid size='30' />
@@ -24,7 +24,7 @@ const Service = () => {
             </div>
           </div>
           <div className='col-md-6 col-lg-3 col-sm-12 py-5'>
-            <div className='py-4 d-flex align-items-center rounded shadow justify-content-center bg-secondary'>
+            <div className='py-4 d-flex align-items-center rounded shadow justify-content-center bg-secondary pop'>
               <div className='text-white'>
                 <div>
                   <BiSupport size='30' />
@@ -39,7 +39,7 @@ const Service = () => {
             </div>
           </div>
           <div className='col-md-6 col-lg-3 col-sm-12 py-5'>
-            <div className='py-4 d-flex align-items-center rounded shadow justify-content-center bg-success'>
+            <div className='py-4 d-flex align-items-center rounded shadow justify-content-center bg-success pop'>
               <div className='text-white'>
                 <div>
                   <GiPriceTag size='30' />
@@ -54,7 +54,7 @@ const Service = () => {
             </div>
           </div>
           <div className='col-md-6 col-lg-3 col-sm-12 py-5'>
-            <div className='py-4 d-flex align-items-center rounded shadow justify-content-center bg-info'>
+            <div className='py-4 d-flex align-items-center rounded shadow justify-content-center bg-info pop'>
               <div className=' text-white'>
                 <div>
                   <MdPayment size='30' />

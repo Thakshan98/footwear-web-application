@@ -33,15 +33,18 @@ const ProductCarousel = () => {
                   style={{ textDecoration: 'none' }}
                 >
                   <Card.Img
-                  style={{width:'210px'}}
+                    style={{ width: '210px' }}
                     variant='top'
                     src={product.image}
                     alt={product.name}
                     fluid
-                    className='pop-img border m-3 img-fluid'
+                    className='pop-img border m-3 img-fluid popImage'
                   />
                   <Card.Body>
-                    <Card.Title style={{fontSize:'15px'}} className='text-black'>
+                    <Card.Title
+                      style={{ fontSize: '15px' }}
+                      className='text-black'
+                    >
                       {product.name}
                     </Card.Title>
                     <Card.Text className='text-black'>

@@ -13,10 +13,9 @@ const MarqueeBrand = () => {
   return (
     <>
       <div className='container mt-3 mb-5 pt-1 pb-5 text-center '>
-      <h1 className='collect headind-color pb-5 pt-1'>Shoes Brands</h1>
+        <h1 className='collect headind-color pb-5 pt-1'>Footwear Brands</h1>
         <div className='row'>
           <div className='col'>
-          
             <Marquee>
               <div className='d-flex flex-row align-items-center justify-content-center'>
                 <img
