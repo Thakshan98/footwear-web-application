@@ -100,7 +100,7 @@ const models = [
     shoeName: 'Brown women stylish heels',
     topName: 'Shoe 3',
     bottomName: 'Shoe 3',
-    price: 2300,
+    price: 3999,
     modelLink:
       'https://sketchfab.com/models/dc79e84850cb4b9d958721b0c1882259/embed?camera=0&ui_animations=0&ui_infos=0&ui_stop=0&ui_inspector=0&ui_hint=0&ui_ar=0&ui_help=0&ui_settings=0&ui_vr=0&ui_fullscreen=0&ui_annotations=0',
     imageLink:
@@ -112,7 +112,7 @@ const models = [
     shoeName: 'Brown Unisex activewear Sandals',
     topName: 'Shoe 4',
     bottomName: 'Shoe 4',
-    price: 2300,
+    price: 2879,
     modelLink:
       'https://sketchfab.com/models/22d076dde02f43998bec18370033191d/embed?camera=0&ui_animations=0&ui_infos=0&ui_stop=0&ui_inspector=0&ui_hint=0&ui_ar=0&ui_help=0&ui_settings=0&ui_vr=0&ui_fullscreen=0&ui_annotations=0',
     imageLink:
@@ -124,7 +124,7 @@ const models = [
     shoeName: 'Brown women open toe sandals',
     topName: 'Shoe 5',
     bottomName: 'Shoe 5',
-    price: 2300,
+    price: 5999,
     modelLink:
       'https://sketchfab.com/models/dbd9bd82291e42359ffcbaf3f3e39310/embed?camera=0&ui_animations=0&ui_infos=0&ui_stop=0&ui_inspector=0&ui_hint=0&ui_ar=0&ui_help=0&ui_settings=0&ui_vr=0&ui_fullscreen=0&ui_annotations=0',
     imageLink:

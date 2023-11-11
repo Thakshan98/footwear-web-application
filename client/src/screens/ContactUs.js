@@ -17,7 +17,7 @@ function ContactScreen() {
         <div class='row'>
           <div class='col'>
             <div className='text-center p-3 my-5'>
-              <h1 style={{ color: 'Green' }} className='collect'>Thank you for using Phoenix</h1>
+              <h1 style={{ color: 'Green' }} className='collect'>Thank you for visiting Phoenix</h1>
               <h3 className='collect py-2' style={{ color: 'purple' }}>
                 Sole Haven Footwear Emporium.
               </h3>

@@ -31,9 +31,9 @@ const FeedbackListScreen = () => {
 
   return (
     <>
-      <Container className='pb-5'>
+      <Container className='py-5'>
         <h1
-          className='my-5 font-popins text-center'
+          className='py-5 font-popins text-center'
           style={{
             fontSize: '30px',
             fontWeight: 'bold',

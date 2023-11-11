@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link ,useParams,useNavigate} from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   Row,
@@ -20,7 +20,7 @@ import { getFeedbackDetails } from '../actions/feedbackActions'
 
 const FeedbackDetailScreen = () => {
   const dispatch = useDispatch()
-  const { id:feedbackId }= useParams();
+  const { id: feedbackId } = useParams()
 
   const feedbackDetails = useSelector((state) => state.feedbackDetails)
   const { loading, error, feedbacks } = feedbackDetails
@@ -28,7 +28,7 @@ const FeedbackDetailScreen = () => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   useEffect(() => {
     if (userInfo && userInfo.isSystemAdmin) {
       dispatch(getFeedbackDetails(feedbackId))
@@ -37,7 +37,7 @@ const FeedbackDetailScreen = () => {
     } else {
       navigate('/login')
     }
-  }, [dispatch, navigate, userInfo, ])
+  }, [dispatch, navigate, userInfo])
 
   return (
     <Container>
@@ -60,20 +60,28 @@ const FeedbackDetailScreen = () => {
           <Message variant='danger'>{error}</Message>
         ) : (
           <>
-           
-            <Row>
-              {feedbacks.bookName != '' && feedbacks.feedback != '' ? (
+            <Row
+              className='py-5'
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignContent: 'center',
+              }}
+            >
+              {feedbacks.feedback != '' ? (
                 <>
-                  <Col md={4}></Col>
                   <Col md={8}>
-                    <Card style={{background:"#8cb2d1"}}>
-                      <ListGroup variant='flush' >
-                      
+                    <Card className='border-0 shadow-none p-3'>
+                      <h3 className='text-center collect heading-color py-3'>
+                        Customer Feedback
+                      </h3>
+                      <hr className='text-center' />
+                      <ListGroup variant='flush'>
                         <ListGroup.Item>
                           <h5
+                            className='text-center'
                             style={{
                               fontSize: '18px',
-                              
                             }}
                           >
                             {feedbacks.feedback}

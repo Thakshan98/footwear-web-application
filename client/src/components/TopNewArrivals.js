@@ -28,7 +28,7 @@ const TopNewArrivals = () => {
           <div className='d-flex flex-row align-items-center justify-content-center gap-4'>
             {products.map((product) => (
               <Card
-                style={{ width: '25rem' }}
+                style={{ width: '25rem', height: '20rem' }}
                 key={product._id}
                 className='shadow bg-body rounded border-0 pop'
               >
@@ -37,7 +37,7 @@ const TopNewArrivals = () => {
                   style={{ textDecoration: 'none' }}
                 >
                   <Card.Img
-                  style={{width:'210px'}}
+                    style={{ width: '210px' }}
                     variant='top'
                     src={product.image}
                     alt={product.name}

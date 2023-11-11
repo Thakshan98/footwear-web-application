@@ -131,6 +131,8 @@ const ProductScreen = () => {
                     />
                   </ListGroup.Item>
                   <ListGroup.Item>Price: LKR.{product.price}</ListGroup.Item>
+                  <ListGroup.Item>Gender: {product.gender}</ListGroup.Item>
+                  <ListGroup.Item>Category: {product.cat}</ListGroup.Item>
                   <ListGroup.Item>
                     <div class='text-justify'>
                       Description: {product.description}
@@ -227,7 +229,7 @@ const ProductScreen = () => {
                 )}
               </Col>
             </Row>
-            <Row>
+            <Row className='my-5'>
               <Col md={6}>
                 {userInfo && !userInfo.isAdmin && !userInfo.isSystemAdmin && (
                   <div class='sketchfab-embed-wrapper'>
@@ -262,7 +264,7 @@ const ProductScreen = () => {
                       {isModelVisible && (
                         <iframe
                           title='Footwear model'
-                          frameBorder='0'
+                          frameborder='0'
                           allowFullScreen
                           mozAllowFullScreen='true'
                           webkitAllowFullScreen='true'
@@ -271,8 +273,9 @@ const ProductScreen = () => {
                           execution-while-out-of-viewport
                           execution-while-not-rendered
                           web-share
-                          width='600'
-                          height='400'
+                          width={600}
+                          height={400}
+                          // className='modelSize'
                           src={product.url}
                         ></iframe>
                       )}
