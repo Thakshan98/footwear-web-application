@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, NavLink, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   Row,
@@ -21,7 +21,9 @@ import {
 } from '../actions/productActions'
 import { addToCart } from '../actions/cartActions'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
-import QR from '../components/QR'
+import ARVans from '../images/QRVans.png'
+import Android from '../images/android.png'
+import Iphone from '../images/apple.png'
 import ARViewer from '../components/ARViewer'
 import { BsFillSkipBackwardCircleFill } from 'react-icons/bs'
 import QRCode from 'qrcode.react'
@@ -31,6 +33,7 @@ const ProductScreen = () => {
   const { id } = useParams()
   // Click the button model will be displayed
   const [isModelVisible, setModelVisible] = useState(false)
+  const [isModel, setModel] = useState(true)
   const toggleModelVisibility = () => {
     setModelVisible(!isModelVisible)
   }
@@ -109,12 +112,18 @@ const ProductScreen = () => {
           <>
             <Meta title={product.name} />
             <Row>
-              <Col lg={3} md={12} className='my-3 p-3 mb-5 bg-white rounded'>
+              <Col
+                lg={3}
+                md={12}
+                className='my-3 py-4 bg-white rounded'
+                style={{ height: '350px', width: '300px' }}
+              >
                 <Image
-                  className='productImg popImage border rounded'
+                  className='productImg popImage border rounded '
                   src={product.image}
                   alt={product.name}
                   fluid
+                  style={{ height: '300px' }}
                 />
               </Col>
               <Col lg={6} md={6} className='my-3'>
@@ -132,12 +141,63 @@ const ProductScreen = () => {
                   </ListGroup.Item>
                   <ListGroup.Item>Price: LKR.{product.price}</ListGroup.Item>
                   <ListGroup.Item>Gender: {product.gender}</ListGroup.Item>
-                  <ListGroup.Item>Category: {product.cat}</ListGroup.Item>
+                  <ListGroup.Item>Category: {product.cat} </ListGroup.Item>
+
                   <ListGroup.Item>
                     <div class='text-justify'>
                       Description: {product.description}
                     </div>
                   </ListGroup.Item>
+                  <ListGroup.Item>
+                    <div
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                      }}
+                    >
+                      <div>
+                        <h5>AR View Scan QR</h5>
+                        <img
+                          style={{ width: '200px' }}
+                          src={ARVans}
+                          alt='Ar View'
+                        />
+                      </div>
+                      <div
+                        style={{
+                          display: 'flex',
+                        }}
+                      >
+                        <a
+                          href='https://play.google.com/store/apps/details?id=com.ibosoninnov.unitear'
+                          target='_blank'
+                          rel='noreferrer'
+                        >
+                          <img
+                            className='img-fluid'
+                            src={Android}
+                            target='_blank'
+                            alt='Android'
+                            style={{ width: '180px', height: '60px' }}
+                          />
+                        </a>
+                        <a
+                          href='https://apps.apple.com/us/app/unitear/id1450089869'
+                          target='_blank'
+                          rel='noreferrer'
+                        >
+                          <img
+                            className='img-fluid'
+                            src={Iphone}
+                            target='_blank'
+                            alt='Iphone'
+                            style={{ width: '180px', height: '60px' }}
+                          />
+                        </a>
+                      </div>
+                    </div>
+                  </ListGroup.Item>
+
                   <div className='py-3 px-3'>{/* <QR /> */}</div>
                 </ListGroup>
               </Col>
@@ -265,9 +325,9 @@ const ProductScreen = () => {
                         <iframe
                           title='Footwear model'
                           frameborder='0'
-                          allowFullScreen
-                          mozAllowFullScreen='true'
-                          webkitAllowFullScreen='true'
+                          allowfullscreen
+                          mozallowfullscreen='true'
+                          webkitallowfullscreen='true'
                           allow='autoplay; fullscreen; xr-spatial-tracking'
                           xr-spatial-tracking
                           execution-while-out-of-viewport
@@ -289,7 +349,10 @@ const ProductScreen = () => {
                         flexDirection: 'column',
                       }}
                     >
-                      <QRCode value={product.url} />
+                      <QRCode
+                        value={product.url}
+                        style={{ width: '200px', height: '200px' }}
+                      />
                       <h4
                         className='collect heading-color text-center py-3'
                         style={{
