@@ -159,7 +159,7 @@ const ProductScreen = () => {
                         <h5>AR View Scan QR</h5>
                         <img
                           style={{ width: '200px' }}
-                          src={ARVans}
+                          src={product.qr}
                           alt='Ar View'
                         />
                       </div>

@@ -63,6 +63,7 @@ const createProduct = async (req, res) => {
     price,
     image,
     url,
+    qr,
 
     description,
   } = req.body
@@ -77,6 +78,7 @@ const createProduct = async (req, res) => {
       url,
       user: req.user._id, // Assuming user authentication is set up
       image,
+      qr,
 
       numReviews: 0,
       description,
@@ -103,6 +105,7 @@ const updateProduct = async (req, res) => {
     description,
     url,
     image,
+    qr,
     countInStock,
   } = req.body
 
@@ -117,6 +120,7 @@ const updateProduct = async (req, res) => {
     product.url = url
     product.description = description
     product.image = image
+    product.qr = qr
     product.countInStock = countInStock
 
     const updatedProduct = await product.save()

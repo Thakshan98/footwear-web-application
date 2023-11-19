@@ -1,83 +1,95 @@
-import axios from 'axios'
-import React, { useState, useEffect } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { Form, Button, Container } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import Message from '../components/Message'
-import Loader from '../components/Loader'
-import FormContainer from '../components/FormContainer'
-import { createProduct } from '../actions/productActions'
-import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
-import { date } from 'yup'
-import { listCategories } from '../actions/categoryAction'
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Form, Button, Container } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import Message from '../components/Message';
+import Loader from '../components/Loader';
+import FormContainer from '../components/FormContainer';
+import { createProduct } from '../actions/productActions';
+import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
+import { listCategories } from '../actions/categoryAction';
 
 const ProductCreateScreen = () => {
-  const { id: productId } = useParams()
+  const { id: productId } = useParams();
 
-  const [cat, setCategory] = useState('')
-  const [name, setName] = useState('')
-  const [gender, setGender] = useState('')
-  const [price, setPrice] = useState(0)
-  const [sizeCounts, setSizeCounts] = useState([{ size: '', count: 0 }])
-  const [image, setImage] = useState('')
-  const [url, setUrl] = useState('')
-  const [description, setDescription] = useState('')
-  const [uploading, setUploading] = useState(false)
+  const [cat, setCategory] = useState('');
+  const [name, setName] = useState('');
+  const [gender, setGender] = useState('');
+  const [price, setPrice] = useState(0);
+  const [sizeCounts, setSizeCounts] = useState([{ size: '', count: 0 }]);
+  const [image, setImage] = useState('');
+  const [qr, setQr] = useState('');
+  const [url, setUrl] = useState('');
+  const [description, setDescription] = useState('');
+  const [uploading, setUploading] = useState(false);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const productDetails = useSelector((state) => state.productDetails)
-  const { loading, error, product } = productDetails
+  const productDetails = useSelector((state) => state.productDetails);
+  const { loading, error, product } = productDetails;
 
-  const categoriesList = useSelector((state) => state.categoriesList)
-  const { category } = categoriesList
+  const categoriesList = useSelector((state) => state.categoriesList);
+  const { category } = categoriesList;
 
-  const productCreate = useSelector((state) => state.productCreate)
+  const productCreate = useSelector((state) => state.productCreate);
   const {
     loading: loadingCreate,
     error: errorCreate,
     success: successCreate,
-  } = productCreate
+  } = productCreate;
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
-    dispatch(listCategories())
+    dispatch(listCategories());
     if (successCreate) {
-      dispatch({ type: PRODUCT_CREATE_RESET })
-      navigate('/admin/productlist')
+      dispatch({ type: PRODUCT_CREATE_RESET });
+      navigate('/admin/productlist');
     }
-  }, [dispatch, navigate, productId, product, successCreate])
+  }, [dispatch, navigate, productId, product, successCreate]);
 
   const uploadFileHandler = async (e) => {
-    const file = e.target.files[0]
+    const file = e.target.files[0];
 
-    const formData = new FormData()
-    formData.append('image', file)
+    const formData = new FormData();
+    formData.append('image', file);
 
     const { data } = await axios.post('/api/upload', formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
-    })
-    setImage(data)
-  }
+    });
+    setImage(data);
+  };
+
+  const uploadFileHandlerqr = async (e) => {
+    const file = e.target.files[0];
+
+    const formData = new FormData();
+    formData.append('image', file);
+
+    const { data } = await axios.post('/api/upload', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    setQr(data);
+  };
 
   const handleSizeChange = (e, index) => {
-    const newSizeCounts = [...sizeCounts]
-    newSizeCounts[index].size = e.target.value
-    setSizeCounts(newSizeCounts)
-  }
+    const newSizeCounts = [...sizeCounts];
+    newSizeCounts[index].size = e.target.value;
+    setSizeCounts(newSizeCounts);
+  };
 
   const handleCountChange = (e, index) => {
-    const newSizeCounts = [...sizeCounts]
-    newSizeCounts[index].count = e.target.value
-    setSizeCounts(newSizeCounts)
-  }
+    const newSizeCounts = [...sizeCounts];
+    newSizeCounts[index].count = e.target.value;
+    setSizeCounts(newSizeCounts);
+  };
 
   const addSizeCount = () => {
-    setSizeCounts([...sizeCounts, { size: '', count: 0 }])
-  }
+    setSizeCounts([...sizeCounts, { size: '', count: 0 }]);
+  };
 
   const submitHandler = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     dispatch(
       createProduct({
@@ -88,10 +100,11 @@ const ProductCreateScreen = () => {
         price,
         image,
         url,
+        qr,
         description,
       })
-    )
-  }
+    );
+  };
 
   return (
     <>
@@ -126,7 +139,7 @@ const ProductCreateScreen = () => {
             ) : error ? (
               <Message variant='danger'>{error}</Message>
             ) : (
-              <Form onSubmit={submitHandler} enctype='multipart/form-data'>
+              <Form onSubmit={submitHandler} encType='multipart/form-data'>
                 <Form.Group controlId='cat'>
                   <Form.Label
                     className='mt-3'
@@ -277,7 +290,26 @@ const ProductCreateScreen = () => {
                     placeholder='Put the 3D model url'
                   />
                 </Form.Group>
-                <Form.Group controlId='description'>
+                <Form.Group controlId='qr'>
+                  <Form.Label
+                    className='mt-3'
+                    style={{
+                      fontSize: '18px',
+                      fontWeight: 'bold',
+                      color: '#591f1f',
+                    }}
+                  >
+                    QR Code
+                  </Form.Label>
+                  <Form.Control
+                    id='image-file'
+                    type='file'
+                    custom
+                    onChange={uploadFileHandlerqr}
+                  />
+                  {uploading && <Loader />}
+                </Form.Group>
+                <Form.Group controlId='url'>
                   <Form.Label
                     className='mt-3'
                     style={{
@@ -314,7 +346,7 @@ const ProductCreateScreen = () => {
         </FormContainer>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default ProductCreateScreen
+export default ProductCreateScreen;

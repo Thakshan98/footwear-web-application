@@ -59,6 +59,10 @@ const footwearSchema = mongoose.Schema(
     url: {
       type: String,
     },
+    qr: {
+      type: String,
+      required: true,
+    },
     description: {
       type: String,
       required: true,

@@ -20,6 +20,7 @@ const ProductEditScreen = () => {
   const [sizeCounts, setSizeCounts] = useState([{ size: '', count: 0 }])
   const [url, setUrl] = useState('')
   const [image, setImage] = useState('')
+  const [qr, setQr] = useState('')
   const [description, setDescription] = useState('')
   const [uploading, setUploading] = useState(false)
 
@@ -55,6 +56,7 @@ const ProductEditScreen = () => {
         setCategory(product.cat)
         setSizeCounts(product.size)
         setUrl(product.url)
+        setQr(product.qr)
         setDescription(product.description)
       }
     }
@@ -71,6 +73,18 @@ const ProductEditScreen = () => {
     })
     setImage(data)
   }
+  const uploadFileHandlerqr = async (e) => {
+    const file = e.target.files[0]
+
+    const formData = new FormData()
+    formData.append('image', file)
+
+    const { data } = await axios.post('/api/upload', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+    setQr(data)
+  }
+
   const handleSizeChange = (e, index) => {
     const newSizeCounts = [...sizeCounts]
     newSizeCounts[index].size = e.target.value
@@ -99,6 +113,7 @@ const ProductEditScreen = () => {
         price,
         image,
         url,
+        qr,
         description,
       })
     )
@@ -283,7 +298,7 @@ const ProductEditScreen = () => {
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
                     placeholder='Put the 3D model url'
-                  />
+                  />                  
                 </Form.Group>
                 <Form.Group controlId='description'>
                   <Form.Label
@@ -294,6 +309,27 @@ const ProductEditScreen = () => {
                       color: '#591f1f',
                     }}
                   >
+
+                  QR Code
+                  </Form.Label>
+                  <Form.Control
+                    id='image-file'
+                    type='file'
+                    custom
+                    onChange={uploadFileHandlerqr}
+                  />
+                  {uploading && <Loader />}
+                </Form.Group>
+                <Form.Group controlId='url'>
+                  <Form.Label
+                    className='mt-3'
+                    style={{
+                      fontSize: '18px',
+                      fontWeight: 'bold',
+                      color: '#591f1f',
+                    }}
+                  >
+
                     Description
                   </Form.Label>
                   <Form.Control
