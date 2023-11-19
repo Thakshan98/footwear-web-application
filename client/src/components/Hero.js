@@ -56,7 +56,7 @@ const Hero = () => {
             <div className='px-5'>
               <img
                 style={{ backgroundColor: '#F2F3F7' }}
-                className='my-5 px-5 rounded-circle'
+                className='my-5 px-5 rounded-circle z-3'
                 src={heroImg}
                 alt=''
                 width={600}

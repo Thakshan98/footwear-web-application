@@ -8,6 +8,8 @@ import { listProducts } from '../actions/productActions'
 import { listCategories } from '../actions/categoryAction'
 import SearchBox from '../components/SearchBox'
 import Paginate from '../components/Paginate'
+import DemoVideo from '../components/DemoVideo'
+import ARViewImage from '../images/arview.jpg'
 
 const ShopScreen = () => {
   const { keyword, pageNumber } = useParams()
@@ -66,6 +68,21 @@ const ShopScreen = () => {
                 </div>
               </>
             )}
+          </div>
+        </div>
+        <div
+          className='py-5'
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: '20px',
+          }}
+        >
+          <DemoVideo />
+          <div>
+            
           </div>
         </div>
       </div>

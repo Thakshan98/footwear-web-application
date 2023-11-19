@@ -21,7 +21,7 @@ import {
 } from '../actions/productActions'
 import { addToCart } from '../actions/cartActions'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
-import ARVans from '../images/QRVans.png'
+import phone from '../images/Phone.png'
 import Android from '../images/android.png'
 import Iphone from '../images/apple.png'
 import ARViewer from '../components/ARViewer'
@@ -31,7 +31,6 @@ import { TbBoxModel } from 'react-icons/tb'
 
 const ProductScreen = () => {
   const { id } = useParams()
-  // Click the button model will be displayed
   const [isModelVisible, setModelVisible] = useState(false)
   const [isModel, setModel] = useState(true)
   const toggleModelVisibility = () => {
@@ -41,6 +40,24 @@ const ProductScreen = () => {
   const [selectedSizeCount, setSelectedSizeCount] = useState(0)
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState('')
+
+  //QR code availability
+  const isQRCodeAvailable = () => {
+    return product.qr !== undefined && product.qr !== null && product.qr !== ''
+  }
+
+  //3D model Availability
+  const is3DModelAvailable = () => {
+    return (
+      product.url !== undefined && product.url !== null && product.url !== ''
+    )
+  }
+
+  const is3DModelQRAvailable = () => {
+    return (
+      product.url !== undefined && product.url !== null && product.url !== ''
+    )
+  }
 
   const dispatch = useDispatch()
 
@@ -114,16 +131,16 @@ const ProductScreen = () => {
             <Row>
               <Col
                 lg={3}
-                md={12}
+                md={6}
                 className='my-3 py-4 bg-white rounded'
-                style={{ height: '350px', width: '300px' }}
+                style={{ height: '300px', width: '300px' }}
               >
                 <Image
-                  className='productImg popImage border rounded '
+                  className='productImg popImage border rounded img-fluid'
                   src={product.image}
                   alt={product.name}
                   fluid
-                  style={{ height: '300px' }}
+                  style={{ height: '250px' }}
                 />
               </Col>
               <Col lg={6} md={6} className='my-3'>
@@ -149,53 +166,72 @@ const ProductScreen = () => {
                     </div>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    <div
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                      }}
-                    >
-                      <div>
-                        <h5>AR View Scan QR</h5>
-                        <img
-                          style={{ width: '200px' }}
-                          src={product.qr}
-                          alt='Ar View'
-                        />
-                      </div>
-                      <div
-                        style={{
-                          display: 'flex',
-                        }}
-                      >
-                        <a
-                          href='https://play.google.com/store/apps/details?id=com.ibosoninnov.unitear'
-                          target='_blank'
-                          rel='noreferrer'
+                    {userInfo &&
+                      !userInfo.isAdmin &&
+                      !userInfo.isSystemAdmin && (
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                          }}
                         >
-                          <img
-                            className='img-fluid'
-                            src={Android}
-                            target='_blank'
-                            alt='Android'
-                            style={{ width: '180px', height: '60px' }}
-                          />
-                        </a>
-                        <a
-                          href='https://apps.apple.com/us/app/unitear/id1450089869'
-                          target='_blank'
-                          rel='noreferrer'
-                        >
-                          <img
-                            className='img-fluid'
-                            src={Iphone}
-                            target='_blank'
-                            alt='Iphone'
-                            style={{ width: '180px', height: '60px' }}
-                          />
-                        </a>
-                      </div>
-                    </div>
+                          <div>
+                            <h5 className='py-3 collect heading-color'>
+                              AR View Scan QR{' '}
+                            </h5>
+                            <div>
+                              {isQRCodeAvailable() ? (
+                                <img
+                                  style={{ width: '200px' }}
+                                  src={product.qr}
+                                  alt='QR Code'
+                                />
+                              ) : (
+                                <div
+                                  class='alert alert-info text-center pb-0'
+                                  role='alert'
+                                >
+                                  <p>
+                                    QR Code is now unavailable in this product.
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                          <div
+                            style={{
+                              display: 'flex',
+                            }}
+                          >
+                            <a
+                              href='https://play.google.com/store/apps/details?id=com.ibosoninnov.unitear'
+                              target='_blank'
+                              rel='noreferrer'
+                            >
+                              <img
+                                className='img-fluid'
+                                src={Android}
+                                target='_blank'
+                                alt='Android'
+                                style={{ width: '180px', height: '60px' }}
+                              />
+                            </a>
+                            <a
+                              href='https://apps.apple.com/us/app/unitear/id1450089869'
+                              target='_blank'
+                              rel='noreferrer'
+                            >
+                              <img
+                                className='img-fluid'
+                                src={Iphone}
+                                target='_blank'
+                                alt='Iphone'
+                                style={{ width: '180px', height: '60px' }}
+                              />
+                            </a>
+                          </div>
+                        </div>
+                      )}
                   </ListGroup.Item>
 
                   <div className='py-3 px-3'>{/* <QR /> */}</div>
@@ -203,89 +239,129 @@ const ProductScreen = () => {
               </Col>
               <Col lg={3} md={6} className='my-3'>
                 {userInfo && !userInfo.isAdmin && !userInfo.isSystemAdmin && (
-                  <Card className='shadow-none p-3 mb-5 rounded  border-0'>
-                    <ListGroup variant='flush'>
-                      <ListGroup.Item>
-                        <Row>
-                          <Col>Price:</Col>
-                          <Col>
-                            <strong>LKR.{product.price}</strong>
-                          </Col>
-                        </Row>
-                      </ListGroup.Item>
+                  <>
+                    <Card className='shadow-none p-3 mb-5 rounded border-0'>
+                      <ListGroup variant='flush'>
+                        <ListGroup.Item>
+                          <Row>
+                            <Col>Price:</Col>
+                            <Col>
+                              <strong>LKR.{product.price}</strong>
+                            </Col>
+                          </Row>
+                        </ListGroup.Item>
 
-                      <ListGroup.Item>
-                        <Row>
-                          <Col>Size:</Col>
-                          <Col>
-                            <Form.Control
-                              as='select'
-                              value={selectedSize}
-                              onChange={(e) => handleSizeChange(e)}
-                            >
-                              <option value=''>Select Size</option>
-                              {product.size &&
-                                product.size.map((sizeObj, index) => (
-                                  <option key={index} value={sizeObj.size}>
-                                    {sizeObj.size}
-                                  </option>
-                                ))}
-                            </Form.Control>
-                          </Col>
-                        </Row>
-                      </ListGroup.Item>
+                        <ListGroup.Item>
+                          <Row>
+                            <Col>Size:</Col>
+                            <Col>
+                              <Form.Control
+                                as='select'
+                                value={selectedSize}
+                                onChange={(e) => handleSizeChange(e)}
+                              >
+                                <option value=''>Select Size</option>
+                                {product.size &&
+                                  product.size.map((sizeObj, index) => (
+                                    <option key={index} value={sizeObj.size}>
+                                      {sizeObj.size}
+                                    </option>
+                                  ))}
+                              </Form.Control>
+                            </Col>
+                          </Row>
+                        </ListGroup.Item>
 
-                      <ListGroup.Item>
-                        <Row>
-                          <Col>Count:</Col>
-                          <Col>
-                            <Form.Control
-                              as='select'
-                              value={selectedSizeCount}
-                              onChange={(e) =>
-                                setSelectedSizeCount(e.target.value)
-                              }
-                            >
-                              <option value={0}>Select Count</option>
-                              {selectedSize &&
-                                product.size &&
-                                product.size.find(
-                                  (sizeObj) => sizeObj.size === selectedSize
-                                ) &&
-                                [
-                                  ...Array(
-                                    product.size.find(
-                                      (sizeObj) => sizeObj.size === selectedSize
-                                    ).count
-                                  ).keys(),
-                                ].map((count) => (
-                                  <option key={count + 1} value={count + 1}>
-                                    {count + 1}
-                                  </option>
-                                ))}
-                            </Form.Control>
-                          </Col>
-                        </Row>
-                      </ListGroup.Item>
+                        <ListGroup.Item>
+                          <Row>
+                            <Col>Count:</Col>
+                            <Col>
+                              <Form.Control
+                                as='select'
+                                value={selectedSizeCount}
+                                onChange={(e) =>
+                                  setSelectedSizeCount(e.target.value)
+                                }
+                              >
+                                <option value={0}>Select Count</option>
+                                {selectedSize &&
+                                  product.size &&
+                                  product.size.find(
+                                    (sizeObj) => sizeObj.size === selectedSize
+                                  ) &&
+                                  [
+                                    ...Array(
+                                      product.size.find(
+                                        (sizeObj) =>
+                                          sizeObj.size === selectedSize
+                                      ).count
+                                    ).keys(),
+                                  ].map((count) => (
+                                    <option key={count + 1} value={count + 1}>
+                                      {count + 1}
+                                    </option>
+                                  ))}
+                              </Form.Control>
+                            </Col>
+                          </Row>
+                        </ListGroup.Item>
 
-                      <ListGroup.Item>
-                        <Button
-                          onClick={addToCartHandler}
-                          className='btn-block'
-                          type='button'
-                          disabled={selectedSizeCount === 0}
+                        <ListGroup.Item>
+                          <Button
+                            onClick={addToCartHandler}
+                            className='btn-block'
+                            type='button'
+                            disabled={selectedSizeCount === 0}
+                            style={{
+                              backgroundImage:
+                                'linear-gradient(to bottom right,#50025c, #d20be0,#db3bb6)',
+                              color: 'white',
+                              fontWeight: '600',
+                            }}
+                          >
+                            Add To Cart
+                          </Button>
+                        </ListGroup.Item>
+                      </ListGroup>
+                    </Card>
+
+                    <div className='shadow-none p-3 mb-5 rounded border-0 bg-white'>
+                      <div
+                        className='mx-5 py-3'
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          flexDirection: 'column',
+                        }}
+                      >
+                        <h4
+                          className='collect heading-color text-center py-3'
                           style={{
-                            backgroundImage:
-                              'linear-gradient(to bottom right,#50025c, #d20be0,#db3bb6)',
-                            color: 'white',
-                            fontWeight: '600',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
                           }}
                         >
-                          Add To Cart
-                        </Button>
-                      </ListGroup.Item>
-                    </ListGroup>
-                  </Card>
+                          3D Model View In <img src={phone} alt='phone' />
+                        </h4>
+                        <h4 className='collect heading-color py-2'>Scan QR</h4>
+                        {is3DModelQRAvailable() ? (
+                          <QRCode
+                            value={product.url}
+                            style={{ width: '200px', height: '200px' }}
+                          />
+                        ) : (
+                          <div
+                            class='alert alert-info text-center pb-0'
+                            role='alert'
+                          >
+                            <p>QR is now unavailable in this product.</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </>
                 )}
               </Col>
             </Row>
@@ -304,7 +380,7 @@ const ProductScreen = () => {
                         justifyContent: 'center', // Center vertically
                       }}
                     >
-                      <button
+                      {/* <button
                         className='py-1 px-3 my-2 rounded btn btn-primary'
                         onClick={toggleModelVisibility}
                         style={{
@@ -320,8 +396,9 @@ const ProductScreen = () => {
                           }}
                         />
                         Click View in 3D
-                      </button>
-                      {isModelVisible && (
+                      </button> */}
+
+                      {is3DModelAvailable() ? (
                         <iframe
                           title='Footwear model'
                           frameborder='0'
@@ -338,31 +415,16 @@ const ProductScreen = () => {
                           // className='modelSize'
                           src={product.url}
                         ></iframe>
+                      ) : (
+                        <div
+                          class='alert alert-info text-center pb-0 my-4'
+                          role='alert'
+                        >
+                          <p>
+                            3D Model View is now unavailable in this product.
+                          </p>
+                        </div>
                       )}
-                    </div>
-                    <div
-                      className='mx-5 py-3'
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        flexDirection: 'column',
-                      }}
-                    >
-                      <QRCode
-                        value={product.url}
-                        style={{ width: '200px', height: '200px' }}
-                      />
-                      <h4
-                        className='collect heading-color text-center py-3'
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                        }}
-                      >
-                        Scan the QR and see the 3D View in Your Mobile Phone
-                      </h4>
                     </div>
                   </div>
                 )}
