@@ -1,4 +1,17 @@
 # 👋👋Footwear Online Store Appilcation👋👋
+1. Login and Registration
+2. Inventory Management
+3. Order Management
+4. User Management
+5. Shopping cart and Purchasing
+6. Payment Gateway
+7. Customer Account Management
+9. Fast and Efficient Search and filtering
+10. Customization of product using 3D modelling
+11. Customer Support (Chatbots)
+12. Customer feedback
+13. Footwear review and rating 
+14. Delivering a virtual experience of the shoe using 3D model (Augmented Reality)
 
 # 👋👋 Customer Side 👋👋
 **👋👋👋Register Screen👋👋👋**
@@ -73,5 +86,6 @@
 ![Customer Feedback](https://github.com/Thakshan98/footwear-web-application/assets/103124559/4aae5b9e-f488-45fc-ab05-edb7893dd6d5)
 
 
+**👋👋👋AR Experience👋👋👋**
 
 
