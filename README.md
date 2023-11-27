@@ -1,4 +1,4 @@
-# Footwear online shop Appilcation
+# 👋👋Footwear Online Store Appilcation👋👋
 
 # 👋👋 Customer Side 👋👋
 **👋👋👋Register Screen👋👋👋**
@@ -48,5 +48,30 @@
 
 
 # 👋👋 Admin Side 👋👋
+**👋👋👋Dashboard👋👋👋**
+![Dashboard](https://github.com/Thakshan98/footwear-web-application/assets/103124559/f549f3f0-a6c9-4e70-b27b-3c5033ab5d70)
+
+**👋👋👋Category List👋👋👋**
+![Category List](https://github.com/Thakshan98/footwear-web-application/assets/103124559/6e9804e3-62c5-4beb-888d-5893840eaf87)
+
+**👋👋👋Add Category👋👋👋**
+![Add Category](https://github.com/Thakshan98/footwear-web-application/assets/103124559/3132ca10-69cb-4713-819f-fbd2f7abecf6)
+
+**👋👋👋Edit Category👋👋👋**
+![Edit Category](https://github.com/Thakshan98/footwear-web-application/assets/103124559/67f2b5c6-1d40-4809-82fb-4b16d6a62910)
+
+**👋👋👋Footwear List👋👋👋**
+![Footwear List](https://github.com/Thakshan98/footwear-web-application/assets/103124559/35cb4cf2-5fcd-4a70-afc0-5cf686c2a31f)
+
+**👋👋👋Add Footwear👋👋👋**
+![Add Footwear](https://github.com/Thakshan98/footwear-web-application/assets/103124559/4a347b64-21d7-4be4-b0a7-dac398fbaba9)
+
+**👋👋👋Edit Footwear👋👋👋**
+![Edit Footwear](https://github.com/Thakshan98/footwear-web-application/assets/103124559/575f076a-0935-4f71-9e3a-4ada6cadab81)
+
+**👋👋👋Customer Feedback👋👋👋**
+![Customer Feedback](https://github.com/Thakshan98/footwear-web-application/assets/103124559/4aae5b9e-f488-45fc-ab05-edb7893dd6d5)
+
+
 
 
