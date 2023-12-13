@@ -30,7 +30,7 @@ const Header = () => {
           <div className='row'>
             <div className='col-6'>
               <p className='text-white mb-0 font-popins text-sm tracking-wider'>
-                Free Delivery Over Rs.20000 & free Returns
+                Free Delivery Over Rs.10000 & free Returns
               </p>
             </div>
             <div className='col-6'>

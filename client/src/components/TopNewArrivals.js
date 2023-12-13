@@ -37,7 +37,7 @@ const TopNewArrivals = () => {
                   style={{ textDecoration: 'none' }}
                 >
                   <Card.Img
-                    style={{ width: '210px' }}
+                    style={{ width: '210px',height:'200px' }}
                     variant='top'
                     src={product.image}
                     alt={product.name}

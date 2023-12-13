@@ -233,7 +233,6 @@ const ProductScreen = () => {
                         </div>
                       )}
                   </ListGroup.Item>
-
                   <div className='py-3 px-3'>{/* <QR /> */}</div>
                 </ListGroup>
               </Col>
